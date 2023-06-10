@@ -1,0 +1,19 @@
+{
+    "Member login": "Prisijungimas",
+    "Email": "El.paštas",
+    "Password": "Slaptažodis",
+    "Confirm Password": "Pakartokite slaptažodį",
+    "Remember me": "Ne mano kompiuteris",
+    "Forgot your password?": "Pamiršote slaptažodį?",
+    "Log in": "Prisijungti",
+    "Email Password Reset Link": "Siųsti slaptažodžio pakeitimo nuorodą",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Pamiršai slaptažodį? Jokiu problemu. Tiesiog praneškite mums savo el. pašto adresą ir mes el. paštu atsiųsime jums slaptažodžio nustatymo iš naujo nuorodą, kuri leis jums pasirinkti naują.",
+    "Registration": "Registracija",
+    "Name": "Vartotojas",
+    "Already registered?": "Jau  užregistruotas(-a)?",
+    "Register": "Registruotis",
+    "Whoops! Something went wrong.": "Oi! Kažkas nutiko.",
+    "Log Out": "Atsijungti",
+    "Cities": "Miestai",
+    "Favorites": "Mėgstamiausi"
+}
