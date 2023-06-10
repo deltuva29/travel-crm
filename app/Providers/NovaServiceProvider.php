@@ -89,7 +89,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 'remember_menu_state' => true,
                 'navigation' => [
                     TopLevelResource::make([
-                        'label' => 'Resources',
+                        'label' => 'CRM',
                         'resources' => [
                             Group::make([
                                 'label' => 'Products',
