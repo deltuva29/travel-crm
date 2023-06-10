@@ -79,14 +79,24 @@ class Bus extends Resource
     protected function technicalFields(): array
     {
         return [
-            Boolean::make(__('Šiuo metu eksplotuojamas(važiuojantis)'), 'active')
-                ->sortable()->help(__('Pažymėkite jei autobusas yra tvarkingas ir važiuojantis.')),
+            Boolean::make(__('Važiuojantis'), 'active')
+                ->sortable()
+                ->help(__('Pažymėkite jei autobusas yra tvarkingas ir važiuojantis.'))
+                ->showOnIndex(),
 
             Boolean::make(__('Remontuojamas'), 'repair')
-                ->sortable()->help(__('Pažymėkite jei autobusas yra šiuo metu remonte.')),
+                ->sortable()
+                ->help(__('Pažymėkite jei autobusas yra šiuo metu remonte.'))
+                ->onlyOnDetail()
+                ->showOnCreating()
+                ->showOnUpdating(),
 
             Boolean::make(__('Po avarijos/nelaimės'), 'crash')
-                ->sortable()->help(__('Pažymėkite jei autobusas buvo papuoles nesenai į eismo įvykį.')),
+                ->sortable()
+                ->help(__('Pažymėkite jei autobusas buvo papuoles nesenai į eismo įvykį.'))
+                ->onlyOnDetail()
+                ->showOnCreating()
+                ->showOnUpdating(),
         ];
     }
 }
