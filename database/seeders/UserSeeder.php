@@ -21,8 +21,7 @@ class UserSeeder extends Seeder
                 'is_root' => false,
             ],
         ])->each(function ($superAdmin) {
-            $user = User::create(User::factory()->raw($superAdmin));
-            $user->assignRole('Super administratorius');
+            User::create(User::factory()->raw($superAdmin));
         });
     }
 }
