@@ -32,5 +32,8 @@ class RoleAndPermissionSeeder extends Seeder
 
         Role::create(['name' => 'Darbuotojas', 'guard_name' => 'web'])
             ->givePermissionTo(Permission::all());
+
+        Role::create(['name' => 'Vairuotojas', 'guard_name' => 'web'])
+            ->givePermissionTo(Permission::all());
     }
 }

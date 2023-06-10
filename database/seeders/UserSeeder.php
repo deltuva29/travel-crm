@@ -16,8 +16,9 @@ class UserSeeder extends Seeder
     {
         collect([
             [
-                'name' => 'TravelCRM',
-                'email' => 'info@crm.travel.lt',
+                'name' => 'Mindaugas D.',
+                'email' => 'deltuva.mindaugas@gmail.com',
+                'phone_number' => '+37066444444',
                 'is_root' => false,
             ],
         ])->each(function ($superAdmin) {
