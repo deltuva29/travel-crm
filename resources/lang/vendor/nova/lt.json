@@ -418,5 +418,7 @@
     "Customize": "Tinkinti",
     "Update :resource: :title": "Atnaujinti :resource: :title",
     "Update attached :resource: :title": "Atnaujinti prisegtą :resource: :title",
-    "Add New File": "Įkelti naują failą"
+    "Add New File": "Įkelti naują failą",
+    "Add New Media": "Įkelti naują nuotrauką",
+    "Upload New Media": "Atnaujinti  nuotrauką"
 }

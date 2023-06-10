@@ -20,17 +20,19 @@
     "require": {
         "php": "^8.0.2",
         "digital-creative/collapsible-resource-manager": "^1.4",
+        "ebess/advanced-nova-media-library": "^3.3",
         "gregoriohc/laravel-nova-theme-responsive": "^0.8.1",
         "guzzlehttp/guzzle": "^7.2",
+        "issetas/vacation-orange": "dev-nova-crud",
         "laravel-frontend-presets/tall": "^5.0",
         "laravel/framework": "^9.19",
         "laravel/nova": "*",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.12",
+        "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-permission": "^5.10",
-        "vyuldashev/nova-permission": "^3",
-        "issetas/vacation-orange": "dev-nova-crud"
+        "vyuldashev/nova-permission": "^3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
