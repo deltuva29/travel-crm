@@ -94,12 +94,17 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         'label' => 'CRM',
                         'resources' => [
                             Group::make([
-                                'label' => 'Kelionės',
+                                'label' => 'Transportas',
                                 'expanded' => false,
                                 'resources' => [
                                     BusFeature::class,
                                     Bus::class,
                                 ]
+                            ]),
+                            Group::make([
+                                'label' => 'Kelionės',
+                                'expanded' => false,
+                                'resources' => []
                             ]),
                             Group::make([
                                 'label' => 'Users',
