@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Panel;
@@ -48,8 +49,17 @@ class Bus extends Resource
 
             Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
 
+            Heading::make(__('Svarbi informacija')),
+
             BelongsTo::make(__('Paskirtas vairuotojas'), 'user', User::class)
                 ->searchable(),
+
+            Text::make(__('Valstybinis numeris'), 'plate_number')
+                ->rules('required', 'max:30')
+                ->sortable()
+                ->onlyOnDetail()
+                ->showOnCreating()
+                ->showOnUpdating(),
 
             new Panel(__('Privalumai'), $this->additionalFields()),
 
