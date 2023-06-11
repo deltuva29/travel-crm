@@ -12,4 +12,12 @@ class BusFeature extends Model
     protected $table = 'bus_features';
 
     protected $guarded = ['id'];
+
+    public static function getArrayOfAllFeaturesForFilters()
+    {
+        return self::orderBy('name', 'asc')
+            ->get()
+            ->pluck('id', 'name')
+            ->toArray();
+    }
 }

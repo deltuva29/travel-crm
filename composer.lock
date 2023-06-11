@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "27615fb49403262a2b4d6946a9cbc13c",
+    "content-hash": "ce49f423b7333b374bb3016f41268608",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -359,6 +359,60 @@
                 "source": "https://github.com/dcasia/collapsible-resource-manager/tree/v1.4.2"
             },
             "time": "2022-02-05T17:07:28+00:00"
+        },
+        {
+            "name": "digital-creative/nova-mega-filter",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcasia/nova-mega-filter.git",
+                "reference": "faa396321e5de26926fd00a7a386451252291380"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcasia/nova-mega-filter/zipball/faa396321e5de26926fd00a7a386451252291380",
+                "reference": "faa396321e5de26926fd00a7a386451252291380",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^3.17.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DigitalCreative\\MegaFilter\\MegaFilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DigitalCreative\\MegaFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Milewski"
+                }
+            ],
+            "description": "Allows you to control the columns and filters shown on your nova resources.",
+            "keywords": [
+                "big-filter",
+                "columns",
+                "filter",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/dcasia/nova-mega-filter/issues",
+                "source": "https://github.com/dcasia/nova-mega-filter/tree/v0.6.0"
+            },
+            "time": "2021-09-20T02:06:58+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -3541,6 +3595,167 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "oleksiypetlyuk/nova-range-filter",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oleksiyPetlyuk/nova-range-filter.git",
+                "reference": "243745b451fc24f047392449cd796a2a338ce49e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oleksiyPetlyuk/nova-range-filter/zipball/243745b451fc24f047392449cd796a2a338ce49e",
+                "reference": "243745b451fc24f047392449cd796a2a338ce49e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Oleksiypetlyuk\\NovaRangeFilter\\FilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Oleksiypetlyuk\\NovaRangeFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova filter.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/oleksiyPetlyuk/nova-range-filter/issues",
+                "source": "https://github.com/oleksiyPetlyuk/nova-range-filter/tree/master"
+            },
+            "time": "2020-05-26T15:48:43+00:00"
+        },
+        {
+            "name": "optimistdigital/nova-multiselect-filter",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/optimistdigital/nova-multiselect-filter.git",
+                "reference": "e78128023db4a2250ea023af7acc81862ddf2fe1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/optimistdigital/nova-multiselect-filter/zipball/e78128023db4a2250ea023af7acc81862ddf2fe1",
+                "reference": "e78128023db4a2250ea023af7acc81862ddf2fe1",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^3.0",
+                "optimistdigital/nova-translations-loader": "^3.0.0",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "OptimistDigtal\\NovaMultiselectFilter\\FilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OptimistDigtal\\NovaMultiselectFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kaspar Rosin",
+                    "email": "kaspar.rosin@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tarvo Reinpalu",
+                    "email": "tarvoreinpalu@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Optimist Digital",
+                    "email": "info@optimistdigital.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Multiselect filter for Laravel Nova.",
+            "keywords": [
+                "filter",
+                "laravel",
+                "laravel-nova",
+                "multiselect",
+                "nova",
+                "select"
+            ],
+            "support": {
+                "issues": "https://github.com/optimistdigital/nova-multiselect-filter/issues",
+                "source": "https://github.com/optimistdigital/nova-multiselect-filter/tree/2.0.0"
+            },
+            "time": "2020-12-02T13:50:52+00:00"
+        },
+        {
+            "name": "optimistdigital/nova-translations-loader",
+            "version": "3.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/optimistdigital/nova-translations-loader.git",
+                "reference": "d70d311b3c5b5722ebd27e1223f39e6a75b744b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/optimistdigital/nova-translations-loader/zipball/d70d311b3c5b5722ebd27e1223f39e6a75b744b2",
+                "reference": "d70d311b3c5b5722ebd27e1223f39e6a75b744b2",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^7.21 || ^8.0 || ^9.0",
+                "laravel/nova": "^3.0",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OptimistDigital\\NovaTranslationsLoader\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This Laravel Nova package helps developers load translations into their packages.",
+            "keywords": [
+                "laravel",
+                "nova",
+                "optimistdigital",
+                "translations"
+            ],
+            "support": {
+                "issues": "https://github.com/optimistdigital/nova-translations-loader/issues",
+                "source": "https://github.com/optimistdigital/nova-translations-loader/tree/3.1.4"
+            },
+            "time": "2022-04-08T12:27:58+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -8467,16 +8682,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.6.8",
+            "version": "9.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "17d621b3aff84d0c8b62539e269e87d8d5baa76e"
+                "reference": "a9aceaf20a682aeacf28d582654a1670d8826778"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/17d621b3aff84d0c8b62539e269e87d8d5baa76e",
-                "reference": "17d621b3aff84d0c8b62539e269e87d8d5baa76e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a9aceaf20a682aeacf28d582654a1670d8826778",
+                "reference": "a9aceaf20a682aeacf28d582654a1670d8826778",
                 "shasum": ""
             },
             "require": {
@@ -8550,7 +8765,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.8"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.9"
             },
             "funding": [
                 {
@@ -8566,7 +8781,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-11T05:14:45+00:00"
+            "time": "2023-06-11T06:13:56+00:00"
         },
         {
             "name": "sebastian/cli-parser",
