@@ -19,6 +19,7 @@
     ],
     "require": {
         "php": "^8.0.2",
+        "benjacho/belongs-to-many-field": "^2.0",
         "digital-creative/collapsible-resource-manager": "^1.4",
         "ebess/advanced-nova-media-library": "^3.3",
         "gregoriohc/laravel-nova-theme-responsive": "^0.8.1",

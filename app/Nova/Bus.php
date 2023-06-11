@@ -2,14 +2,15 @@
 
 namespace App\Nova;
 
+use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
 
 class Bus extends Resource
@@ -29,7 +30,7 @@ class Bus extends Resource
     }
 
     public static $search = [
-        'id',
+        'id', 'brand', 'model', 'plate_number',
     ];
 
     public function fields(Request $request): array
@@ -49,7 +50,15 @@ class Bus extends Resource
 
             Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
 
-            Heading::make(__('Svarbi informacija')),
+            BelongsToManyField::make(__('Kokie privalumai yra viduje'), 'features', BusFeature::class)
+                ->help(__('Pasirinkite pagrindinius privalumus autobuso viduje.'))
+                ->optionsLabel('name')
+                ->showAsListInDetail()
+                ->onlyOnDetail()
+                ->showOnCreating()
+                ->showOnUpdating(),
+
+            Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
 
             BelongsTo::make(__('Paskirtas vairuotojas'), 'user', User::class)
                 ->searchable(),
