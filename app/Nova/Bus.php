@@ -64,15 +64,31 @@ class Bus extends Resource
         return [
             Text::make(__('Kuro sąnaudos ~ 100km'), 'fuel_per_100_km')
                 ->rules('required', 'max:15')
-                ->sortable(),
+                ->sortable()
+                ->onlyOnDetail()
+                ->showOnCreating()
+                ->showOnUpdating(),
 
             Text::make(__('Vietos'), 'seats')
                 ->rules('required', 'max:15')
-                ->sortable(),
+                ->sortable()
+                ->onlyOnDetail()
+                ->showOnCreating()
+                ->showOnUpdating(),
+
+            Text::make(__('Visos vietos'), 'seats_max')
+                ->rules('required', 'max:15')
+                ->sortable()
+                ->onlyOnDetail()
+                ->showOnCreating()
+                ->showOnUpdating(),
 
             Text::make(__('Bakas'), 'fuel_in_litres')
                 ->rules('required', 'max:15')
-                ->sortable(),
+                ->sortable()
+                ->onlyOnDetail()
+                ->showOnCreating()
+                ->showOnUpdating(),
         ];
     }
 
