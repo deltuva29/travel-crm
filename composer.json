@@ -21,6 +21,7 @@
         "php": "^8.0.2",
         "benjacho/belongs-to-many-field": "^2.0",
         "digital-creative/collapsible-resource-manager": "^1.4",
+        "digital-creative/nova-mega-filter": "^0.6.0",
         "ebess/advanced-nova-media-library": "^3.3",
         "gregoriohc/laravel-nova-theme-responsive": "^0.8.1",
         "guzzlehttp/guzzle": "^7.2",
@@ -31,6 +32,8 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.12",
+        "oleksiypetlyuk/nova-range-filter": "^0.0.2",
+        "optimistdigital/nova-multiselect-filter": "^2.0",
         "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-permission": "^5.10",
         "vyuldashev/nova-permission": "^3"

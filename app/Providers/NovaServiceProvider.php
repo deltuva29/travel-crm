@@ -97,8 +97,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'label' => 'Transportas',
                                 'expanded' => false,
                                 'resources' => [
-                                    BusFeature::class,
                                     Bus::class,
+                                    BusFeature::class,
                                 ]
                             ]),
                             Group::make([
