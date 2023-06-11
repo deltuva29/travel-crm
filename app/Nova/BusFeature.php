@@ -33,7 +33,7 @@ class BusFeature extends Resource
                 ->rules('required', 'max:255')
                 ->sortable(),
 
-            Boolean::make(__('Važiuojantis'), 'active')
+            Boolean::make(__('Aktyvus'), 'active')
                 ->sortable()->help(__('Pažymėkite jei privalumas yra naudojamas.')),
         ];
     }
