@@ -32,6 +32,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.12",
+        "nrml-co/nova-big-filter": "^1.0",
         "oleksiypetlyuk/nova-range-filter": "^0.0.2",
         "optimistdigital/nova-multiselect-filter": "^2.0",
         "spatie/laravel-medialibrary": "^10.0.0",

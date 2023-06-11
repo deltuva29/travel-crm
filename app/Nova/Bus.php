@@ -3,9 +3,6 @@
 namespace App\Nova;
 
 use Benjacho\BelongsToManyField\BelongsToManyField;
-use DigitalCreative\MegaFilter\Column;
-use DigitalCreative\MegaFilter\HasMegaFilterTrait;
-use DigitalCreative\MegaFilter\MegaFilter;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -15,11 +12,10 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
+use NrmlCo\NovaBigFilter\NovaBigFilter;
 
 class Bus extends Resource
 {
-    use HasMegaFilterTrait;
-
     public static string $model = \App\Models\Bus::class;
 
     public static $title = 'brand';
@@ -42,20 +38,6 @@ class Bus extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-
-            Text::make(__('Autobusas'), function () {
-                return $this->brand . ' - ' . $this->model;
-            })
-                ->hideFromDetail()
-                ->readonly()
-                ->asHtml(),
-
-            Text::make(__('Valst.nr'), function () {
-                return '<h4>' . $this->plate_number . '</h4>';
-            })
-                ->hideFromDetail()
-                ->readonly()
-                ->asHtml(),
 
             Text::make(__('Pavadinimas'), 'brand')
                 ->rules('required', 'max:255')
@@ -161,35 +143,21 @@ class Bus extends Resource
         ];
     }
 
+    public function filters(Request $request): array
+    {
+        return [
+            new Filters\BusSeatsFilter(),
+            new Filters\BusFuelPer100kmFilter(),
+            new Filters\BusFuelInLitresFilter(),
+            new Filters\BusFeaturesFilter(),
+            new Filters\User\RoleDriverFilter()
+        ];
+    }
+
     public function cards(Request $request): array
     {
         return [
-            MegaFilter::make([
-                'filters' => [
-                    new Filters\BusSeatsFilter(),
-                    new Filters\BusFuelPer100kmFilter(),
-                    new Filters\BusFuelInLitresFilter(),
-                    new Filters\BusFeaturesFilter(),
-                    new Filters\User\RoleDriverFilter()
-                ],
-                'columns' => [
-                    Column::make(__('Pavadinimas'), 'title')->checked()
-                ],
-                'settings' => [
-                    'columnsWidth' => 'w-1/4',
-                    'filtersWidth' => 'w-1/3',
-                    'columnsActive' => true,
-                    'headerLabel' => __('Meniu'),
-                    'columnsLabel' => __('Kolonos'),
-                    'filtersLabel' => __('Filtrai'),
-                    'actionsLabel' => __('Veiksmai'),
-                    'columnsSectionTitle' => __('Papildomos kolonos'),
-                    'filtersSectionTitle' => __('Filtrai'),
-                    'actionsSectionTitle' => __('Veiksmai'),
-                    'columnsResetLinkTitle' => __('Nustatyti standartines kolonas'),
-                    'filtersResetLinkTitle' => __('Nustatyti standartines filtrų reikšmes'),
-                ],
-            ])
+            (new NovaBigFilter)->setTitle('Filtravimas'),
         ];
     }
 }
