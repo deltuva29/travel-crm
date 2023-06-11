@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->string('seats_max')->default(0);
             $table->string('fuel_in_litres')->nullable();
             $table->string('plate_number')->nullable();
+            $table->string('note')->nullable();
             $table->string('type')->nullable();
             $table->boolean('active')->default(false);
             $table->boolean('repair')->default(false);
