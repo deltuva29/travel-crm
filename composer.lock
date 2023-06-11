@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce49f423b7333b374bb3016f41268608",
+    "content-hash": "c197ad0fdf4625aa45133f8317cf53df",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -362,22 +362,23 @@
         },
         {
             "name": "digital-creative/nova-mega-filter",
-            "version": "v0.6.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dcasia/nova-mega-filter.git",
-                "reference": "faa396321e5de26926fd00a7a386451252291380"
+                "reference": "a92842f8409840f80a73af53ef857d8ebba6c443"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dcasia/nova-mega-filter/zipball/faa396321e5de26926fd00a7a386451252291380",
-                "reference": "faa396321e5de26926fd00a7a386451252291380",
+                "url": "https://api.github.com/repos/dcasia/nova-mega-filter/zipball/a92842f8409840f80a73af53ef857d8ebba6c443",
+                "reference": "a92842f8409840f80a73af53ef857d8ebba6c443",
                 "shasum": ""
             },
             "require": {
                 "laravel/nova": "^3.17.0",
                 "php": ">=7.1.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -410,9 +411,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dcasia/nova-mega-filter/issues",
-                "source": "https://github.com/dcasia/nova-mega-filter/tree/v0.6.0"
+                "source": "https://github.com/dcasia/nova-mega-filter/tree/master"
             },
-            "time": "2021-09-20T02:06:58+00:00"
+            "time": "2022-01-15T13:09:08+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -10179,6 +10180,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "digital-creative/nova-mega-filter": 20,
         "issetas/vacation-orange": 20
     },
     "prefer-stable": true,

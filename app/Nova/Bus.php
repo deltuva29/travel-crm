@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Benjacho\BelongsToManyField\BelongsToManyField;
+use DigitalCreative\MegaFilter\Column;
 use DigitalCreative\MegaFilter\HasMegaFilterTrait;
 use DigitalCreative\MegaFilter\MegaFilter;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
@@ -171,7 +172,9 @@ class Bus extends Resource
                     new Filters\BusFeaturesFilter(),
                     new Filters\User\RoleDriverFilter()
                 ],
-                'columns' => [],
+                'columns' => [
+                    Column::make(__('Pavadinimas'), 'title')->checked()
+                ],
                 'settings' => [
                     'columnsWidth' => 'w-1/4',
                     'filtersWidth' => 'w-1/3',
