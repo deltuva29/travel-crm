@@ -76,7 +76,7 @@ class Bus extends Resource
                 ->showOnCreating()
                 ->showOnUpdating(),
 
-            new Panel(__('Privalumai'), $this->additionalFields()),
+            new Panel(__('Specifikacijos'), $this->additionalFields()),
 
             BelongsTo::make(__('Tipas'), 'type', BusType::class),
 
