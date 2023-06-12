@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
@@ -37,7 +37,9 @@ class Bus extends Resource
     public function fields(Request $request): array
     {
         return [
-            ID::make(__('ID'), 'id')->sortable(),
+            Images::make(__('Pagrindinė nuotrauka'), 'main_image'),
+
+            Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
 
             Text::make(__('Pavadinimas'), 'brand')
                 ->rules('required', 'max:255')
@@ -46,10 +48,6 @@ class Bus extends Resource
             Text::make(__('Modelis'), 'model')
                 ->rules('required', 'max:30')
                 ->sortable(),
-
-            Images::make(__('Pagrindinė nuotrauka'), 'main_image'),
-
-            Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
 
             BelongsToManyField::make(__('Kokie privalumai yra viduje'), 'features', BusFeature::class)
                 ->help(__('Pasirinkite pagrindinius privalumus autobuso viduje.'))
@@ -80,7 +78,11 @@ class Bus extends Resource
 
             new Panel(__('Privalumai'), $this->additionalFields()),
 
+            BelongsTo::make(__('Tipas'), 'type', BusType::class),
+
             new Panel(__('Būklė'), $this->technicalFields()),
+
+            HasMany::make(__('Tipas'), 'types', BusType::class),
 
             BelongsToMany::make(__('Prisegti autobuso privalumai'), 'features', BusFeature::class)
         ];
@@ -150,7 +152,11 @@ class Bus extends Resource
             new Filters\BusFuelPer100kmFilter(),
             new Filters\BusFuelInLitresFilter(),
             new Filters\BusFeaturesFilter(),
-            new Filters\User\RoleDriverFilter()
+            new Filters\BusTypeFilter(),
+            new Filters\User\RoleDriverFilter(),
+            new Filters\BusActiveFilter(),
+            new Filters\BusRepairFilter(),
+            new Filters\BusCrashFilter(),
         ];
     }
 
