@@ -59,4 +59,11 @@ class User extends Resource
                 ->showOnIndex(false),
         ];
     }
+
+    public function filters(Request $request): array
+    {
+        return [
+            new Filters\User\MultiRoleFilter(),
+        ];
+    }
 }
