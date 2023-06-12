@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Nova\Bus;
 use App\Nova\BusFeature;
+use App\Nova\BusType;
 use App\Nova\Role;
 use App\Nova\User;
 use DigitalCreative\CollapsibleResourceManager\CollapsibleResourceManager;
@@ -99,6 +100,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'resources' => [
                                     Bus::class,
                                     BusFeature::class,
+                                    BusType::class
                                 ]
                             ]),
                             Group::make([

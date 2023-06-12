@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -45,5 +46,15 @@ class Bus extends Model implements HasMedia
     public function features(): BelongsToMany
     {
         return $this->belongsToMany(BusFeature::class, 'bus_feature_buses', 'bus_id', 'bus_feature_id');
+    }
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(BusType::class);
+    }
+
+    public function types(): HasMany
+    {
+        return $this->hasMany(BusType::class, 'id', 'type_id');
     }
 }
