@@ -92,10 +92,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 'remember_menu_state' => true,
                 'navigation' => [
                     TopLevelResource::make([
-                        'label' => 'CRM',
+                        'label' => __('Sistema'),
                         'resources' => [
                             Group::make([
-                                'label' => 'Transportas',
+                                'label' => __('Transportas'),
                                 'expanded' => false,
                                 'resources' => [
                                     Bus::class,
@@ -104,26 +104,26 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 ]
                             ]),
                             Group::make([
-                                'label' => 'Kelionės',
+                                'label' => __('Kelionės'),
                                 'expanded' => false,
                                 'resources' => []
                             ]),
                             Group::make([
-                                'label' => 'Users',
+                                'label' => __('Paskyros'),
                                 'expanded' => false,
                                 'resources' => [
                                     User::class,
                                 ]
                             ]),
                             Group::make([
-                                'label' => 'Other',
+                                'label' => __('Kita'),
                                 'expanded' => false,
                                 'resources' => []
                             ])->canSee(function (Request $request) {
                                 return !$request->user()->hasAnyPermission(['Hide Sliders']);
                             }),
                             Group::make([
-                                'label' => 'Roles and permissions',
+                                'label' => __('Roles and permissions'),
                                 'expanded' => false,
                                 'resources' => [
                                     Role::class,
