@@ -45,7 +45,8 @@ class Bus extends Model implements HasMedia
 
     public function features(): BelongsToMany
     {
-        return $this->belongsToMany(BusFeature::class, 'bus_feature_buses', 'bus_id', 'bus_feature_id');
+        return $this->belongsToMany(BusFeature::class, 'bus_feature_buses', 'bus_id', 'bus_feature_id')
+            ->active();
     }
 
     public function type(): BelongsTo
