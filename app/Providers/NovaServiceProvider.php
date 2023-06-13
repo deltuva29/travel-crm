@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Nova\Bus;
 use App\Nova\BusFeature;
+use App\Nova\BusRent;
 use App\Nova\BusType;
 use App\Nova\Customer;
 use App\Nova\Role;
@@ -107,7 +108,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                             Group::make([
                                 'label' => __('Nuoma'),
                                 'expanded' => false,
-                                'resources' => []
+                                'resources' => [
+                                    BusRent::class
+                                ]
                             ]),
                             Group::make([
                                 'label' => __('Kelionės'),
