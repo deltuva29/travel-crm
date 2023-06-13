@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Naif\Toggle\Toggle;
 
 class Customer extends Resource
 {
@@ -50,6 +51,10 @@ class Customer extends Resource
             Text::make(__('Adresas'), 'address')
                 ->hideFromIndex()
                 ->rules('required', 'max:255'),
+
+            Toggle::make(__('Aktyvus'), 'active')
+                ->offColor('#d9cdcb')
+                ->onColor('61b30a'),
         ];
     }
 }
