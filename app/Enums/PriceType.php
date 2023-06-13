@@ -6,10 +6,10 @@ use Spatie\Enum\Enum;
 
 class PriceType extends Enum
 {
-    public const HOURLY = 'Hourly';
-    public const DAILY = 'Daily';
-    public const WEEKLY = 'Weekly';
-    public const MONTHLY = 'Monthly';
+    public const HOURLY = 'hourly';
+    public const DAILY = 'daily';
+    public const WEEKLY = 'weekly';
+    public const MONTHLY = 'monthly';
 
     public static function values(): array
     {
