@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
@@ -124,17 +125,18 @@ class Bus extends Resource
     protected function technicalFields(): array
     {
         return [
-            Toggle::make(__('Važiuoja'), 'active')
+            Heading::make('V - Važiuojantis / R - Remontuojamas / C - Daužtas, pateko į eismo įvykį'),
+            Toggle::make(__('V'), 'active')
                 ->showOnIndex()
                 ->offColor('#d9cdcb')
                 ->onColor('61b30a'),
 
-            Toggle::make(__('Remonte'), 'repair')
+            Toggle::make(__('R'), 'repair')
                 ->showOnIndex()
                 ->offColor('#d9cdcb')
                 ->onColor('61b30a'),
 
-            Toggle::make(__('Avarija'), 'crash')
+            Toggle::make(__('C'), 'crash')
                 ->showOnIndex()
                 ->offColor('#d9cdcb')
                 ->onColor('61b30a'),
