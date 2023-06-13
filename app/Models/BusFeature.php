@@ -13,6 +13,11 @@ class BusFeature extends Model
 
     protected $guarded = ['id'];
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
     public static function getArrayOfAllFeaturesForFilters()
     {
         return self::orderBy('name', 'asc')

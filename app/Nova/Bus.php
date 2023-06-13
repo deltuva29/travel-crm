@@ -56,7 +56,10 @@ class Bus extends Resource
                 ->showAsListInDetail()
                 ->onlyOnDetail()
                 ->showOnCreating()
-                ->showOnUpdating(),
+                ->showOnUpdating()
+                ->resolveUsing(fn($value, $resource) => $resource->withWhereHas('features', function ($query) {
+                    $query->active();
+                })->get()),
 
             Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
 
