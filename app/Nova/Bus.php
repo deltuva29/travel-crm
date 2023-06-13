@@ -7,11 +7,11 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
+use Naif\Toggle\Toggle;
 use NrmlCo\NovaBigFilter\NovaBigFilter;
 
 class Bus extends Resource
@@ -124,24 +124,20 @@ class Bus extends Resource
     protected function technicalFields(): array
     {
         return [
-            Boolean::make(__('Važiuojantis'), 'active')
-                ->sortable()
-                ->help(__('Pažymėkite jei autobusas yra tvarkingas ir važiuojantis.'))
-                ->showOnIndex(),
+            Toggle::make(__('Važiuoja'), 'active')
+                ->showOnIndex()
+                ->offColor('#d9cdcb')
+                ->onColor('61b30a'),
 
-            Boolean::make(__('Remontuojamas'), 'repair')
-                ->sortable()
-                ->help(__('Pažymėkite jei autobusas yra šiuo metu remonte.'))
-                ->onlyOnDetail()
-                ->showOnCreating()
-                ->showOnUpdating(),
+            Toggle::make(__('Remonte'), 'repair')
+                ->showOnIndex()
+                ->offColor('#d9cdcb')
+                ->onColor('61b30a'),
 
-            Boolean::make(__('Po avarijos/nelaimės'), 'crash')
-                ->sortable()
-                ->help(__('Pažymėkite jei autobusas buvo papuoles nesenai į eismo įvykį.'))
-                ->onlyOnDetail()
-                ->showOnCreating()
-                ->showOnUpdating(),
+            Toggle::make(__('Avarija'), 'crash')
+                ->showOnIndex()
+                ->offColor('#d9cdcb')
+                ->onColor('61b30a'),
         ];
     }
 
