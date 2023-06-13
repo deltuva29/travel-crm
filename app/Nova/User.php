@@ -17,12 +17,12 @@ class User extends Resource
 
     public static function label(): string
     {
-        return __('Vartotojai');
+        return __('Darbuotojai');
     }
 
     public static function singularLabel(): string
     {
-        return __('Vartotojas');
+        return __('Darbuotojas');
     }
 
     public static $search = [
