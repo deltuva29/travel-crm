@@ -2,17 +2,23 @@
 
 namespace App\Providers;
 
+use App\Nova\Bus;
+use App\Nova\BusFeature;
+use App\Nova\BusRent;
+use App\Nova\BusType;
+use App\Nova\Customer;
 use App\Nova\Role;
 use App\Nova\User;
-use App\Policies\NovaPermissionPolicy;
-use App\Policies\NovaRolePolicy;
 use DigitalCreative\CollapsibleResourceManager\CollapsibleResourceManager;
+use DigitalCreative\CollapsibleResourceManager\Resources\Group;
 use DigitalCreative\CollapsibleResourceManager\Resources\TopLevelResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
+use Vyuldashev\NovaPermission\Permission;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -34,9 +40,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes()
+            ->register();
     }
 
     /**
@@ -82,43 +88,69 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools(): array
     {
-//        $mainResourcesOfMainMenu = [];
-//        $mainResourcesOfMainMenu[] = \App\Nova\DocumentForDownload::class;
-//
-//        if (auth()->user()->hasPermissionTo('Redaguoti sąskaitas')) {
-//            $mainResourcesOfMainMenu[] = \App\Nova\InvoiceGeneration::class;
-//        }
-//        $mainResourcesOfMainMenu[] = \App\Nova\Invoice::class;
-//
-//        $groupsOfMenuItemsToReturn = [
-//            TopLevelResource::make([
-//                'label' => __('Įrašai'),
-//                'expanded' => true,
-//                'resources' => $mainResourcesOfMainMenu,
-//            ]),
-//        ];
 
-        $groupsOfMenuItemsToReturn[] = TopLevelResource::make([
-            'label' => __('Administravimas'),
-            'expanded' => false,
-            'resources' => [
-                User::class,
-                Role::class,
-            ],
-        ]);
-
-        $toolsToReturn = [];
-
-        $toolsToReturn[] = new CollapsibleResourceManager([
-            'remember_menu_state' => true,
-            'navigation' => $groupsOfMenuItemsToReturn,
-        ]);
-
-        $toolsToReturn[] = NovaPermissionTool::make()
-            ->permissionPolicy(NovaPermissionPolicy::class)
-            ->rolePolicy(NovaRolePolicy::class);
-
-        return $toolsToReturn;
+        return [
+            new CollapsibleResourceManager([
+                'remember_menu_state' => true,
+                'navigation' => [
+                    TopLevelResource::make([
+                        'label' => __('Sistema'),
+                        'resources' => [
+                            Group::make([
+                                'label' => __('Transportas'),
+                                'expanded' => false,
+                                'resources' => [
+                                    Bus::class,
+                                    BusFeature::class,
+                                    BusType::class
+                                ]
+                            ]),
+                            Group::make([
+                                'label' => __('Nuoma'),
+                                'expanded' => false,
+                                'resources' => [
+                                    BusRent::class
+                                ]
+                            ]),
+                            Group::make([
+                                'label' => __('Kelionės'),
+                                'expanded' => false,
+                                'resources' => []
+                            ]),
+                            Group::make([
+                                'label' => __('Paskyros'),
+                                'expanded' => false,
+                                'resources' => [
+                                    Customer::class,
+                                    User::class,
+                                ]
+                            ]),
+                            Group::make([
+                                'label' => __('Kita'),
+                                'expanded' => false,
+                                'resources' => []
+                            ])->canSee(function (Request $request) {
+                                return !$request->user()->hasAnyPermission(['Hide Sliders']);
+                            }),
+                            Group::make([
+                                'label' => __('Roles and permissions'),
+                                'expanded' => false,
+                                'resources' => [
+                                    Role::class,
+                                    Permission::class,
+                                ]
+                            ])->canSee(function (Request $request) {
+                                return !$request->user()->hasPermissionTo(\Spatie\Permission\Models\Permission::query()->find(3));
+                            }),
+                        ]
+                    ]),
+                ]
+            ]),
+//            (new SettingsTool)->canSee(function (Request $request) {
+//                return !$request->user()->hasPermissionTo(\Spatie\Permission\Models\Permission::query()->find(2));
+//            }),
+            NovaPermissionTool::make(),
+        ];
     }
 
     /**

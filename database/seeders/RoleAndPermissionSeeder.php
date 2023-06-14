@@ -17,35 +17,23 @@ class RoleAndPermissionSeeder extends Seeder
     public function run()
     {
         // Reset cached roles and permissions
+
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $permissions = [];
+        // create permissions
+        Permission::create(['name' => 'Nerodyti vartotojus', 'guard_name' => 'web']);
+        Permission::create(['name' => 'Nerodyti nustatymus', 'guard_name' => 'web']);
+        Permission::create(['name' => 'Nerodyti Rolių/Leidimų', 'guard_name' => 'web']);
 
-        $permissions[] = Permission::create(['name' => 'Peržiūrėti tik savo įrašus', 'guard_name' => 'web']);
-        $permissions[] = Permission::create(['name' => 'Redaguoti tik savo įrašus', 'guard_name' => 'web']);
+        // create roles
 
-        $entities = [
-            'vartotojus',
-            'vartotojų roles',
-        ];
-        foreach ($entities as $entity) {
-            $permissions[] = Permission::create(['name' => 'Peržiūrėti ' . $entity, 'guard_name' => 'web']);
-            $permissions[] = Permission::create(['name' => 'Kurti ' . $entity, 'guard_name' => 'web']);
-            $permissions[] = Permission::create(['name' => 'Redaguoti ' . $entity, 'guard_name' => 'web']);
-            $permissions[] = Permission::create(['name' => 'Ištrinti ' . $entity, 'guard_name' => 'web']);
-        }
+        Role::create(['name' => 'Super administratorius', 'guard_name' => 'web'])
+            ->givePermissionTo(Permission::all());
 
-        $permissions[] = Permission::create(['name' => 'Redaguoti nustatymus', 'guard_name' => 'web']);
+        Role::create(['name' => 'Darbuotojas', 'guard_name' => 'web'])
+            ->givePermissionTo(Permission::all());
 
-        $superAdminRole = Role::create(['name' => 'Super administratorius', 'guard_name' => 'web']);
-        $directorRole = Role::create(['name' => 'Vadovas', 'guard_name' => 'web']);
-        Role::create(['name' => 'Darbuotojas', 'guard_name' => 'web']);
-
-        foreach ($permissions as $permission) {
-            if (!str_contains($permission->name, 'tik savo')) {
-                $superAdminRole->givePermissionTo($permission->name);
-                $directorRole->givePermissionTo($permission->name);
-            }
-        }
+        Role::create(['name' => 'Vairuotojas', 'guard_name' => 'web'])
+            ->givePermissionTo(Permission::all());
     }
 }

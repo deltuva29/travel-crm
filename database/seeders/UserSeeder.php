@@ -16,13 +16,13 @@ class UserSeeder extends Seeder
     {
         collect([
             [
-                'name' => 'TravelCRM',
-                'email' => 'info@crm.travel.lt',
+                'name' => 'Mindaugas D.',
+                'email' => 'deltuva.mindaugas@gmail.com',
+                'phone_number' => '+37066444444',
                 'is_root' => false,
             ],
         ])->each(function ($superAdmin) {
-            $user = User::create(User::factory()->raw($superAdmin));
-            $user->assignRole('Super administratorius');
+            User::create(User::factory()->raw($superAdmin));
         });
     }
 }

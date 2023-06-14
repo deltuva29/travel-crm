@@ -4,9 +4,9 @@
     --primary-70: rgba(255, 165, 0, 0.7);
     --primary-50: rgba(255, 165, 0, 0.5);
     --primary-30: rgba(255, 165, 0, 0.3);
-    --primary-10: rgb(255, 140, 0);
+    --primary-10: rgba(255, 165, 0, 0.1);
     --logo: rgb(255, 140, 0);
-    --sidebar-icon: yellow;
+    --sidebar-icon: rgb(255, 255, 255);
 }
 
 .bg-grad-sidebar {

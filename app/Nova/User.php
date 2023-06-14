@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaPermission\PermissionBooleanGroup;
@@ -17,12 +17,12 @@ class User extends Resource
 
     public static function label(): string
     {
-        return __('Vartotojai');
+        return __('Darbuotojai');
     }
 
     public static function singularLabel(): string
     {
-        return __('Vartotojas');
+        return __('Darbuotojas');
     }
 
     public static $search = [
@@ -32,11 +32,15 @@ class User extends Resource
     public function fields(Request $request): array
     {
         return [
-            Gravatar::make()->maxWidth(50),
+            Images::make(__('Avataras/Nuotrauka'), 'avatar'),
 
             Text::make(__('Vardas'), 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            Text::make(__('Telefonas'), 'phone_number')
+                ->rules('required', 'max:15')
+                ->sortable(),
 
             Text::make(__('El.paštas'), 'email')
                 ->sortable()
@@ -53,6 +57,13 @@ class User extends Resource
 
             PermissionBooleanGroup::make('Leidimai', 'Permissions')
                 ->showOnIndex(false),
+        ];
+    }
+
+    public function filters(Request $request): array
+    {
+        return [
+            new Filters\User\MultiRoleFilter(),
         ];
     }
 }
