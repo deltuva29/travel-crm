@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Rules\LicenseNumberPlate;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
 use Naif\Toggle\Toggle;
 use NrmlCo\NovaBigFilter\NovaBigFilter;
+use Zegissoft\LicencePlate\LicencePlate;
 
 class Bus extends Resource
 {
@@ -56,25 +58,17 @@ class Bus extends Resource
                 ->showAsListInDetail()
                 ->onlyOnDetail()
                 ->showOnCreating()
-                ->showOnUpdating()
-                ->resolveUsing(fn($value, $resource) => $resource->withWhereHas('features', function ($query) {
-                    $query->active();
-                })->get()),
+                ->showOnUpdating(),
 
             Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
 
             BelongsTo::make(__('Paskirtas vairuotojas'), 'user', User::class)
                 ->searchable(),
 
-            Text::make(__('Valst.nr'), function () {
-                return '<h4>' . $this->plate_number . '</h4>';
-            })
-                ->onlyOnDetail()
-                ->readonly()
-                ->asHtml(),
+            new Panel(__('Valstybinis numeris'), $this->licensePlateNumberFields()),
 
-            Text::make(__('Valst.nr'), 'plate_number')
-                ->rules('required', 'max:30')
+            LicencePlate::make(__('Valst.nr'), 'plate_number')
+                ->rules('required', 'max:7', new LicenseNumberPlate())
                 ->sortable()
                 ->hideFromDetail()
                 ->showOnCreating()
@@ -89,6 +83,14 @@ class Bus extends Resource
             HasMany::make(__('Tipas'), 'types', BusType::class),
 
             BelongsToMany::make(__('Prisegti autobuso privalumai'), 'features', BusFeature::class)
+        ];
+    }
+
+    protected function licensePlateNumberFields(): array
+    {
+        return [
+            LicencePlate::make(__('Valst.nr'), 'plate_number')
+                ->onlyOnDetail()
         ];
     }
 

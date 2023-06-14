@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3dd406155d136dc175db011c83b7fea",
+    "content-hash": "555d4031edf4d0e0be1f7604817711f4",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -7801,6 +7801,42 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "zegissoft/licence-plate",
+            "version": "dev-nova-crud",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/LicencePlate",
+                "reference": "b875a27ecbbfe2ac4aa320a19a8cbaa4f0e733a6"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Zegissoft\\LicencePlate\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zegissoft\\LicencePlate\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "relative": true
+            }
         }
     ],
     "packages-dev": [
@@ -10349,7 +10385,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "digital-creative/nova-mega-filter": 20,
-        "issetas/vacation-orange": 20
+        "issetas/vacation-orange": 20,
+        "zegissoft/licence-plate": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
