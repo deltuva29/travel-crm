@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "build-licence-plate": "cd nova-components/LicencePlate && npm run dev",
+        "build-licence-plate-prod": "cd nova-components/LicencePlate && npm run prod"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5",
