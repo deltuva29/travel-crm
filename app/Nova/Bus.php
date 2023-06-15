@@ -69,6 +69,8 @@ class Bus extends Resource
 
             LicencePlate::make(__('Valst.nr'), 'plate_number')
                 ->rules('required', 'max:7', new LicenseNumberPlate())
+                ->creationRules('unique:buses,plate_number')
+                ->updateRules('unique:buses,plate_number,{{resourceId}}')
                 ->sortable()
                 ->hideFromDetail()
                 ->showOnCreating()
