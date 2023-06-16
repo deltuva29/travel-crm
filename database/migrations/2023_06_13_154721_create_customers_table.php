@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\CustomerType;
+use App\Enums\LocationOfRentType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('address');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->enum('type', CustomerType::values());
+            $table->enum('type', LocationOfRentType::values());
             $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->timestamps();

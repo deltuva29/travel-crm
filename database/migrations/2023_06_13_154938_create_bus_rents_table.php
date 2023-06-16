@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\LocationOfRentType;
 use App\Enums\PriceType;
 use App\Enums\RentType;
 use Illuminate\Database\Migrations\Migration;
@@ -16,16 +17,17 @@ return new class extends Migration {
     {
         Schema::create('bus_rents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('bus_id');
-            $table->enum('type', RentType::values());
-            $table->decimal('price_full', 8, 2);
-            $table->decimal('price_per_day', 8, 2);
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->unsignedBigInteger('bus_id')->nullable();
+            $table->enum('type', RentType::values())->nullable();
+            $table->enum('location', LocationOfRentType::values())->nullable();
+            $table->decimal('price_full', 8, 2)->nullable();
+            $table->decimal('price_per_day', 8, 2)->nullable();
             $table->string('note')->nullable();
-            $table->enum('price_type', PriceType::values());
-            $table->date('start_date_at');
-            $table->date('end_date_at');
+            $table->enum('price_type', PriceType::values())->nullable();
+            $table->dateTime('start_time')->nullable();
+            $table->dateTime('end_time')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

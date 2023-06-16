@@ -12,8 +12,8 @@ class CustomerType extends Enum
     public static function values(): array
     {
         return [
-            self::RENT,
-            self::PASSENGER,
+            self::RENT => __('Nuoma'),
+            self::PASSENGER => __('Keleivis'),
         ];
     }
 

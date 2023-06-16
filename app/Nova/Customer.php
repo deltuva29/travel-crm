@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Naif\Toggle\Toggle;
 
@@ -30,7 +30,7 @@ class Customer extends Resource
     public function fields(Request $request): array
     {
         return [
-            ID::make(__('ID'), 'id')->sortable(),
+            Images::make(__('Nuotrauka'), 'avatar'),
 
             Text::make(__('Vardas'), 'first_name')
                 ->rules('required', 'max:255')
