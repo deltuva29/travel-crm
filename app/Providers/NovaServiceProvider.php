@@ -9,7 +9,6 @@ use App\Nova\BusType;
 use App\Nova\Customer;
 use App\Nova\Role;
 use App\Nova\User;
-use Czemu\NovaCalendarTool\NovaCalendarTool;
 use DigitalCreative\CollapsibleResourceManager\CollapsibleResourceManager;
 use DigitalCreative\CollapsibleResourceManager\Resources\Group;
 use DigitalCreative\CollapsibleResourceManager\Resources\TopLevelResource;
@@ -151,7 +150,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 //                return !$request->user()->hasPermissionTo(\Spatie\Permission\Models\Permission::query()->find(2));
 //            }),
             NovaPermissionTool::make(),
-            new NovaCalendarTool,
         ];
     }
 
