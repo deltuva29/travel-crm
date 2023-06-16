@@ -58,4 +58,21 @@ class Bus extends Model implements HasMedia
     {
         return $this->hasMany(BusType::class, 'id', 'type_id');
     }
+
+    public function isAvailableForRent($startDateTimeAt, $endDateTimeAt): bool
+    {
+        return $this->whereDoesntHave('rents', fn($q) => $q
+            ->whereBetween('start_time', [$startDateTimeAt, $endDateTimeAt])
+            ->orWhereBetween('end_time', [$startDateTimeAt, $endDateTimeAt])
+            ->orWhere(fn($q) => $q
+                ->whereDate('start_time', '<', $startDateTimeAt)
+                ->whereDate('end_time', '>', $endDateTimeAt)
+            )
+        )->exists();
+    }
+
+    public function rents(): HasMany
+    {
+        return $this->hasMany(BusRent::class);
+    }
 }

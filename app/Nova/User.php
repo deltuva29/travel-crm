@@ -32,7 +32,7 @@ class User extends Resource
     public function fields(Request $request): array
     {
         return [
-            Images::make(__('Avataras/Nuotrauka'), 'avatar'),
+            Images::make(__('Nuotrauka'), 'avatar'),
 
             Text::make(__('Vardas'), 'name')
                 ->sortable()
