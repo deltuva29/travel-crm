@@ -2,11 +2,15 @@
 
 namespace App\Nova;
 
+use App\Enums\LocationOfRentType;
+use App\Enums\RentType;
 use App\Rules\AvailableBus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 
 class BusRent extends Resource
 {
@@ -40,27 +44,27 @@ class BusRent extends Resource
                 ->rules('required', new AvailableBus())
                 ->searchable(),
 
-//            Text::make(__('Nuomos tipas'), function () {
-//                return isset($this->type) ? RentType::values()[$this->type] : null;
-//            })
-//                ->exceptOnForms()
-//                ->hideFromIndex(),
-//
-//            Select::make(__('Nuomos tipas'), 'type')
-//                ->rules('required')
-//                ->options(RentType::values())
-//                ->onlyOnForms(),
-//
-//            Text::make(__('Nuomos vieta'), function () {
-//                return isset($this->location) ? LocationOfRentType::values()[$this->location] : null;
-//            })
-//                ->exceptOnForms()
-//                ->hideFromIndex(),
-//
-//            Select::make(__('Nuomos vieta'), 'location')
-//                ->rules('required')
-//                ->options(LocationOfRentType::values())
-//                ->onlyOnForms(),
+            Text::make(__('Nuomos tipas'), function () {
+                return isset($this->type) ? RentType::labels()[$this->type] : null;
+            })
+                ->exceptOnForms()
+                ->hideFromIndex(),
+
+            Select::make(__('Nuomos tipas'), 'type')
+                ->rules('required')
+                ->options(RentType::labels())
+                ->onlyOnForms(),
+
+            Text::make(__('Nuomos vieta'), function () {
+                return isset($this->location) ? LocationOfRentType::labels()[$this->location] : null;
+            })
+                ->exceptOnForms()
+                ->hideFromIndex(),
+
+            Select::make(__('Nuomos vieta'), 'location')
+                ->rules('required')
+                ->options(LocationOfRentType::labels())
+                ->onlyOnForms(),
 
             DateTime::make(__('Nuomos pradžios data'), 'start_time')
                 ->rules('required')

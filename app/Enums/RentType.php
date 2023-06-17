@@ -12,6 +12,14 @@ class RentType extends Enum
     public static function values(): array
     {
         return [
+            self::TRIPS,
+            self::EXCURSIONS,
+        ];
+    }
+
+    public static function labels(): array
+    {
+        return [
             self::TRIPS => __('Turistinės kelionės'),
             self::EXCURSIONS => __('Ekskursijos'),
         ];
