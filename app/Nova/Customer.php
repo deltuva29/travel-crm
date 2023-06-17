@@ -174,7 +174,7 @@ class Customer extends Resource
                     ->sortable(),
             ])->dependsOn('type', CustomerType::COMPANY),
 
-            Boolean::make(__('Aktyvuotas'), 'active'),
+            Boolean::make(__('Statusas'), 'status'),
         ];
     }
 
