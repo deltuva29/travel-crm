@@ -6,25 +6,25 @@ use Spatie\Enum\Enum;
 
 class CustomerType extends Enum
 {
-    public const RENT = 'rent';
+    public const RENTER = 'renter';
     public const PASSENGER = 'passenger';
-    public const COMPANY_ORGANIZATION = 'organization';
+    public const COMPANY = 'company';
 
     public static function values(): array
     {
         return [
-            self::RENT,
+            self::RENTER,
             self::PASSENGER,
-            self::COMPANY_ORGANIZATION,
+            self::COMPANY,
         ];
     }
 
     public static function labels(): array
     {
         return [
-            self::RENT => __('Nuoma'),
-            self::PASSENGER => __('Keleivis'),
-            self::COMPANY_ORGANIZATION => __('Įmonė/Organizacija'),
+            self::RENTER => __('Nuomotojas - autobuso nuomos registravimas'),
+            self::PASSENGER => __('Keleivis - naujo keleivio registravimas'),
+            self::COMPANY => __('Įmonės - organizacijos registravimas'),
         ];
     }
 
