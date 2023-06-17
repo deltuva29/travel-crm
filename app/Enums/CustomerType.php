@@ -24,7 +24,7 @@ class CustomerType extends Enum
         return [
             self::RENT => __('Nuoma'),
             self::PASSENGER => __('Keleivis'),
-            self::COMPANY_ORGANIZATION => __('Imonė/Kompanija'),
+            self::COMPANY_ORGANIZATION => __('Įmonė/Organizacija'),
         ];
     }
 

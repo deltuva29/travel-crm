@@ -2,8 +2,10 @@
 
 namespace App\Nova;
 
+use App\Enums\CustomerType;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Naif\Toggle\Toggle;
 
@@ -51,6 +53,17 @@ class Customer extends Resource
             Text::make(__('Adresas'), 'address')
                 ->hideFromIndex()
                 ->rules('required', 'max:255'),
+
+            Text::make(__('Tipas'), function () {
+                return isset($this->type) ? CustomerType::labels()[$this->type] : null;
+            })
+                ->exceptOnForms()
+                ->hideFromIndex(),
+
+            Select::make(__('Tipas'), 'type')
+                ->rules('required')
+                ->options(CustomerType::labels())
+                ->onlyOnForms(),
 
             Toggle::make(__('Aktyvus'), 'active')
                 ->offColor('#d9cdcb')
