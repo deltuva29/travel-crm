@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Sixlive\TextCopy\TextCopy;
 
 class Customer extends Resource
 {
@@ -154,15 +155,15 @@ class Customer extends Resource
 
                 Heading::make(__('Sąskaitos rekvizitai')),
 
-                Text::make(__('Įmonės banko pavadinimas'), 'company_bank_name')
+                TextCopy::make(__('Įmonės banko pavadinimas'), 'company_bank_name')
                     ->rules('required', 'max:255')
                     ->sortable(),
 
-                Text::make(__('Įmonės banko sąskaita'), 'company_bank_iban')
+                TextCopy::make(__('Įmonės banko sąskaita'), 'company_bank_iban')
                     ->rules('required', 'max:255')
                     ->sortable(),
 
-                Text::make(__('Įmonės SWIFT/BIC kodas'), 'company_bank_bic_swift_code')
+                TextCopy::make(__('Įmonės SWIFT/BIC kodas'), 'company_bank_bic_swift_code')
                     ->rules('required', 'max:255')
                     ->sortable(),
             ])->dependsOn('type', CustomerType::COMPANY),
