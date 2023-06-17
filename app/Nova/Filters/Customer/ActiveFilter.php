@@ -15,17 +15,16 @@ class ActiveFilter extends BooleanFilter
 
     public function apply(Request $request, $query, $value): Builder
     {
-        if (!$value['not-active']) {
-            return $query->where('active', !$value['not-active']);
+        if (!empty($value === '0')) {
+            return $query->where('active', $value['active']);
         }
-        return $query;
+        return $query->where('active', !$value['active']);
     }
 
     public function options(Request $request): array
     {
         return [
-            __('Neaktyvuoti klientai') => 'not-active',
-            __('Visi klientai') => 'all',
+            __('Neaktyvuoti klientai') => 'active',
         ];
     }
 }
