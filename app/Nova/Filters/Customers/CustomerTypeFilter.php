@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Nova\Filters\Customer;
+namespace App\Nova\Filters\Customers;
 
 use App\Enums\CustomerType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
 
-class ClientTypeFilter extends Filter
+class CustomerTypeFilter extends Filter
 {
     public $component = 'select-filter';
 
@@ -18,7 +18,10 @@ class ClientTypeFilter extends Filter
 
     public function apply(Request $request, $query, $value): Builder
     {
-        return $query->where('type', $value);
+        if (!empty($value)) {
+            return $query->where('type', $value);
+        }
+        return $query;
     }
 
     public function options(Request $request): array

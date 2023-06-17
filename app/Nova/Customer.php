@@ -181,8 +181,8 @@ class Customer extends Resource
     public function filters(Request $request): array
     {
         return [
-            new Filters\Customer\ClientTypeFilter(),
-            new Filters\Customer\ActiveFilter(),
+            new Filters\Customers\CustomerTypeFilter(),
+            new Filters\Customers\CustomerStatusFilter(),
         ];
     }
 }
