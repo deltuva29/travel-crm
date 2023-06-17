@@ -3,8 +3,8 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Text;
-use Naif\Toggle\Toggle;
 
 class BusFeature extends Resource
 {
@@ -33,10 +33,7 @@ class BusFeature extends Resource
                 ->rules('required', 'max:255')
                 ->sortable(),
 
-            Toggle::make(__('Aktyvus'), 'active')
-                ->showOnIndex()
-                ->offColor('#d9cdcb')
-                ->onColor('61b30a'),
+            Boolean::make(__('Aktyvus'), 'active'),
         ];
     }
 }
