@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Nova\Filters\User;
+namespace App\Nova\Filters\Users;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use OptimistDigtal\NovaMultiselectFilter\MultiselectFilter;
 use Spatie\Permission\Models\Role;
 
-class MultiRoleFilter extends MultiselectFilter
+class UserMultiRoleFilter extends MultiselectFilter
 {
     public function name(): string
     {

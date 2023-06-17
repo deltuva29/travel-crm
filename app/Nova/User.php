@@ -63,7 +63,7 @@ class User extends Resource
     public function filters(Request $request): array
     {
         return [
-            new Filters\User\MultiRoleFilter(),
+            new Filters\Users\UserMultiRoleFilter(),
         ];
     }
 }
