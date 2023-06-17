@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CustomerCompanyPrefixType;
 use App\Enums\CustomerType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,18 +26,26 @@ class Customer extends Model implements HasMedia
 
     public function getFullNameAttribute(): string
     {
+        $iv = $this->company_prefix == CustomerCompanyPrefixType::IV ?
+            __('Individuali veikla') :
+            __('Įmonė');
+
         return match ($this->type) {
-            CustomerType::COMPANY => __('Įmonė') . ' "' . $this->attributes['company_prefix'] . '" ' . $this->attributes['company_name'],
+            CustomerType::COMPANY => $iv . ' "' . $this->attributes['company_prefix'] . '" ' . $this->attributes['company_name'],
             default => $this->attributes['first_name'] . ' ' . $this->attributes['last_name'],
         };
     }
 
-    public static function getCustomerTypeLabel($type): string
+    public static function getCustomerTypeLabel($type, $prefix = ''): string
     {
+        $iv = $prefix == CustomerCompanyPrefixType::IV ?
+            __('Individuali veikla') :
+            __('Įmonė');
+
         return match ($type) {
             CustomerType::RENTER => __('Nuomotojas'),
             CustomerType::PASSENGER => __('Keleivis'),
-            CustomerType::COMPANY => __('Įmonė'),
+            CustomerType::COMPANY => $iv,
             default => '',
         };
     }

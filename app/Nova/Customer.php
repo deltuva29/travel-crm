@@ -44,7 +44,7 @@ class Customer extends Resource
                 ->asHtml(),
 
             Text::make(__('Kliento tipas'), function () {
-                return isset($this->type) ? $this->getCustomerTypeLabel($this->type) : '-';
+                return isset($this->type) ? $this->getCustomerTypeLabel($this->type, $this->company_prefix) : '-';
             })
                 ->readonly()
                 ->asHtml(),
@@ -152,6 +152,12 @@ class Customer extends Resource
                 Text::make(__('Įmonės kodas'), 'company_code')
                     ->rules('required', 'max:15')
                     ->sortable(),
+
+                NovaDependencyContainer::make([
+                    Text::make(__('Individualios veiklos pažymos numeris'), 'company_code')
+                        ->rules('required', 'max:255')
+                        ->sortable(),
+                ])->dependsOn('company_prefix', CustomerCompanyPrefixType::IV),
 
                 Heading::make(__('Sąskaitos rekvizitai')),
 
