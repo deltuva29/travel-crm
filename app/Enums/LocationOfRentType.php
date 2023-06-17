@@ -13,6 +13,15 @@ class LocationOfRentType extends Enum
     public static function values(): array
     {
         return [
+            self::LITHUANIA,
+            self::EUROPE,
+            self::OTHER,
+        ];
+    }
+
+    public static function labels(): array
+    {
+        return [
             self::LITHUANIA => __('Lietuva'),
             self::EUROPE => __('Europa'),
             self::OTHER => __('Kita'),
