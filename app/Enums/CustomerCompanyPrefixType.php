@@ -24,7 +24,7 @@ class CustomerCompanyPrefixType extends Enum
     public static function labels(): array
     {
         return [
-            self::IV => __('IV - Indviduali veikla'),
+            self::IV => __('IV - Individuali veikla'),
             self::MB => __('MB - Mažoji bendrija'),
             self::UAB => __('UAB - Uždara akcinė bendrovė'),
             self::AB => __('AB - Akcinė bendrovė'),
