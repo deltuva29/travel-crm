@@ -158,7 +158,7 @@ class Bus extends Resource
             new Filters\BusFuelInLitresFilter(),
             new Filters\BusFeaturesFilter(),
             new Filters\BusTypeFilter(),
-            new Filters\User\RoleDriverFilter(),
+            new Filters\Users\UserRoleDriverFilter(),
             new Filters\BusActiveFilter(),
             new Filters\BusRepairFilter(),
             new Filters\BusCrashFilter(),
