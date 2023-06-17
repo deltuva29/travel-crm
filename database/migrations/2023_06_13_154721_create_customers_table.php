@@ -23,6 +23,14 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->enum('type', LocationOfRentType::values());
+            $table->string('company_name')->nullable();
+            $table->string('company_address')->nullable();
+            $table->string('company_phone')->nullable();
+            $table->string('company_email')->nullable();
+            $table->string('company_bank_name')->nullable();
+            $table->string('company_bank_iban')->nullable();
+            $table->string('company_bank_bic_swift')->nullable();
+            $table->string('company_code')->nullable();
             $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->timestamps();
