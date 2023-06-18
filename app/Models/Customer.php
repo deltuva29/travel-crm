@@ -26,21 +26,47 @@ class Customer extends Model implements HasMedia
 
     public function getFullNameAttribute(): string
     {
-        $iv = $this->company_prefix == CustomerCompanyPrefixType::IV ?
-            __('Individuali veikla') :
-            __('Įmonė');
+        return $this->isCompany()
+            ? $this->getCompanyFullName()
+            : $this->getIndividualFullName();
+    }
 
-        return match ($this->type) {
-            CustomerType::COMPANY => $iv . ' "' . $this->attributes['company_prefix'] . '" ' . $this->attributes['company_name'],
-            default => $this->attributes['first_name'] . ' ' . $this->attributes['last_name'],
-        };
+    public function isCompany(): bool
+    {
+        return $this->type === CustomerType::COMPANY;
+    }
+
+    public function getCompanyFullName(): string
+    {
+        $iv = $this->getCompanyPrefixLabel();
+
+        return $iv . ' "' . $this->attributes['company_prefix'] . '" ' . $this->attributes['company_name'];
+    }
+
+    public function getIndividualFullName(): string
+    {
+        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+    }
+
+    public function getCompanyPrefixLabel(): string
+    {
+        $prefix = $this->attributes['company_prefix'];
+
+        return $this->isCompanyPrefixIV($prefix)
+            ? __('Individuali veikla')
+            : __('Įmonė');
+    }
+
+    public function isCompanyPrefixIV($prefix): bool
+    {
+        return $prefix === CustomerCompanyPrefixType::IV;
     }
 
     public static function getCustomerTypeLabel($type, $prefix = ''): string
     {
-        $iv = $prefix == CustomerCompanyPrefixType::IV ?
-            __('Individuali veikla') :
-            __('Įmonė');
+        $iv = $prefix == CustomerCompanyPrefixType::IV
+            ? __('Individuali veikla')
+            : __('Įmonė');
 
         return match ($type) {
             CustomerType::RENTER => __('Nuomotojas'),
