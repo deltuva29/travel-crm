@@ -44,7 +44,7 @@ class Customer extends Resource
                 ->asHtml(),
 
             Text::make(__('Kliento tipas'), function () {
-                return isset($this->type) ? $this->getCustomerTypeLabel($this->type, $this->company_prefix) : '-';
+                return isset($this->type) && isset($this->company_prefix) ? $this->getCustomerTypeLabel($this->type, $this->company_prefix) : '-';
             })
                 ->readonly()
                 ->asHtml(),
