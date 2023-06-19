@@ -122,7 +122,8 @@ class Customer extends Resource
             NovaDependencyContainer::make([
                 Text::make(__('Įmonės pavadinimas'), 'company_name')
                     ->rules('required', 'max:255')
-                    ->sortable(),
+                    ->sortable()
+                    ->OnlyOnForms(),
 
                 Select::make(__(''), 'company_prefix')
                     ->rules('required', 'in:' . implode(',', CustomerCompanyPrefixType::values()))
