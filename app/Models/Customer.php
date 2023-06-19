@@ -36,11 +36,14 @@ class Customer extends Model implements HasMedia
         return $this->type === CustomerType::COMPANY;
     }
 
-    public function getCompanyFullName(): string
+    public function getCompanyFullName($prefix = false): string
     {
-        $iv = $this->getCompanyPrefixLabel();
-
-        return $iv . ' "' . $this->attributes['company_prefix'] . '" ' . $this->attributes['company_name'];
+        if (!$prefix) {
+            $iv = $this->getCompanyPrefixLabel();
+            return $iv . ' "' . $this->attributes['company_prefix'] . '" ' . $this->attributes['company_name'];
+        } else {
+            return '"' . $this->attributes['company_prefix'] . '" ' . $this->attributes['company_name'];
+        }
     }
 
     public function getIndividualFullName(): string
@@ -60,6 +63,11 @@ class Customer extends Model implements HasMedia
     public function isCompanyPrefixIV($prefix): bool
     {
         return $prefix === CustomerCompanyPrefixType::IV;
+    }
+
+    public function getIndividualCompanyWithPrefixLabel()
+    {
+
     }
 
     public static function getCustomerTypeLabel($type, $prefix = ''): string
