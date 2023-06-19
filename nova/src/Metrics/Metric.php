@@ -2,7 +2,11 @@
 
 namespace Laravel\Nova\Metrics;
 
+use Cake\Chronos\ChronosInterface;
+use Carbon\CarbonInterface;
 use DateInterval;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Laravel\Nova\Card;
@@ -30,15 +34,15 @@ abstract class Metric extends Card
     /**
      * Calculate the metric's value.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return mixed
      */
     public function resolve(NovaRequest $request)
     {
         $resolver = function () use ($request) {
             return $this->onlyOnDetail
-                    ? $this->calculate($request, $request->findModelOrFail())
-                    : $this->calculate($request);
+                ? $this->calculate($request->findModelOrFail())
+                : $this->calculate();
         };
 
         if ($cacheFor = $this->cacheFor()) {
@@ -57,7 +61,7 @@ abstract class Metric extends Card
     /**
      * Get the appropriate cache key for the metric.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return string
      */
     protected function getCacheKey(NovaRequest $request)
@@ -85,7 +89,7 @@ abstract class Metric extends Card
     /**
      * Determine for how many minutes the metric should be cached.
      *
-     * @return  \DateTimeInterface|\DateInterval|float|int
+     * @return  DateTimeInterface|DateInterval|float|int
      */
     public function cacheFor()
     {
@@ -105,7 +109,7 @@ abstract class Metric extends Card
     /**
      * Set whether the metric should refresh when actions are run.
      *
-     * @param  bool  $value
+     * @param bool $value
      */
     public function refreshWhenActionRuns($value = true)
     {
@@ -134,12 +138,12 @@ abstract class Metric extends Card
     /**
      * Convert datetime to application timezone.
      *
-     * @param  \Cake\Chronos\ChronosInterface|\Carbon\CarbonInterface  $datetime
-     * @return \Cake\Chronos\ChronosInterface|\Carbon\CarbonInterface
+     * @param ChronosInterface|CarbonInterface $datetime
+     * @return ChronosInterface|CarbonInterface
      */
     protected function asQueryDatetime($datetime)
     {
-        if (! $datetime instanceof \DateTimeImmutable) {
+        if (!$datetime instanceof DateTimeImmutable) {
             return $datetime->copy()->timezone(config('app.timezone'));
         }
 

@@ -175,7 +175,8 @@ class Customer extends Resource
                     ->sortable(),
             ])->dependsOn('type', CustomerType::COMPANY),
 
-            Boolean::make(__('Statusas'), 'status'),
+            Boolean::make(__('Statusas'), 'status')
+                ->help(__('Kliento statusas bus "Aktyvuotas" uždėjus varnelę.')),
         ];
     }
 
@@ -184,6 +185,15 @@ class Customer extends Resource
         return [
             new Filters\Customers\CustomerTypeFilter(),
             new Filters\Customers\CustomerStatusFilter(),
+        ];
+    }
+
+    public function cards(Request $request): array
+    {
+        return [
+            new Metrics\Customers\CountNewCustomers(),
+            new Metrics\Customers\CountActiveCustomers(),
+            new Metrics\Customers\CountNotActiveCustomers(),
         ];
     }
 }
