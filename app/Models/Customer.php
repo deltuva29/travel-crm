@@ -86,6 +86,6 @@ class Customer extends Model implements HasMedia
 
     public function scopeActive($query)
     {
-        return $query->where('active', true);
+        return $query->where('status', true);
     }
 }
