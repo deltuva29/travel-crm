@@ -6,10 +6,10 @@ use Spatie\Enum\Enum;
 
 class CustomerCompanyPrefixType extends Enum
 {
-    public const IV = 'IV';
     public const MB = 'MB';
     public const UAB = 'UAB';
     public const AB = 'AB';
+    public const IV = 'IV';
 
     public static function values(): array
     {
@@ -24,10 +24,10 @@ class CustomerCompanyPrefixType extends Enum
     public static function labels(): array
     {
         return [
-            self::IV => __('IV - Individuali veikla'),
             self::MB => __('MB - Mažoji bendrija'),
             self::UAB => __('UAB - Uždara akcinė bendrovė'),
             self::AB => __('AB - Akcinė bendrovė'),
+            self::IV => __('IV - Individuali veikla'),
         ];
     }
 
