@@ -1,6 +1,7 @@
 <dropdown-trigger class="h-9 flex items-center px-3">
+    <img src="{{ $user->hasMedia('avatar') ? $user->getFirstMediaUrl('avatar') : asset('images/user/no-avatar.png')  }}" alt="{{ __('Avataras') }}" class="rounded-full h-8 w-8 mr-2">
     <span class="text-90">
-        {{ $user->name ?? $user->email ?? __('Nova User') }}
+        {{ $user->name ?? $user->email ?? __('Darbuotojas') }}
     </span>
 </dropdown-trigger>
 
