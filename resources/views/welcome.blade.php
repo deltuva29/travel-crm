@@ -11,7 +11,7 @@
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                             class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
                         >
-                            Log out
+                            Log out h
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -32,7 +32,7 @@
             <div class="flex flex-col justify-around">
                 <div class="space-y-6">
                     <a href="{{ route('home') }}">
-                        <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
+                        <x-logo class="w-auto h-16 mx-auto text-indigo-600"/>
                     </a>
 
                     <h1 class="text-5xl font-extrabold tracking-wider text-center text-gray-600">
