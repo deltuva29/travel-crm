@@ -4,6 +4,8 @@ namespace App\Nova;
 
 use App\Enums\CustomerCompanyPrefixType;
 use App\Enums\CustomerType;
+use DigitalCreative\MegaFilter\HasMegaFilterTrait;
+use DigitalCreative\MegaFilter\MegaFilter;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Illuminate\Http\Request;
@@ -15,6 +17,8 @@ use Sixlive\TextCopy\TextCopy;
 
 class Customer extends Resource
 {
+    use HasMegaFilterTrait;
+
     public static string $model = \App\Models\Customer::class;
 
     public static $title = 'full_name';
@@ -180,20 +184,32 @@ class Customer extends Resource
         ];
     }
 
-    public function filters(Request $request): array
+    public function cards(Request $request): array
     {
-        return [
+        $filtersMenu = [
             new Filters\Customers\CustomerTypeFilter(),
             new Filters\Customers\CustomerStatusFilter(),
         ];
-    }
 
-    public function cards(Request $request): array
-    {
         return [
             new Metrics\Customers\CountNewCustomers(),
             new Metrics\Customers\CountActiveCustomers(),
             new Metrics\Customers\CountNotActiveCustomers(),
+
+            MegaFilter::make([
+                'filters' => $filtersMenu,
+                'settings' => [
+                    'headerLabel' => __('Meniu'),
+                    'filtersLabel' => __('Filtrai'),
+                    'actionsLabel' => __('Veiksmai'),
+                    'resetLabel' => __('Veiksmai'),
+                    'columnsSectionTitle' => __('Papildomos kolonos'),
+                    'filtersSectionTitle' => __('Filtrai'),
+                    'actionsSectionTitle' => __('Veiksmai'),
+                    'columnsResetLinkTitle' => __('Nustatyti standartines kolonas'),
+                    'filtersResetLinkTitle' => __('Nustatyti standartines filtrų reikšmes'),
+                ],
+            ])
         ];
     }
 }
