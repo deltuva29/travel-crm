@@ -40,7 +40,7 @@ Route::get('password/reset/{token}', Reset::class)
 Route::middleware('auth')->group(function () {
     Route::get('email/verify', Verify::class)
         ->middleware('throttle:6,1')
-        ->name('verification.notice');...
+        ->name('verification.notice');
 
     Route::get('password/confirm', Confirm::class)
         ->name('password.confirm');
