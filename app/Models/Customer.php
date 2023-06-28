@@ -65,11 +65,6 @@ class Customer extends Model implements HasMedia
         return $prefix === CustomerCompanyPrefixType::IV;
     }
 
-    public function getIndividualCompanyWithPrefixLabel()
-    {
-
-    }
-
     public static function getCustomerTypeLabel($type, $prefix = ''): string
     {
         $iv = $prefix == CustomerCompanyPrefixType::IV
