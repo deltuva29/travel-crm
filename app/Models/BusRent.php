@@ -28,4 +28,9 @@ class BusRent extends Model
     {
         return $this->belongsTo(Bus::class);
     }
+
+    public function driver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'driver_id');
+    }
 }
