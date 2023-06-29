@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CustomerAppealType;
 use App\Enums\CustomerCompanyPrefixType;
 use App\Enums\CustomerType;
 use Illuminate\Database\Migrations\Migration;
@@ -24,6 +25,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->enum('type', CustomerType::values());
+            $table->enum('appeal_type', CustomerAppealType::values())->nullable();
             $table->string('company_name')->nullable();
             $table->enum('company_prefix', CustomerCompanyPrefixType::values());
             $table->string('company_address')->nullable();
