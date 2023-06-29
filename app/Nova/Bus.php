@@ -62,9 +62,6 @@ class Bus extends Resource
 
             Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
 
-            BelongsTo::make(__('Paskirtas vairuotojas'), 'user', User::class)
-                ->searchable(),
-
             new Panel(__('Valstybinis numeris'), $this->licensePlateNumberFields()),
 
             LicencePlate::make(__('Valst.nr'), 'plate_number')

@@ -17,7 +17,7 @@ return new class extends Migration {
     {
         Schema::create('bus_rents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('driver_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('bus_id')->nullable();
             $table->enum('type', RentType::values())->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration {
             $table->dateTime('end_time')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->foreign('driver_id')->references('id')->on('users')
                 ->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customers')
                 ->onDelete('cascade');
