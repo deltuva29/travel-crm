@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Enums\CustomerAppealType;
 use App\Enums\CustomerCompanyPrefixType;
 use App\Enums\CustomerType;
 use DigitalCreative\MegaFilter\HasMegaFilterTrait;
@@ -91,6 +92,12 @@ class Customer extends Resource
                 Text::make(__('Nuomotojo adresas'), 'address')
                     ->hideFromIndex()
                     ->rules('required', 'max:255'),
+
+                Select::make(__('Kreipimasis'), 'appeal_type')
+                    ->rules('required', 'in:' . implode(',', CustomerAppealType::values()))
+                    ->options(CustomerAppealType::labels())
+                    ->onlyOnForms()
+                    ->displayUsingLabels(),
             ])->dependsOn('type', CustomerType::RENTER),
 
             /*
@@ -118,6 +125,12 @@ class Customer extends Resource
                 Text::make(__('Keleivio adresas'), 'address')
                     ->hideFromIndex()
                     ->rules('required', 'max:255'),
+
+                Select::make(__('Kreipimasis'), 'appeal_type')
+                    ->rules('required', 'in:' . implode(',', CustomerAppealType::values()))
+                    ->options(CustomerAppealType::labels())
+                    ->onlyOnForms()
+                    ->displayUsingLabels(),
             ])->dependsOn('type', CustomerType::PASSENGER),
 
             /*
