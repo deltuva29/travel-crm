@@ -44,6 +44,9 @@ class BusRent extends Resource
                 ->rules('required', new AvailableBus())
                 ->searchable(),
 
+            BelongsTo::make(__('Paskirtas vairuotojas'), 'driver', User::class)
+                ->searchable(),
+
             Text::make(__('Nuomos tipas'), function () {
                 return isset($this->type) ? RentType::labels()[$this->type] : null;
             })
