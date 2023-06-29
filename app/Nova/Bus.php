@@ -168,7 +168,7 @@ class Bus extends Resource
     public function cards(Request $request): array
     {
         return [
-            (new NovaBigFilter)->setTitle('Filtravimas'),
+            (new NovaBigFilter)->setTitle(__('Filtravimas')),
         ];
     }
 }
