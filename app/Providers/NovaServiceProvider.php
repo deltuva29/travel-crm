@@ -9,6 +9,7 @@ use App\Nova\BusType;
 use App\Nova\Customer;
 use App\Nova\Role;
 use App\Nova\Route;
+use App\Nova\Trip;
 use App\Nova\User;
 use DigitalCreative\CollapsibleResourceManager\CollapsibleResourceManager;
 use DigitalCreative\CollapsibleResourceManager\Resources\Group;
@@ -101,6 +102,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'label' => __('Kelionės'),
                                 'expanded' => false,
                                 'resources' => [
+                                    Trip::class,
                                     Route::class
                                 ]
                             ]),
