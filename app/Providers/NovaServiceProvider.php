@@ -99,11 +99,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         'label' => __('Sistema'),
                         'resources' => [
                             Group::make([
-                                'label' => __('Kelionės'),
+                                'label' => __('Organizavimas'),
                                 'expanded' => false,
                                 'resources' => [
+                                    Route::class,
                                     Trip::class,
-                                    Route::class
                                 ]
                             ]),
                             Group::make([
