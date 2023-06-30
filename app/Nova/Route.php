@@ -26,11 +26,13 @@ class Route extends Resource
         return [
             Text::make(__('Iš'), 'from')
                 ->sortable()
-                ->rules('required', 'max:25'),
+                ->rules('required', 'max:25')
+                ->help(__('Iš kurio miesto/šalies')),
 
             Text::make(__('Į'), 'to')
                 ->sortable()
-                ->rules('required', 'max:25'),
+                ->rules('required', 'max:25')
+                ->help(__('Į kurį miesto/šalį')),
         ];
     }
 }
