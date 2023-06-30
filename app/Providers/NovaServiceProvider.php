@@ -8,6 +8,7 @@ use App\Nova\BusRent;
 use App\Nova\BusType;
 use App\Nova\Customer;
 use App\Nova\Role;
+use App\Nova\Route;
 use App\Nova\User;
 use DigitalCreative\CollapsibleResourceManager\CollapsibleResourceManager;
 use DigitalCreative\CollapsibleResourceManager\Resources\Group;
@@ -96,6 +97,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     TopLevelResource::make([
                         'label' => __('Sistema'),
                         'resources' => [
+                            Group::make([
+                                'label' => __('Kelionės'),
+                                'expanded' => false,
+                                'resources' => [
+                                    Route::class
+                                ]
+                            ]),
                             Group::make([
                                 'label' => __('Transportas'),
                                 'expanded' => false,
