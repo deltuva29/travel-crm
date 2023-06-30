@@ -1,103 +1,108 @@
 {
-    "name": "laravel/laravel",
-    "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
+  "name": "laravel/laravel",
+  "type": "project",
+  "description": "The Laravel Framework.",
+  "keywords": [
+    "framework",
+    "laravel"
+  ],
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./nova"
+    },
+    {
+      "type": "path",
+      "url": "./nova-components/VacationOrange"
+    },
+    {
+      "type": "path",
+      "url": "./nova-components/LicencePlate"
+    },
+    {
+      "type": "path",
+      "url": "./nova-components/CalculateDistance"
+    }
+  ],
+  "require": {
+    "php": "^8.0.2",
+    "benjacho/belongs-to-many-field": "^2.0",
+    "czemu/nova-calendar-tool": "^1.3",
+    "digital-creative/collapsible-resource-manager": "^1.4",
+    "digital-creative/nova-mega-filter": "dev-master",
+    "ebess/advanced-nova-media-library": "^3.3",
+    "epartment/nova-dependency-container": "^1.3",
+    "gregoriohc/laravel-nova-theme-responsive": "^0.8.1",
+    "guzzlehttp/guzzle": "^7.2",
+    "issetas/vacation-orange": "dev-nova-crud",
+    "laravel-frontend-presets/tall": "^5.0",
+    "laravel/framework": "^9.19",
+    "laravel/nova": "*",
+    "laravel/sanctum": "^3.0",
+    "laravel/tinker": "^2.7",
+    "livewire/livewire": "^2.12",
+    "naif/toggle": "^1.3",
+    "nrml-co/nova-big-filter": "^1.0",
+    "oleksiypetlyuk/nova-range-filter": "^0.0.2",
+    "optimistdigital/nova-multiselect-filter": "^2.0",
+    "sixlive/nova-text-copy-field": "^1.5",
+    "spatie/enum": "^3.13",
+    "spatie/laravel-medialibrary": "^10.0.0",
+    "spatie/laravel-permission": "^5.10",
+    "vyuldashev/nova-permission": "^3",
+    "zegissoft/licence-plate": "dev-nova-crud",
+    "isseta/calculate-distance": "dev-nova-crud"
+  },
+  "require-dev": {
+    "fakerphp/faker": "^1.9.1",
+    "laravel/pint": "^1.0",
+    "laravel/sail": "^1.0.1",
+    "mockery/mockery": "^1.4.4",
+    "nunomaduro/collision": "^6.1",
+    "phpunit/phpunit": "^9.5.10",
+    "spatie/laravel-ignition": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
     ],
-    "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./nova"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/VacationOrange"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/LicencePlate"
-        }
+    "post-update-cmd": [
+      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
     ],
-    "require": {
-        "php": "^8.0.2",
-        "benjacho/belongs-to-many-field": "^2.0",
-        "czemu/nova-calendar-tool": "^1.3",
-        "digital-creative/collapsible-resource-manager": "^1.4",
-        "digital-creative/nova-mega-filter": "dev-master",
-        "ebess/advanced-nova-media-library": "^3.3",
-        "epartment/nova-dependency-container": "^1.3",
-        "gregoriohc/laravel-nova-theme-responsive": "^0.8.1",
-        "guzzlehttp/guzzle": "^7.2",
-        "issetas/vacation-orange": "dev-nova-crud",
-        "laravel-frontend-presets/tall": "^5.0",
-        "laravel/framework": "^9.19",
-        "laravel/nova": "*",
-        "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.12",
-        "naif/toggle": "^1.3",
-        "nrml-co/nova-big-filter": "^1.0",
-        "oleksiypetlyuk/nova-range-filter": "^0.0.2",
-        "optimistdigital/nova-multiselect-filter": "^2.0",
-        "sixlive/nova-text-copy-field": "^1.5",
-        "spatie/enum": "^3.13",
-        "spatie/laravel-medialibrary": "^10.0.0",
-        "spatie/laravel-permission": "^5.10",
-        "vyuldashev/nova-permission": "^3",
-        "zegissoft/licence-plate": "dev-nova-crud"
-    },
-    "require-dev": {
-        "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ]
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }
