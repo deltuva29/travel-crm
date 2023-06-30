@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CalculateDistanceController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Livewire\Auth\Login;
@@ -54,3 +55,5 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', LogoutController::class)
         ->name('logout');
 });
+
+Route::get('api/calculate-distance', [CalculateDistanceController::class, 'calculateDistance']);
