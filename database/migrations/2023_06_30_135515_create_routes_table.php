@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->id();
             $table->string('from')->nullable();
             $table->string('to')->nullable();
+            $table->unsignedInteger('distance')->nullable();
+            $table->unsignedInteger('duration')->nullable();
             $table->timestamps();
         });
     }

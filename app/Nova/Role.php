@@ -12,12 +12,12 @@ use Vyuldashev\NovaPermission\Role as VyuldashevNovaPermissionRoleResource;
 
 class Role extends VyuldashevNovaPermissionRoleResource
 {
-    public static function label()
+    public static function label(): string
     {
         return __('Rolės');
     }
 
-    public static function singularLabel()
+    public static function singularLabel(): string
     {
         return __('Rolė');
     }
