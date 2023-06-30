@@ -24,15 +24,15 @@ class Route extends Resource
     public function fields(Request $request): array
     {
         return [
-            Text::make(__('Iš'), 'from')
+            Text::make(__('Išvykimo vieta'), 'from')
                 ->sortable()
                 ->rules('required', 'max:25')
                 ->help(__('Iš kurio miesto/šalies')),
 
-            Text::make(__('Į'), 'to')
+            Text::make(__('Atvykimo vieta'), 'to')
                 ->sortable()
                 ->rules('required', 'max:25')
-                ->help(__('Į kurį miesto/šalį')),
+                ->help(__('Į kurį miestą/šalį')),
         ];
     }
 }
