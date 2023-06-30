@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
@@ -28,7 +28,7 @@ class CalculateDistanceController extends Controller
         $apiKey = env('GOOGLE_MAPS_API_KEY');
 
         if (empty($origin) || empty($destination)) {
-            return response()->json(['message' => __('Prašome nurodyti išvykimo vietą ir paskirties vietą.')]);
+            return response()->json(['message' => __('Prašome nurodyti išvykimo vietą ir atvykimo vietą.')]);
         }
 
         try {
