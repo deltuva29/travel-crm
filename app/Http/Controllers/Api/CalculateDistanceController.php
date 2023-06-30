@@ -36,7 +36,7 @@ class CalculateDistanceController extends Controller
                 'query' => [
                     'origins' => $origin,
                     'destinations' => $destination,
-                    'key' => $this->apiKey,
+                    'key' => $apiKey,
                 ],
             ]);
             $data = $response->json();
