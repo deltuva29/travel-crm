@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\CalculateDistanceController;
+use App\Http\Controllers\API\CalculateDistanceController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Livewire\Auth\Login;
