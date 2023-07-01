@@ -94,14 +94,11 @@ class Trip extends Resource
                 ->help(__('Kelionės grįžimo laiko formatas: HH:mm'))
                 ->displayUsing(fn($value, $resource) => $resource->formatTime('departure_back_at')),
 
-            Number::make(__('Kaina'), 'price', function () {
-                return number_format(isset($this->price) ?
-                        $this->price
-                        : 0, 2, '.', '') . ' €';
-            })
+            Number::make(__('Kaina'), 'price')
                 ->step(1.00)
-                ->rules('numeric', 'regex:/^\d+(\.\d{1,2})?$/')
                 ->help(__('Nurodoma kaina į abi puses.'))
+                ->resolveUsing(fn($value) => is_null($value) ? 0 : number_format($value, 2, '.', ''))
+                ->displayUsing(fn($value) => is_null($value) ? '0.00 €' : number_format($value, 2, '.', '') . ' €')
                 ->asHtml(),
         ];
     }
