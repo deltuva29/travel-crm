@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 
 class Trip extends Resource
 {
@@ -99,9 +100,11 @@ class Trip extends Resource
             Number::make(__('Kaina'), 'price')
                 ->step(1.00)
                 ->help(__('Nurodoma kaina į abi puses.'))
-                ->resolveUsing(fn($value, $resource) => is_null($value) ? 0 : number_format($value, 2, '.', ''))
+                ->resolveUsing(fn($value, $resource) => is_null($value) ? '0.00' : number_format($value, 2, '.', ''))
                 ->displayUsing(fn($value, $resource) => $resource->formatPrice())
                 ->asHtml(),
+
+            Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
         ];
     }
 }
