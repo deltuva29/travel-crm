@@ -44,10 +44,11 @@ class Trip extends Resource
                 )
                 ->displayUsingLabels(),
 
-            BelongsTo::make(__('Autobusas'), 'bus', Bus::class)
+            BelongsTo::make(__('Kelionės autobusas'), 'bus', Bus::class)
                 ->rules('required', new AvailableBus())
                 ->searchable()
-                ->displayUsing(fn($value) => $value ? $value->getFullNameWithPlateNumberLabel() : ''),
+                ->displayUsing(fn($value) => $value ? $value->getFullNameWithPlateNumberLabel() : '')
+                ->help(__('Pasirinktas autobusas su kuriuo bus vykstama į kelionę.')),
         ];
     }
 }
