@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Panel;
 
 class Trip extends Resource
 {
@@ -75,6 +76,17 @@ class Trip extends Resource
                 ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.'))
                 ->hideFromIndex(),
 
+            new Panel(__('Data / Laikas'), $this->dateArrivedDepartureFields()),
+
+            Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
+
+            new Panel(__('Kaina be PVM'), $this->priceFields()),
+        ];
+    }
+
+    protected function dateArrivedDepartureFields(): array
+    {
+        return [
             Date::make(__('Išvykimo data'), 'arrived_at')
                 ->rules('required')
                 ->firstDayOfWeek(1),
@@ -96,15 +108,18 @@ class Trip extends Resource
                 ->help(__('Kelionės grįžimo laiko formatas: HH:mm'))
                 ->resolveUsing(fn($value) => now()->parse($value)->format('H:i'))
                 ->displayUsing(fn($value, $resource) => $resource->formatTime('departure_back_at')),
+        ];
+    }
 
+    protected function priceFields(): array
+    {
+        return [
             Number::make(__('Kaina'), 'price')
                 ->step(1.00)
                 ->help(__('Nurodoma kaina į abi puses.'))
                 ->resolveUsing(fn($value, $resource) => is_null($value) ? '0.00' : number_format($value, 2, '.', ''))
                 ->displayUsing(fn($value, $resource) => $resource->formatPrice())
                 ->asHtml(),
-
-            Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
         ];
     }
 }
