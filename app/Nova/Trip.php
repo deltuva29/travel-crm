@@ -75,8 +75,9 @@ class Trip extends Resource
                 ->updateRules('unique:trips,driver_id,{{resourceId}}')
                 ->help(__('Įmonės vairuotojas su kuriuo bus vykstama į kelionę.')),
 
-            BelongsTo::make(__('Pagalbinis darbuotojas'), 'user', User::class)
+            BelongsTo::make(__('Pagalbinis darbuotojas'), 'employee', User::class)
                 ->rules('required')
+                ->searchable()
                 ->creationRules('unique:trips,user_id')
                 ->updateRules('unique:trips,user_id,{{resourceId}}')
                 ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.')),
