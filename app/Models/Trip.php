@@ -26,8 +26,9 @@ class Trip extends Model
             ->whereHas('roles', fn($q) => $q->where('name', RoleType::IS_DRIVER));
     }
 
-    public function user(): BelongsTo
+    public function employee(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id')
+            ->whereHas('roles', fn($q) => $q->where('name', RoleType::IS_EMPLOYEE));
     }
 }
