@@ -6,6 +6,7 @@ use App\Rules\AvailableBus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 
@@ -92,6 +93,16 @@ class Trip extends Resource
                 ->rules(['required', 'date_format:"H:i"'])
                 ->help(__('Kelionės grįžimo laiko formatas: HH:mm'))
                 ->displayUsing(fn($value, $resource) => $resource->formatTime('departure_back_at')),
+
+            Number::make(__('Kaina'), 'price', function () {
+                return number_format(isset($this->price) ?
+                        $this->price
+                        : 0, 2, '.', '') . ' €';
+            })
+                ->step(1.00)
+                ->rules('numeric', 'regex:/^\d+(\.\d{1,2})?$/')
+                ->help(__('Nurodoma kaina į abi puses.'))
+                ->asHtml(),
         ];
     }
 }
