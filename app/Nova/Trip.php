@@ -5,7 +5,9 @@ namespace App\Nova;
 use App\Rules\AvailableBus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 
 class Trip extends Resource
 {
@@ -46,7 +48,7 @@ class Trip extends Resource
                 ->updateRules('unique:trips,route_id,{{resourceId}}')
                 ->displayUsingLabels(),
 
-            BelongsTo::make(__('Kelionės autobusas'), 'bus', Bus::class)
+            BelongsTo::make(__('Autobusas'), 'bus', Bus::class)
                 ->rules('required', new AvailableBus())
                 ->searchable()
                 ->creationRules('unique:trips,bus_id')
@@ -67,6 +69,26 @@ class Trip extends Resource
                 ->creationRules('unique:trips,user_id')
                 ->updateRules('unique:trips,user_id,{{resourceId}}')
                 ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.')),
+
+            Date::make(__('Išvykimo data'), 'arrived_at')
+                ->rules('required')
+                ->firstDayOfWeek(1),
+
+            Text::make(__('Išvykimo laikas'), 'arrived_back_at')
+                ->placeholder('HH:mm')
+                ->rules(['required', 'date_format:"H:i"'])
+                ->help(__('Kelionės išvykimo laiko formatas: HH:mm'))
+                ->displayUsing(fn($value, $resource) => $resource->formatTime('arrived_back_at')),
+            
+            Date::make(__('Grįžimo data'), 'departure_at')
+                ->rules('required')
+                ->firstDayOfWeek(1),
+
+            Text::make(__('Grįžimo laikas'), 'departure_back_at')
+                ->placeholder('HH:mm')
+                ->rules(['required', 'date_format:"H:i"'])
+                ->help(__('Kelionės grįžimo laiko formatas: HH:mm'))
+                ->displayUsing(fn($value, $resource) => $resource->formatTime('departure_back_at')),
         ];
     }
 }

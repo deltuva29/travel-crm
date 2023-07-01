@@ -15,6 +15,13 @@ class Trip extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'arrived_at' => 'date',
+        'arrived_back_at' => 'string',
+        'departure_at' => 'date',
+        'departure_back_at' => 'string',
+    ];
+
     public function bus(): BelongsTo
     {
         return $this->belongsTo(Bus::class);
@@ -30,5 +37,15 @@ class Trip extends Model
     {
         return $this->belongsTo(User::class, 'user_id')
             ->whereHas('roles', fn($q) => $q->where('name', RoleType::IS_EMPLOYEE));
+    }
+
+    public function formatTime($column): string
+    {
+        $carbonTime = now()->createFromFormat('H:i:s', $this->{$column});
+
+        $hours = $carbonTime->format('G');
+        $minutes = $carbonTime->format('i');
+
+        return sprintf('%d val %02d min', $hours, $minutes);
     }
 }
