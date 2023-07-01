@@ -54,20 +54,6 @@ class Trip extends Resource
                 ->displayUsing(fn($value) => $value ? $value->getFullNameWithPlateNumberLabel() : '')
                 ->help(__('Pasirinktas autobusas su kuriuo bus vykstama į kelionę.')),
 
-//            Select::make(__('Paskirtas vairuotojas'), 'driver_id')
-//                ->rules('required')
-//                ->searchable()
-//                ->options(
-//                    \App\Models\User::query()
-//                        ->whereHas('roles', fn($query) => $query->where('name', RoleType::IS_DRIVER))
-//                        ->orderBy('created_at', 'DESC')
-//                        ->pluck('name', 'id')
-//                )
-//                ->creationRules('unique:trips,driver_id')
-//                ->updateRules('unique:trips,driver_id,{{resourceId}}')
-//                ->displayUsingLabels()
-//                ->help(__('Įmonės vairuotojas su kuriuo bus vykstama į kelionę.')),
-
             BelongsTo::make(__('Paskirtas vairuotojas'), 'driver', User::class)
                 ->rules('required')
                 ->searchable()
