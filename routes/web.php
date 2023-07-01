@@ -56,4 +56,6 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::get('api/calculate-distance', [CalculateDistanceController::class, 'calculateDistance']);
+Route::prefix('api')->group(fn() => [
+    Route::get('calculate-distance', [CalculateDistanceController::class, 'calculateDistance']),
+]);
