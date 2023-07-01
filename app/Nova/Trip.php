@@ -54,21 +54,24 @@ class Trip extends Resource
                 ->creationRules('unique:trips,bus_id')
                 ->updateRules('unique:trips,bus_id,{{resourceId}}')
                 ->displayUsing(fn($value) => $value ? $value->getFullNameWithPlateNumberLabel() : '')
-                ->help(__('Pasirinktas autobusas su kuriuo bus vykstama į kelionę.')),
+                ->help(__('Pasirinktas autobusas su kuriuo bus vykstama į kelionę.'))
+                ->hideFromIndex(),
 
             BelongsTo::make(__('Paskirtas vairuotojas'), 'driver', User::class)
                 ->rules('required')
                 ->searchable()
                 ->creationRules('unique:trips,driver_id')
                 ->updateRules('unique:trips,driver_id,{{resourceId}}')
-                ->help(__('Įmonės vairuotojas su kuriuo bus vykstama į kelionę.')),
+                ->help(__('Įmonės vairuotojas su kuriuo bus vykstama į kelionę.'))
+                ->hideFromIndex(),
 
             BelongsTo::make(__('Pagalbinis darbuotojas'), 'employee', User::class)
                 ->rules('required')
                 ->searchable()
                 ->creationRules('unique:trips,user_id')
                 ->updateRules('unique:trips,user_id,{{resourceId}}')
-                ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.')),
+                ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.'))
+                ->hideFromIndex(),
 
             Date::make(__('Išvykimo data'), 'arrived_at')
                 ->rules('required')
@@ -79,7 +82,7 @@ class Trip extends Resource
                 ->rules(['required', 'date_format:"H:i"'])
                 ->help(__('Kelionės išvykimo laiko formatas: HH:mm'))
                 ->displayUsing(fn($value, $resource) => $resource->formatTime('arrived_back_at')),
-            
+
             Date::make(__('Grįžimo data'), 'departure_at')
                 ->rules('required')
                 ->firstDayOfWeek(1),
