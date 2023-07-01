@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('route_id')->nullable();
             $table->unsignedBigInteger('driver_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->longText('note')->nullable();
             $table->unsignedInteger('distance')->nullable();
             $table->string('duration')->nullable();
             $table->decimal('price', 9, 2)->default(0.00);
