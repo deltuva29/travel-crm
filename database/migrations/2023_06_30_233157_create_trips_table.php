@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('bus_id')->nullable();
             $table->unsignedBigInteger('route_id')->nullable();
+            $table->unsignedBigInteger('driver_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedInteger('distance')->nullable();
             $table->string('duration')->nullable();
             $table->decimal('price', 9, 2)->default(0.00);
@@ -27,8 +29,11 @@ return new class extends Migration {
 
             $table->foreign('bus_id')->references('id')->on('buses')
                 ->onDelete('cascade');
-
             $table->foreign('route_id')->references('id')->on('routes')
+                ->onDelete('cascade');
+            $table->foreign('driver_id')->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
         });
     }
