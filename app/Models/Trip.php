@@ -48,4 +48,9 @@ class Trip extends Model
 
         return sprintf('%d val %02d min', $hours, $minutes);
     }
+
+    public function formatPrice(): string
+    {
+        return number_format($this->price, 2, '.', '') . ' €';
+    }
 }
