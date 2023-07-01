@@ -42,11 +42,15 @@ class Trip extends Resource
                     ])
                     ->pluck('label', 'value')
                 )
+                ->creationRules('unique:trips,route_id')
+                ->updateRules('unique:trips,route_id,{{resourceId}}')
                 ->displayUsingLabels(),
 
             BelongsTo::make(__('Kelionės autobusas'), 'bus', Bus::class)
                 ->rules('required', new AvailableBus())
                 ->searchable()
+                ->creationRules('unique:trips,bus_id')
+                ->updateRules('unique:trips,bus_id,{{resourceId}}')
                 ->displayUsing(fn($value) => $value ? $value->getFullNameWithPlateNumberLabel() : '')
                 ->help(__('Pasirinktas autobusas su kuriuo bus vykstama į kelionę.')),
         ];
