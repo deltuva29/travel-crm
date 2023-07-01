@@ -75,4 +75,9 @@ class Bus extends Model implements HasMedia
     {
         return $this->hasMany(BusRent::class);
     }
+
+    public function getFullNameWithPlateNumberLabel(): string
+    {
+        return "{$this->brand}[{$this->model}] - " . __('Valst.nr ') . " {$this->plate_number} ";
+    }
 }
