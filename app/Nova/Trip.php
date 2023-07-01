@@ -82,6 +82,7 @@ class Trip extends Resource
                 ->placeholder('HH:mm')
                 ->rules(['required', 'date_format:"H:i"'])
                 ->help(__('Kelionės išvykimo laiko formatas: HH:mm'))
+                ->resolveUsing(fn($value) => now()->parse($value)->format('H:i'))
                 ->displayUsing(fn($value, $resource) => $resource->formatTime('arrived_back_at')),
 
             Date::make(__('Grįžimo data'), 'departure_at')
@@ -92,13 +93,14 @@ class Trip extends Resource
                 ->placeholder('HH:mm')
                 ->rules(['required', 'date_format:"H:i"'])
                 ->help(__('Kelionės grįžimo laiko formatas: HH:mm'))
+                ->resolveUsing(fn($value) => now()->parse($value)->format('H:i'))
                 ->displayUsing(fn($value, $resource) => $resource->formatTime('departure_back_at')),
 
             Number::make(__('Kaina'), 'price')
                 ->step(1.00)
                 ->help(__('Nurodoma kaina į abi puses.'))
-                ->resolveUsing(fn($value) => is_null($value) ? 0 : number_format($value, 2, '.', ''))
-                ->displayUsing(fn($value) => is_null($value) ? '0.00 €' : number_format($value, 2, '.', '') . ' €')
+                ->resolveUsing(fn($value, $resource) => is_null($value) ? 0 : number_format($value, 2, '.', ''))
+                ->displayUsing(fn($value, $resource) => $resource->formatPrice())
                 ->asHtml(),
         ];
     }
