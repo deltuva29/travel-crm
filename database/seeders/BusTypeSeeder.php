@@ -15,8 +15,8 @@ class BusTypeSeeder extends Seeder
     public function run()
     {
         $types = [
-            '2 aukštų',
-            'Standartinis',
+            __('2 aukštų'),
+            __('Standartinis'),
         ];
 
         foreach ($types as $type) {

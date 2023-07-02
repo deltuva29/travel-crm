@@ -15,6 +15,11 @@ class Trip extends Model
 
     protected $guarded = ['id'];
 
+    protected $dates = [
+        'arrived_at',
+        'departure_at',
+    ];
+
     protected $casts = [
         'arrived_at' => 'date',
         'arrived_back_at' => 'string',
@@ -37,6 +42,11 @@ class Trip extends Model
     {
         return $this->belongsTo(User::class, 'user_id')
             ->whereHas('roles', fn($q) => $q->where('name', RoleType::IS_EMPLOYEE));
+    }
+
+    public function paymentMethod(): BelongsTo
+    {
+        return $this->belongsTo(PaymentMethod::class);
     }
 
     public function formatTime($column): string

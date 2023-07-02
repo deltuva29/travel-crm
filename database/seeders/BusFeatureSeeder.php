@@ -15,16 +15,16 @@ class BusFeatureSeeder extends Seeder
     public function run(): void
     {
         $features = [
-            'A/C',
-            'ABS',
-            'ASR',
-            'DVD',
-            'VIDEO+2 monitoriai',
-            'CD',
-            'WC',
-            'Šaldytuvas',
-            'Mini virtuvėlė',
-            'Mikrofonas',
+            __('A/C'),
+            __('ABS'),
+            __('ASR'),
+            __('DVD'),
+            __('VIDEO+2 monitoriai'),
+            __('CD'),
+            __('WC'),
+            __('Šaldytuvas'),
+            __('Mini virtuvėlė'),
+            __('Mikrofonas'),
         ];
 
         foreach ($features as $feature) {

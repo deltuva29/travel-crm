@@ -7,6 +7,7 @@ use App\Nova\BusFeature;
 use App\Nova\BusRent;
 use App\Nova\BusType;
 use App\Nova\Customer;
+use App\Nova\PaymentMethod;
 use App\Nova\Role;
 use App\Nova\Route;
 use App\Nova\Trip;
@@ -103,7 +104,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'expanded' => false,
                                 'resources' => [
                                     Route::class,
-                                    Trip::class,
+                                    Trip::class
+                                ]
+                            ]),
+                            Group::make([
+                                'label' => __('Mokėjimai'),
+                                'expanded' => false,
+                                'resources' => [
+                                    PaymentMethod::class
                                 ]
                             ]),
                             Group::make([
