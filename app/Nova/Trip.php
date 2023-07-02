@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Rules\AvailableBus;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -35,6 +36,8 @@ class Trip extends Resource
     public function fields(Request $request): array
     {
         return [
+            new Panel(__('Medija'), $this->mediaFields()),
+
             Select::make(__('Maršrutas'), 'route_id')
                 ->rules('required')
                 ->searchable()
@@ -108,6 +111,15 @@ class Trip extends Resource
                 ->help(__('Kelionės grįžimo laiko formatas: HH:mm'))
                 ->resolveUsing(fn($value) => now()->parse($value)->format('H:i'))
                 ->displayUsing(fn($value, $resource) => $resource->formatTime('departure_back_at')),
+        ];
+    }
+
+    protected function mediaFields(): array
+    {
+        return [
+            Images::make(__('Pagrindinė nuotrauka'), 'main_image')->hideFromIndex(),
+
+            Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
         ];
     }
 
