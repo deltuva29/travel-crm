@@ -114,6 +114,10 @@ class Trip extends Resource
     protected function priceFields(): array
     {
         return [
+            BelongsTo::make(__('Apmokėjimo būdas'), 'paymentMethod', PaymentMethod::class)
+                ->rules('required')
+                ->hideFromIndex(),
+
             Number::make(__('Kaina'), 'price')
                 ->step(1.00)
                 ->help(__('Nurodoma kaina į abi puses.'))
