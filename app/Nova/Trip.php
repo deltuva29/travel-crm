@@ -36,7 +36,9 @@ class Trip extends Resource
     public function fields(Request $request): array
     {
         return [
-            new Panel(__('Medija'), $this->mediaFields()),
+            Images::make(__('Pagrindinė nuotrauka'), 'main_image')->hideFromIndex(),
+
+            Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
 
             Select::make(__('Maršrutas'), 'route_id')
                 ->rules('required')
@@ -111,15 +113,6 @@ class Trip extends Resource
                 ->help(__('Kelionės grįžimo laiko formatas: HH:mm'))
                 ->resolveUsing(fn($value) => now()->parse($value)->format('H:i'))
                 ->displayUsing(fn($value, $resource) => $resource->formatTime('departure_back_at')),
-        ];
-    }
-
-    protected function mediaFields(): array
-    {
-        return [
-            Images::make(__('Pagrindinė nuotrauka'), 'main_image')->hideFromIndex(),
-
-            Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
         ];
     }
 
