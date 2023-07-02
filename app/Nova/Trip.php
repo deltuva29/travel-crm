@@ -80,7 +80,7 @@ class Trip extends Resource
 
             Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
 
-            new Panel(__('Kaina be PVM'), $this->priceFields()),
+            new Panel(__('Atsiskaitymas'), $this->priceFields()),
         ];
     }
 
