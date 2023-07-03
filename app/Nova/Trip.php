@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Trips\CompleteTripAction;
 use App\Rules\AvailableBus;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
@@ -129,6 +130,13 @@ class Trip extends Resource
                 ->resolveUsing(fn($value, $resource) => is_null($value) ? '0.00' : number_format($value, 2, '.', ''))
                 ->displayUsing(fn($value, $resource) => $resource->formatPrice())
                 ->asHtml(),
+        ];
+    }
+
+    public function actions(Request $request): array
+    {
+        return [
+            new CompleteTripAction(),
         ];
     }
 }
