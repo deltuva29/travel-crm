@@ -3,8 +3,6 @@
 namespace App\Nova\Actions\Trips;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
@@ -14,7 +12,7 @@ class CompleteTripAction extends Action
 {
     use InteractsWithQueue, Queueable;
 
-    public function name(): array|string|Translator|Application|null
+    public function name(): string
     {
         return __('Užbaigti kelionę');
     }
