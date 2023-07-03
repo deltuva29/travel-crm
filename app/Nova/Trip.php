@@ -130,6 +130,12 @@ class Trip extends Resource
                 ->resolveUsing(fn($value, $resource) => is_null($value) ? '0.00' : number_format($value, 2, '.', ''))
                 ->displayUsing(fn($value, $resource) => $resource->formatPrice())
                 ->asHtml(),
+
+            Text::make(__('Statusas'))
+                ->displayUsing(fn() => $this->isAlreadyCompleted()
+                    ? '<span>' . __('Užbaigta') . '</span>'
+                    : '')
+                ->asHtml(),
         ];
     }
 
