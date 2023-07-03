@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d0863e6648e6dc5e0b6bd3ab70640dd",
+    "content-hash": "67921f4f6eb047f0290ebfb6c0f423e2",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -8262,6 +8262,51 @@
             "time": "2023-01-03T09:29:04+00:00"
         },
         {
+            "name": "timothyasp/nova-badge-field",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/timothyasp/nova-badge-field.git",
+                "reference": "5549f24bc155e7269daf63559476b77e2975eeab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/timothyasp/nova-badge-field/zipball/5549f24bc155e7269daf63559476b77e2975eeab",
+                "reference": "5549f24bc155e7269daf63559476b77e2975eeab",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Timothyasp\\Badge\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Timothyasp\\Badge\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/timothyasp/nova-badge-field/issues",
+                "source": "https://github.com/timothyasp/nova-badge-field/tree/1.0.3"
+            },
+            "time": "2019-11-03T21:57:56+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.5.0",
             "source": {
@@ -11111,9 +11156,9 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "digital-creative/nova-mega-filter": 20,
+        "isseta/calculate-distance": 20,
         "issetas/vacation-orange": 20,
-        "zegissoft/licence-plate": 20,
-        "isseta/calculate-distance": 20
+        "zegissoft/licence-plate": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
