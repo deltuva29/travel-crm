@@ -22,6 +22,7 @@ class Trip extends Model implements HasMedia
     protected $dates = [
         'arrived_at',
         'departure_at',
+        'completed_at',
     ];
 
     protected $casts = [
@@ -29,6 +30,7 @@ class Trip extends Model implements HasMedia
         'arrived_back_at' => 'string',
         'departure_at' => 'date',
         'departure_back_at' => 'string',
+        'completed_at' => 'timestamp',
     ];
 
     public function registerMediaCollections(): void
@@ -84,5 +86,10 @@ class Trip extends Model implements HasMedia
     public function formatPrice(): string
     {
         return number_format($this->price, 2, '.', '') . ' €';
+    }
+
+    public function isAlreadyCompleted(): bool
+    {
+        return !is_null($this->completed_at);
     }
 }
