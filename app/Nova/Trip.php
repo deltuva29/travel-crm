@@ -136,7 +136,10 @@ class Trip extends Resource
     public function actions(Request $request): array
     {
         return [
-            new CompleteTripAction(),
+            (new CompleteTripAction())
+                ->confirmText(__('Ar tikrai norite užbaigti kelionę?'))
+                ->confirmButtonText(__('Užbaigti'))
+                ->cancelButtonText(_('Atšaukti')),
         ];
     }
 }
