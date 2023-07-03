@@ -19,10 +19,28 @@ class CompleteTripAction extends Action
 
     public function handle(ActionFields $fields, Collection $models)
     {
-        //
+        return $this->completeModels($models);
     }
 
-    public function fields()
+    private function completeModels(Collection $models): array
+    {
+        foreach ($models as $model) {
+            if ($model->isAlreadyCompleted()) {
+                return Action::danger('Šį kelionė jau užbaigta.');
+            } else {
+                $this->completeModel($model);
+            }
+        }
+
+        return Action::message(__('Kelionė buvo užbaigta sėkmingai.'));
+    }
+
+    private function completeModel($model): void
+    {
+        $model->update(['completed_at' => now()]);
+    }
+
+    public function fields(): array
     {
         return [];
     }
