@@ -24,12 +24,19 @@ class CompleteTripAction extends Action
 
     private function completeModels(Collection $models): array
     {
+        $completedCount = 0;
+
         foreach ($models as $model) {
             if ($model->isAlreadyCompleted()) {
-                return Action::danger('Šį kelionė jau užbaigta.');
+                return Action::danger(__('Šį kelionė jau užbaigta.'));
             } else {
                 $this->completeModel($model);
+                $completedCount++;
             }
+        }
+
+        if ($completedCount > 1) {
+            return Action::message(__("Užbaigtos kelionės +{$completedCount}"));
         }
 
         return Action::message(__('Kelionė buvo užbaigta sėkmingai.'));
