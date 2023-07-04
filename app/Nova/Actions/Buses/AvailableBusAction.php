@@ -53,8 +53,8 @@ class AvailableBusAction extends Action
     private function generateAlreadyAvailableAction(int $count): array
     {
         $message = $count > 1
-            ? __("Šie +{$count} autobusai jau prieinami.")
-            : __('Šis autobusas jau yra prieinamas.');
+            ? __("Šie +{$count} autobusai prieinami.")
+            : __('Šis autobusas  prieinamas.');
 
         return Action::danger($message);
     }
@@ -63,7 +63,7 @@ class AvailableBusAction extends Action
     {
         $message = $count > 1
             ? __("Prieinami +{$count} autobusai.")
-            : __('Autobusas yra prieinamas.');
+            : __('Autobusas prieinamas.');
 
         return Action::message($message);
     }
