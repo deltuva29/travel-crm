@@ -80,4 +80,9 @@ class Bus extends Model implements HasMedia
     {
         return "{$this->brand}[{$this->model}] - " . __('Valst.nr ') . " {$this->plate_number} ";
     }
+
+    public function isAlreadyAvailable(): bool
+    {
+        return !$this->available;
+    }
 }
