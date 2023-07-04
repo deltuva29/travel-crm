@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Buses\AvailableBusAction;
 use App\Rules\LicenseNumberPlate;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
@@ -166,6 +167,16 @@ class Bus extends Resource
     {
         return [
             (new NovaBigFilter)->setTitle(__('Filtravimas')),
+        ];
+    }
+
+    public function actions(Request $request): array
+    {
+        return [
+            (new AvailableBusAction())
+                ->confirmText(__('Ar tikrai norite atnaujinti į "Laisvas autobusas"?'))
+                ->confirmButtonText(__('Atnaujinti'))
+                ->cancelButtonText(_('Atšaukti')),
         ];
     }
 }
