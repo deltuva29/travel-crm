@@ -92,4 +92,9 @@ class Trip extends Model implements HasMedia
     {
         return !is_null($this->completed_at);
     }
+
+    public function isAlreadyUnCompleted(): bool
+    {
+        return is_null($this->completed_at);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\Trips\CompleteTripAction;
+use App\Nova\Actions\Trips\UpdateCompleteTripAction;
 use App\Rules\AvailableBus;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
@@ -146,6 +147,10 @@ class Trip extends Resource
             (new CompleteTripAction())
                 ->confirmText(__('Ar tikrai norite užbaigti kelionę?'))
                 ->confirmButtonText(__('Užbaigti'))
+                ->cancelButtonText(_('Atšaukti')),
+            (new UpdateCompleteTripAction())
+                ->confirmText(__('Ar tikrai norite atnaujinti kelionę?'))
+                ->confirmButtonText(__('Atnaujinti'))
                 ->cancelButtonText(_('Atšaukti')),
         ];
     }
