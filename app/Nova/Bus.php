@@ -8,6 +8,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Text;
@@ -144,6 +145,9 @@ class Bus extends Resource
                 ->showOnIndex()
                 ->offColor('#d9cdcb')
                 ->onColor('61b30a'),
+
+            Boolean::make(__('Laisvas'), 'available')
+                ->help(__('Jeigu autobusas šiuo metu užimtas, nuimkite varnelę.')),
         ];
     }
 
