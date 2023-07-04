@@ -38,6 +38,16 @@ class Bus extends Model implements HasMedia
             ->performOnCollections('main_image');
     }
 
+    public function isAlreadyAvailable(): bool
+    {
+        return !$this->available;
+    }
+
+    public function isAlreadyUnAvailable(): bool
+    {
+        return $this->available;
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -79,10 +89,5 @@ class Bus extends Model implements HasMedia
     public function getFullNameWithPlateNumberLabel(): string
     {
         return "{$this->brand}[{$this->model}] - " . __('Valst.nr ') . " {$this->plate_number} ";
-    }
-
-    public function isAlreadyAvailable(): bool
-    {
-        return !$this->available;
     }
 }

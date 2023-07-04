@@ -51,6 +51,16 @@ class Trip extends Model implements HasMedia
             ->performOnCollections('main_image');
     }
 
+    public function isAlreadyCompleted(): bool
+    {
+        return !is_null($this->completed_at);
+    }
+
+    public function isAlreadyUnCompleted(): bool
+    {
+        return is_null($this->completed_at);
+    }
+
     public function bus(): BelongsTo
     {
         return $this->belongsTo(Bus::class);
@@ -86,15 +96,5 @@ class Trip extends Model implements HasMedia
     public function formatPrice(): string
     {
         return number_format($this->price, 2, '.', '') . ' €';
-    }
-
-    public function isAlreadyCompleted(): bool
-    {
-        return !is_null($this->completed_at);
-    }
-
-    public function isAlreadyUnCompleted(): bool
-    {
-        return is_null($this->completed_at);
     }
 }
