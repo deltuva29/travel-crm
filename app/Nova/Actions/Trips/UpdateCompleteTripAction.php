@@ -19,18 +19,18 @@ class UpdateCompleteTripAction extends Action
 
     public function handle(ActionFields $fields, Collection $models)
     {
-        return $this->completeModels($models);
+        return $this->uncompletedModels($models);
     }
 
-    private function completeModels(Collection $models): array
+    private function uncompletedModels(Collection $models): array
     {
         [$completedCount, $alreadyCompletedCount] = $this->processModels($models);
 
         if ($alreadyCompletedCount > 0) {
-            return $this->generateAlreadyCompletedAction($alreadyCompletedCount);
+            return $this->generateAlreadyUnCompletedAction($alreadyCompletedCount);
         }
 
-        return $this->generateCompletionAction($completedCount);
+        return $this->generateUnCompletionAction($completedCount);
     }
 
     private function processModels(Collection $models): array
@@ -50,7 +50,7 @@ class UpdateCompleteTripAction extends Action
         return [$completedCount, $alreadyCompletedCount];
     }
 
-    private function generateAlreadyCompletedAction(int $count): array
+    private function generateAlreadyUnCompletedAction(int $count): array
     {
         $message = $count > 1
             ? __("Šiu +{$count} kelionių statusas jau buvo atnaujintas.")
@@ -59,7 +59,7 @@ class UpdateCompleteTripAction extends Action
         return Action::danger($message);
     }
 
-    private function generateCompletionAction(int $count): array
+    private function generateUnCompletionAction(int $count): array
     {
         $message = $count > 1
             ? __("Atnaujintos +{$count} kelionės sėkmingai.")
