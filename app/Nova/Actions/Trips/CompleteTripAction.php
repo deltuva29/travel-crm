@@ -24,22 +24,48 @@ class CompleteTripAction extends Action
 
     private function completeModels(Collection $models): array
     {
+        [$completedCount, $alreadyCompletedCount] = $this->processModels($models);
+
+        if ($alreadyCompletedCount > 0) {
+            return $this->generateAlreadyCompletedAction($alreadyCompletedCount);
+        }
+
+        return $this->generateCompletionAction($completedCount);
+    }
+
+    private function processModels(Collection $models): array
+    {
         $completedCount = 0;
+        $alreadyCompletedCount = 0;
 
         foreach ($models as $model) {
             if ($model->isAlreadyCompleted()) {
-                return Action::danger(__('Šį kelionė jau užbaigta.'));
+                $alreadyCompletedCount++;
             } else {
                 $this->completeModel($model);
                 $completedCount++;
             }
         }
 
-        if ($completedCount > 1) {
-            return Action::message(__("Užbaigtos kelionės +{$completedCount} sėkmingai."));
-        }
+        return [$completedCount, $alreadyCompletedCount];
+    }
 
-        return Action::message(__('Kelionė buvo užbaigta sėkmingai.'));
+    private function generateAlreadyCompletedAction(int $count): array
+    {
+        $message = $count > 1
+            ? __("Šios +{$count} kelionės jau užbaigtos.")
+            : __('Šį kelionė jau užbaigta.');
+
+        return Action::danger($message);
+    }
+
+    private function generateCompletionAction(int $count): array
+    {
+        $message = $count > 1
+            ? __("Užbaigtos +{$count} kelionės sėkmingai.")
+            : __('Kelionė buvo užbaigta sėkmingai.');
+
+        return Action::message($message);
     }
 
     private function completeModel($model): void
