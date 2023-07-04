@@ -36,7 +36,7 @@ class CompleteTripAction extends Action
         }
 
         if ($completedCount > 1) {
-            return Action::message(__("Užbaigtos kelionės +{$completedCount}"));
+            return Action::message(__("Užbaigtos kelionės +{$completedCount} sėkmingai."));
         }
 
         return Action::message(__('Kelionė buvo užbaigta sėkmingai.'));
