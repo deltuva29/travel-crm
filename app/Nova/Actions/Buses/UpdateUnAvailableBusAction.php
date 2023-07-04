@@ -54,7 +54,7 @@ class UpdateUnAvailableBusAction extends Action
     {
         $message = $count > 1
             ? __("Šie +{$count} autobusai jau užimti.")
-            : __('Šis autobusas jau yra užimtas.');
+            : __('Šis autobusas jau užimtas.');
 
         return Action::danger($message);
     }
@@ -63,7 +63,7 @@ class UpdateUnAvailableBusAction extends Action
     {
         $message = $count > 1
             ? __("Užimti +{$count} autobusai.")
-            : __('Autobusas yra užimtas.');
+            : __('Autobusas užimtas.');
 
         return Action::message($message);
     }
