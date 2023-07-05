@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Enums\CustomerType;
 use App\Nova\Actions\Trips\CompleteTripAction;
 use App\Nova\Actions\Trips\UpdateCompleteTripAction;
 use App\Rules\AvailableBus;
@@ -39,6 +40,12 @@ class Trip extends Resource
 
     public function fields(Request $request): array
     {
+        $customersWithParticipants = \App\Models\Customer::query()
+            ->where('type', CustomerType::PASSENGER)
+            ->whereDoesntHave('participants')
+            ->get()
+            ->pluck('full_name', 'id');
+
         return [
             Images::make(__('Pagrindinė nuotrauka'), 'main_image')->hideFromIndex(),
 
@@ -57,7 +64,6 @@ class Trip extends Resource
                     ->pluck('label', 'value')
                 )
                 ->creationRules('unique:trips,route_id')
-                ->updateRules('unique:trips,route_id,{{resourceId}}')
                 ->displayUsingLabels(),
 
             BelongsTo::make(__('Autobusas'), 'bus', Bus::class)
@@ -93,13 +99,14 @@ class Trip extends Resource
 
             BelongsToManyField::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class)
                 ->help(__('Pridėkite dalyvius kurie važiuos į kelionę.'))
+                ->options($customersWithParticipants)
                 ->optionsLabel('full_name')
                 ->showAsListInDetail()
                 ->onlyOnDetail()
                 ->showOnCreating()
                 ->showOnUpdating(),
 
-            BelongsToMany::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class)
+            BelongsToMany::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class),
         ];
     }
 

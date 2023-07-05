@@ -2,8 +2,11 @@
 
 namespace App\Nova;
 
+use App\Enums\CustomerType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class TripCustomer extends Resource
 {
@@ -25,6 +28,14 @@ class TripCustomer extends Resource
         'id', 'full_name',
     ];
 
+    public static function indexQuery(NovaRequest $request, $query): Builder
+    {
+        $query = parent::indexQuery($request, $query);
+        $query->where('type', CustomerType::PASSENGER);
+
+        return $query;
+    }
+
     public function fields(Request $request): array
     {
         return [
@@ -34,13 +45,6 @@ class TripCustomer extends Resource
                 ->hideFromDetail()
                 ->readonly()
                 ->asHtml(),
-        ];
-    }
-
-    public function filters(Request $request): array
-    {
-        return [
-            new Filters\Users\UserMultiRoleFilter(),
         ];
     }
 }
