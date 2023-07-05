@@ -154,20 +154,20 @@ class Bus extends Resource
         ];
     }
 
-    public function filters(Request $request): array
-    {
-        return [
-            new Filters\BusSeatsFilter(),
-            new Filters\BusFuelPer100kmFilter(),
-            new Filters\BusFuelInLitresFilter(),
-            new Filters\BusFeaturesFilter(),
-            new Filters\BusTypeFilter(),
-            new Filters\Users\UserRoleDriverFilter(),
-            new Filters\BusActiveFilter(),
-            new Filters\BusRepairFilter(),
-            new Filters\BusCrashFilter(),
-        ];
-    }
+//    public function filters(Request $request): array
+//    {
+//        return [
+//            new Filters\BusSeatsFilter(),
+//            new Filters\BusFuelPer100kmFilter(),
+//            new Filters\BusFuelInLitresFilter(),
+//            new Filters\BusFeaturesFilter(),
+//            new Filters\BusTypeFilter(),
+//            new Filters\Users\UserRoleDriverFilter(),
+//            new Filters\BusActiveFilter(),
+//            new Filters\BusRepairFilter(),
+//            new Filters\BusCrashFilter(),
+//        ];
+//    }
 
     public function cards(Request $request): array
     {

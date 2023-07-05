@@ -85,7 +85,7 @@ class Customer extends Model implements HasMedia
 
         return match ($type) {
             CustomerType::RENTER => __('Nuomotojas'),
-            CustomerType::PASSENGER => __('Keleivis'),
+            CustomerType::PARTICIPANT => __('Dalyvis'),
             CustomerType::COMPANY => $iv,
             default => '',
         };
@@ -98,6 +98,6 @@ class Customer extends Model implements HasMedia
 
     public function getPriceOfTripCustomer()
     {
-        return $this->tripCustomer?->trip?->price ?? '0.00';
+        return $this->tripCustomer?->trip?->formatPrice();
     }
 }

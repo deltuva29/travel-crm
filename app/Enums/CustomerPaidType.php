@@ -6,22 +6,25 @@ use Spatie\Enum\Enum;
 
 class CustomerPaidType extends Enum
 {
-    public const PONES = 'mis';
-    public const PONNIAH = 'mr';
+    public const PAYMENT_WAITING = 'waiting';
+    public const PAYMENT_SUCCESS = 'paid';
+    public const PAYMENT_FAILED = 'failed';
 
     public static function values(): array
     {
         return [
-            self::PONES,
-            self::PONNIAH,
+            self::PAYMENT_WAITING,
+            self::PAYMENT_SUCCESS,
+            self::PAYMENT_FAILED,
         ];
     }
 
     public static function labels(): array
     {
         return [
-            self::PONES => __('Ponas'),
-            self::PONNIAH => __('Ponia'),
+            self::PAYMENT_WAITING => __('Laukiama'),
+            self::PAYMENT_SUCCESS => __('Apmokėta'),
+            self::PAYMENT_FAILED => __('Atšaukta'),
         ];
     }
 

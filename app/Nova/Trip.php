@@ -41,7 +41,7 @@ class Trip extends Resource
     public function fields(Request $request): array
     {
         $customersWithParticipants = \App\Models\Customer::query()
-            ->where('type', CustomerType::PASSENGER)
+            ->where('type', CustomerType::PARTICIPANT)
             ->whereDoesntHave('participants')
             ->get();
 

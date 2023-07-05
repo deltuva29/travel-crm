@@ -31,7 +31,7 @@ class TripCustomer extends Resource
     public static function indexQuery(NovaRequest $request, $query): Builder
     {
         $query = parent::indexQuery($request, $query);
-        $query->where('type', CustomerType::PASSENGER);
+        $query->where('type', CustomerType::PARTICIPANT);
 
         return $query;
     }
