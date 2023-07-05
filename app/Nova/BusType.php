@@ -9,6 +9,21 @@ class BusType extends Resource
 {
     public static string $model = \App\Models\BusType::class;
 
+    public static function authorizedToCreate(Request $request): bool
+    {
+        return false;
+    }
+
+    public function authorizedToUpdate(Request $request): bool
+    {
+        return false;
+    }
+
+    public function authorizedToDelete(Request $request): bool
+    {
+        return false;
+    }
+
     public static $title = 'name';
 
     public static function label(): string
@@ -32,20 +47,5 @@ class BusType extends Resource
                 ->rules('required', 'max:255')
                 ->sortable(),
         ];
-    }
-
-    public static function authorizedToCreate(Request $request): bool
-    {
-        return false;
-    }
-
-    public function authorizedToUpdate(Request $request): bool
-    {
-        return false;
-    }
-
-    public function authorizedToDelete(Request $request): bool
-    {
-        return false;
     }
 }
