@@ -7,6 +7,7 @@ use App\Enums\CustomerType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -30,6 +31,11 @@ class Customer extends Model implements HasMedia
         return $this->isCompany()
             ? $this->getCompanyFullName()
             : $this->getIndividualFullName();
+    }
+
+    public function tripCustomer(): HasOne
+    {
+        return $this->hasOne(TripCustomer::class);
     }
 
     public function participants(): BelongsToMany
@@ -88,5 +94,10 @@ class Customer extends Model implements HasMedia
     public function scopeActive($query)
     {
         return $query->where('status', true);
+    }
+
+    public function getPriceOfTripCustomer()
+    {
+        return $this->tripCustomer?->trip?->price ?? '0.00';
     }
 }
