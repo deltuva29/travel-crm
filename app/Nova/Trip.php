@@ -2,15 +2,12 @@
 
 namespace App\Nova;
 
-use App\Models\TripParticipantCustomer;
 use App\Nova\Actions\Trips\CompleteTripAction;
 use App\Nova\Actions\Trips\UpdateCompleteTripAction;
 use App\Rules\AvailableBus;
-use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
@@ -90,17 +87,7 @@ class Trip extends Resource
 
             Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
 
-            new Panel(__('Atsiskaitymas'), $this->priceFields()),
-
-            BelongsToManyField::make(__('Kelionės dalyviai'), 'participants', TripParticipant::class)
-                ->help(__('Pasirinkite pagrindinius privalumus autobuso viduje.'))
-                ->optionsLabel('name')
-                ->showAsListInDetail()
-                ->onlyOnDetail()
-                ->showOnCreating()
-                ->showOnUpdating(),
-
-            BelongsToMany::make(__('Kelionės dalyviai'), 'participants', TripParticipant::class)
+            new Panel(__('Atsiskaitymas'), $this->priceFields())
         ];
     }
 
