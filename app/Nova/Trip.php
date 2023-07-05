@@ -43,8 +43,7 @@ class Trip extends Resource
         $customersWithParticipants = \App\Models\Customer::query()
             ->where('type', CustomerType::PASSENGER)
             ->whereDoesntHave('participants')
-            ->get()
-            ->pluck('full_name', 'id');
+            ->get();
 
         return [
             Images::make(__('Pagrindinė nuotrauka'), 'main_image')->hideFromIndex(),
@@ -100,6 +99,10 @@ class Trip extends Resource
             BelongsToManyField::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class)
                 ->help(__('Pridėkite dalyvius kurie važiuos į kelionę.'))
                 ->options($customersWithParticipants)
+                ->setMultiselectProps([
+                    'selectLabel' => __('Įtraukti'),
+                    'deselectLabel' => __('Pašalinti')
+                ])
                 ->optionsLabel('full_name')
                 ->showAsListInDetail()
                 ->onlyOnDetail()

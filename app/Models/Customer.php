@@ -6,7 +6,6 @@ use App\Enums\CustomerCompanyPrefixType;
 use App\Enums\CustomerType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -36,11 +35,6 @@ class Customer extends Model implements HasMedia
     public function participants(): BelongsToMany
     {
         return $this->belongsToMany(Customer::class, 'trip_customers', 'customer_id', 'trip_id');
-    }
-
-    public function trip(): BelongsTo
-    {
-        return $this->belongsTo(Trip::class);
     }
 
     public function isCompany(): bool
