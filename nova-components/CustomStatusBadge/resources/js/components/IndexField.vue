@@ -14,14 +14,9 @@ export default {
         field: {
             type: Object,
             default: () => ({
-                status: DEFAULTS.STATUS,
+                attribute: 'first_name',
+                value: DEFAULTS.STATUS
             }),
-        },
-        meta: {
-            type: Object,
-            default: () => ({
-                status: DEFAULTS.STATUS
-            })
         }
     },
     mounted() {
@@ -29,11 +24,11 @@ export default {
     },
     computed: {
         statusText() {
-            const status = this.field.status || this.meta.status;
+            const status = this.field.value;
             return statusMap[status] || status;
         },
         statusClass() {
-            const status = this.field.status || this.meta.status;
+            const status = this.field.value;
             const statusClass = colorClassMap[status] || DEFAULTS.CLASS;
             return `${DEFAULTS.STYLE} ${statusClass}`;
         }
