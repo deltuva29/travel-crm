@@ -101,28 +101,28 @@ class Customer extends Resource
             ])->dependsOn('type', CustomerType::RENTER),
 
             /*
-             * CUSTOMER PASSENGER FIELDS
+             * CUSTOMER PARTICIPANT FIELDS
              */
             NovaDependencyContainer::make([
                 Images::make(__('Nuotrauka'), 'avatar'),
 
-                Text::make(__('Keleivio vardas'), 'first_name')
+                Text::make(__('Kelionės dalyvio vardas'), 'first_name')
                     ->rules('required', 'max:255')
                     ->sortable(),
 
-                Text::make(__('Keleivio pavardė'), 'last_name')
+                Text::make(__('Kelionės dalyvio pavardė'), 'last_name')
                     ->rules('required', 'max:255')
                     ->sortable(),
 
-                Text::make(__('Keleivio el.paštas'), 'email')
+                Text::make(__('Kelionės dalyvio el.paštas'), 'email')
                     ->rules('required', 'max:255', 'email')
                     ->sortable(),
 
-                Text::make(__('Keleivio telefono numeris'), 'phone')
+                Text::make(__('Kelionės dalyvio telefono numeris'), 'phone')
                     ->rules('required', 'max:15')
                     ->sortable(),
 
-                Text::make(__('Keleivio adresas'), 'address')
+                Text::make(__('Kelionės dalyvio adresas'), 'address')
                     ->hideFromIndex()
                     ->rules('required', 'max:255'),
 
