@@ -7,30 +7,33 @@ use Laravel\Nova\Fields\Text;
 
 class TripCustomer extends Resource
 {
-    public static string $model = \App\Models\Trip::class;
+    public static string $model = \App\Models\Customer::class;
 
-    public static $title = 'title';
+    public static $title = 'full_name';
 
     public static function label(): string
     {
-        return __('Kelionės dalyvis');
+        return __('Dalyviai');
     }
 
     public static function singularLabel(): string
     {
-        return __('Kelionės dalyviai');
+        return __('Naują dalyvį');
     }
 
     public static $search = [
-        'id', 'title', 'trip_id', 'customer_id',
+        'id', 'full_name',
     ];
 
     public function fields(Request $request): array
     {
         return [
-            Text::make(__('Pavadinimas'), 'title')
-                ->rules('required', 'max:255')
-                ->sortable(),
+            Text::make(__('Dalyvis'), function () {
+                return $this->fullName ?? '';
+            })
+                ->hideFromDetail()
+                ->readonly()
+                ->asHtml(),
         ];
     }
 
