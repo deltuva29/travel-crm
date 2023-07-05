@@ -5,9 +5,9 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 
-class TripParticipant extends Resource
+class TripCustomer extends Resource
 {
-    public static string $model = \App\Models\TripParticipant::class;
+    public static string $model = \App\Models\Trip::class;
 
     public static $title = 'title';
 
