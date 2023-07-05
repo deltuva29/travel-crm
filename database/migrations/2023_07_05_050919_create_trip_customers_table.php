@@ -16,6 +16,9 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('trip_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
+            $table->longText('note')->nullable();
+            $table->boolean('need_call')->default(false);
+            $table->enum('paid_type', CustomerPaidType::values())->nullable();
 
             $table->foreign('trip_id')->references('id')->on('trips')
                 ->onDelete('cascade');
