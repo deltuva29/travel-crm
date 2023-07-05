@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Enums\CustomerType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Isseta\CustomStatusBadge\CustomStatusBadge;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -38,6 +39,8 @@ class TripCustomer extends Resource
 
     public function fields(Request $request): array
     {
+        $paidStatus = $this->getPaidStatusOfTripCustomer();
+
         return [
             Text::make(__('Dalyvis'), function () {
                 return $this->fullName ?? '';
@@ -51,6 +54,10 @@ class TripCustomer extends Resource
             })
                 ->readonly()
                 ->asHtml(),
+
+            CustomStatusBadge::make(__('Statusas'), 'paid_type')
+                ->readonly()
+                ->exceptOnForms(),
         ];
     }
 }

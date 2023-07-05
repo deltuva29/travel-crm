@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67921f4f6eb047f0290ebfb6c0f423e2",
+    "content-hash": "8959cd3b308558eb8d915e4d6cfde077",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -2140,6 +2140,42 @@
             "autoload": {
                 "psr-4": {
                     "Isseta\\CalculateDistance\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "isseta/custom-status-badge",
+            "version": "dev-nova-crud",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/CustomStatusBadge",
+                "reference": "05d8c7a2ee53a6346d6c17890c6f6fa05bc1ec27"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Isseta\\CustomStatusBadge\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Isseta\\CustomStatusBadge\\": "src/"
                 }
             },
             "license": [
@@ -11158,7 +11194,8 @@
         "digital-creative/nova-mega-filter": 20,
         "isseta/calculate-distance": 20,
         "issetas/vacation-orange": 20,
-        "zegissoft/licence-plate": 20
+        "zegissoft/licence-plate": 20,
+        "isseta/custom-status-badge": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

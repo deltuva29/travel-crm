@@ -6,7 +6,11 @@
         "build-licence-plate": "cd nova-components/LicencePlate && npm run dev",
         "build-licence-plate-prod": "cd nova-components/LicencePlate && npm run prod",
         "build-calculate-distance": "cd nova-components/CalculateDistance && npm run dev",
-        "build-calculate-distance-prod": "cd nova-components/CalculateDistance && npm run prod"
+        "build-calculate-distance-prod": "cd nova-components/CalculateDistance && npm run prod",
+        "build-CustomStatusBadge": "cd nova-components/CustomStatusBadge && npm run dev",
+        "build-CustomStatusBadge-prod": "cd nova-components/CustomStatusBadge && npm run prod",
+        "build-custom-status-badge": "cd nova-components/CustomStatusBadge && npm run dev",
+        "build-custom-status-badge-prod": "cd nova-components/CustomStatusBadge && npm run prod"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5",
