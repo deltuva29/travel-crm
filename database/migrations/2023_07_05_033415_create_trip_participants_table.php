@@ -12,11 +12,11 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('trip_trip_participants', function (Blueprint $table) {
+        Schema::create('trip_customer_trips', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
             $table->unsignedBigInteger('trip_id')->nullable();
-            $table->unsignedBigInteger('trip_trip_participant_id')->nullable();
+            $table->unsignedBigInteger('trip_customer_id')->nullable();
             $table->longText('note')->nullable();
             $table->boolean('need_call')->default(false);
             $table->boolean('paid')->default(false);
@@ -24,7 +24,7 @@ return new class extends Migration {
 
             $table->foreign('trip_id')->references('id')->on('trips')
                 ->onDelete('cascade');
-            $table->foreign('trip_trip_participant_id')->references('id')->on('customers')
+            $table->foreign('trip_customer_id')->references('id')->on('customers')
                 ->onDelete('cascade');
         });
     }
@@ -36,6 +36,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('trip_participants');
+        Schema::dropIfExists('trip_customer_trips');
     }
 };
