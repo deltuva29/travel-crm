@@ -45,6 +45,13 @@ class TripCustomer extends Resource
                 ->hideFromDetail()
                 ->readonly()
                 ->asHtml(),
+
+            Text::make(__('Kaina'), function () {
+                return dd($this) ?? '';
+            })
+                ->hideFromDetail()
+                ->readonly()
+                ->asHtml(),
         ];
     }
 }
