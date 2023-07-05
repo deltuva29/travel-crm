@@ -18,4 +18,9 @@ class TripCustomer extends Model
     {
         return $this->belongsTo(Trip::class);
     }
+
+    public function getPaidStatusOfTripCustomer()
+    {
+        return $this->trip?->paid_type ?? '';
+    }
 }
