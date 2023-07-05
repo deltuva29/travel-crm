@@ -131,7 +131,7 @@ class Customer extends Resource
                     ->options(CustomerAppealType::labels())
                     ->onlyOnForms()
                     ->displayUsingLabels(),
-            ])->dependsOn('type', CustomerType::PASSENGER),
+            ])->dependsOn('type', CustomerType::PARTICIPANT),
 
             /*
              * CUSTOMER COMPANY FIELDS
