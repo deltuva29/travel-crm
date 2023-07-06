@@ -28,15 +28,15 @@ export default {
             }),
         }
     },
-    data: () => ({
-        paidLabel: 'Apmokėjimo statusas'
-    }),
     computed: {
+        paidName() {
+            return this.field.name;
+        },
         paidType() {
             return this.field.paidType;
         },
         paidLabel() {
-            return this.paidLabel;
+            return this.paidName;
         },
         statusText() {
             return statusMap[this.paidType] || this.paidType;
