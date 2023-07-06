@@ -14,22 +14,19 @@ export default {
         field: {
             type: Object,
             default: () => ({
-                attribute: 'first_name',
-                value: DEFAULTS.STATUS
+                paidType: DEFAULTS.STATUS
             }),
         }
     },
-    mounted() {
-        console.log(this.field.value);
-    },
     computed: {
+        paidType() {
+            return this.field.paidType;
+        },
         statusText() {
-            const status = this.field.value;
-            return statusMap[status] || status;
+            return statusMap[this.paidType] || this.paidType;
         },
         statusClass() {
-            const status = this.field.value;
-            const statusClass = colorClassMap[status] || DEFAULTS.CLASS;
+            const statusClass = colorClassMap[this.paidType] || DEFAULTS.CLASS;
             return `${DEFAULTS.STYLE} ${statusClass}`;
         }
     }
