@@ -100,9 +100,4 @@ class Customer extends Model implements HasMedia
     {
         return $this->tripCustomer?->trip?->formatPrice();
     }
-
-    public function getPaidStatusOfTripCustomer()
-    {
-        return $this->tripCustomer?->trip?->paid_type ?? '';
-    }
 }
