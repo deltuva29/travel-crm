@@ -10,8 +10,8 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -94,11 +94,11 @@ class Trip extends Resource
 
             new Panel(__('Atsiskaitymas'), $this->priceFields()),
 
-            AttachMany::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class)
+            AttachMany::make(__('Įtraukti dalyviai'), 'participants', Customer::class)
                 ->showCounts()
                 ->showPreview(),
 
-            BelongsToMany::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class),
+            HasMany::make(__('Įtraukti dalyviai'), 'customers', TripCustomer::class),
         ];
     }
 
@@ -131,6 +131,16 @@ class Trip extends Resource
                 ->help(__('Nurodoma kaina į abi puses.'))
                 ->resolveUsing(fn($value, $resource) => is_null($value) ? '0.00' : number_format($value, 2, '.', ''))
                 ->displayUsing(fn($value, $resource) => $resource->formatPrice())
+                ->asHtml(),
+
+            Text::make(__('Žmonių skaičius'), function () {
+                return '<span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-primary mr-1">
+                          <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z" clip-rule="evenodd" />
+                       <path d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z" />
+                  </svg> ' . $this->getParticipantsInTripCount() . '</span>
+               ';
+            })
+                ->readonly()
                 ->asHtml(),
 
             Text::make(__(''), fn() => $this->isAlreadyCompleted() ?

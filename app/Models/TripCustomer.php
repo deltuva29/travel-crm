@@ -19,8 +19,18 @@ class TripCustomer extends Model
         return $this->belongsTo(Trip::class);
     }
 
-    public function getPaidTypeOfTripCustomer()
+    public function customer(): BelongsTo
     {
-        return $this->trip?->paid_type ?? '';
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function getPriceOfTrip()
+    {
+        return $this->trip?->formatPrice();
+    }
+
+    public function getPaidType(): string
+    {
+        return $this->paid_type ?? 'N/A';
     }
 }

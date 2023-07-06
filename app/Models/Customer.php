@@ -35,7 +35,7 @@ class Customer extends Model implements HasMedia
 
     public function tripCustomer(): HasOne
     {
-        return $this->hasOne(TripCustomer::class);
+        return $this->hasOne(TripCustomer::class, 'customer_id');
     }
 
     public function participants(): BelongsToMany
