@@ -32,16 +32,16 @@ class TripCustomer extends Resource
 
     public static function label(): string
     {
-        return __('Dalyviai');
+        return __('Kelionės dalyviai');
     }
 
     public static function singularLabel(): string
     {
-        return __('Naują dalyvį');
+        return __('Kelionės dalyvis');
     }
 
     public static $search = [
-        'id', 'full_name',
+        'id', 'first_name', 'last_name',
     ];
 
     public static function indexQuery(NovaRequest $request, $query): Builder
