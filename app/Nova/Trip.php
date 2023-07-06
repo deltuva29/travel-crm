@@ -6,7 +6,6 @@ use App\Enums\CustomerType;
 use App\Nova\Actions\Trips\CompleteTripAction;
 use App\Nova\Actions\Trips\UpdateCompleteTripAction;
 use App\Rules\AvailableBus;
-use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laraning\NovaTimeField\TimeField;
@@ -18,6 +17,7 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
+use NovaAttachMany\AttachMany;
 
 class Trip extends Resource
 {
@@ -94,18 +94,9 @@ class Trip extends Resource
 
             new Panel(__('Atsiskaitymas'), $this->priceFields()),
 
-            BelongsToManyField::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class)
-                ->help(__('Pridėkite dalyvius kurie važiuos į kelionę.'))
-                ->options($customersWithParticipants)
-                ->setMultiselectProps([
-                    'selectLabel' => __('Įtraukti'),
-                    'deselectLabel' => __('Pašalinti')
-                ])
-                ->optionsLabel('full_name')
-                ->showAsListInDetail()
-                ->onlyOnDetail()
-                ->showOnCreating()
-                ->showOnUpdating(),
+            AttachMany::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class)
+                ->showCounts()
+                ->showPreview(),
 
             BelongsToMany::make(__('Įtraukti dalyviai'), 'participants', TripCustomer::class),
         ];
