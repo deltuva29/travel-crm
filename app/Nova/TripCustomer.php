@@ -37,8 +37,12 @@ class TripCustomer extends Resource
         return __('Kelionės dalyvis');
     }
 
+    public static array $searchRelations = [
+        'customer' => ['first_name', 'last_name'],
+    ];
+
     public static $search = [
-        'id', 'customer_id',
+        'id',
     ];
 
     public function fields(Request $request): array
