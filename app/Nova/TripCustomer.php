@@ -25,7 +25,10 @@ class TripCustomer extends Resource
         return false;
     }
 
-    public static $title = 'customer_id';
+    public function title(): string
+    {
+        return $this->getCustomerFullName();
+    }
 
     public static function label(): string
     {
