@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -84,9 +85,19 @@ class Trip extends Model implements HasMedia
         return $this->belongsTo(PaymentMethod::class);
     }
 
+    public function customers(): HasMany
+    {
+        return $this->hasMany(TripCustomer::class, 'trip_id', 'id');
+    }
+
     public function participants(): BelongsToMany
     {
         return $this->belongsToMany(Customer::class, 'trip_customers', 'trip_id', 'customer_id');
+    }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
     }
 
     public function formatTime($column): string
@@ -102,5 +113,10 @@ class Trip extends Model implements HasMedia
     public function formatPrice(): string
     {
         return number_format($this->price, 2, '.', '') . ' €';
+    }
+
+    public function getParticipantsInTripCount(): int
+    {
+        return $this->participants()->count() ?? 0;
     }
 }
