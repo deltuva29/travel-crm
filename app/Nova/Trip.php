@@ -9,6 +9,7 @@ use App\Rules\AvailableBus;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Date;
@@ -69,7 +70,6 @@ class Trip extends Resource
                 ->rules('required', new AvailableBus())
                 ->searchable()
                 ->creationRules('unique:trips,bus_id')
-                ->updateRules('unique:trips,bus_id,{{resourceId}}')
                 ->displayUsing(fn($value) => $value ? $value->getFullNameWithPlateNumberLabel() : '')
                 ->help(__('Pasirinktas autobusas su kuriuo bus vykstama į kelionę.'))
                 ->hideFromIndex(),
@@ -78,7 +78,6 @@ class Trip extends Resource
                 ->rules('required')
                 ->searchable()
                 ->creationRules('unique:trips,driver_id')
-                ->updateRules('unique:trips,driver_id,{{resourceId}}')
                 ->help(__('Įmonės vairuotojas su kuriuo bus vykstama į kelionę.'))
                 ->hideFromIndex(),
 
@@ -86,7 +85,6 @@ class Trip extends Resource
                 ->rules('required')
                 ->searchable()
                 ->creationRules('unique:trips,user_id')
-                ->updateRules('unique:trips,user_id,{{resourceId}}')
                 ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.'))
                 ->hideFromIndex(),
 
@@ -120,23 +118,13 @@ class Trip extends Resource
                 ->rules('required')
                 ->firstDayOfWeek(1),
 
-            Text::make(__('Išvykimo laikas'), 'arrived_back_at')
-                ->placeholder('HH:mm')
-                ->rules(['required', 'date_format:"H:i"'])
-                ->help(__('Kelionės išvykimo laiko formatas: HH:mm'))
-                ->resolveUsing(fn($value) => now()->parse($value)->format('H:i'))
-                ->displayUsing(fn($value, $resource) => $resource->formatTime('arrived_back_at')),
+            TimeField::make(__('Išvykimo laikas'), 'arrived_back_at'),
 
             Date::make(__('Grįžimo data'), 'departure_at')
                 ->rules('required')
                 ->firstDayOfWeek(1),
 
-            Text::make(__('Grįžimo laikas'), 'departure_back_at')
-                ->placeholder('HH:mm')
-                ->rules(['required', 'date_format:"H:i"'])
-                ->help(__('Kelionės grįžimo laiko formatas: HH:mm'))
-                ->resolveUsing(fn($value) => now()->parse($value)->format('H:i'))
-                ->displayUsing(fn($value, $resource) => $resource->formatTime('departure_back_at')),
+            TimeField::make(__('Grįžimo laikas'), 'departure_back_at'),
         ];
     }
 
