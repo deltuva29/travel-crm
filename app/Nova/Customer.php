@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Enums\CustomerAppealType;
 use App\Enums\CustomerCompanyPrefixType;
 use App\Enums\CustomerType;
+use Bissolli\NovaPhoneField\PhoneNumber;
 use DigitalCreative\MegaFilter\HasMegaFilterTrait;
 use DigitalCreative\MegaFilter\MegaFilter;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
@@ -85,9 +86,9 @@ class Customer extends Resource
                     ->rules('required', 'max:255', 'email')
                     ->sortable(),
 
-                Text::make(__('Nuomotojo telefono numeris'), 'phone')
-                    ->rules('required', 'max:15')
-                    ->sortable(),
+                PhoneNumber::make(__('Nuomotojo telefono numeris'), 'phone')
+                    ->rules('required')
+                    ->onlyCountries('LT'),
 
                 Text::make(__('Nuomotojo adresas'), 'address')
                     ->hideFromIndex()
@@ -118,9 +119,9 @@ class Customer extends Resource
                     ->rules('required', 'max:255', 'email')
                     ->sortable(),
 
-                Text::make(__('Kelionės dalyvio telefono numeris'), 'phone')
-                    ->rules('required', 'max:15')
-                    ->sortable(),
+                PhoneNumber::make(__('Kelionės dalyvio telefono numeris'), 'phone')
+                    ->rules('required')
+                    ->onlyCountries('LT'),
 
                 Text::make(__('Kelionės dalyvio adresas'), 'address')
                     ->hideFromIndex()
@@ -163,9 +164,9 @@ class Customer extends Resource
                     ->rules('required', 'max:255', 'email')
                     ->sortable(),
 
-                Text::make(__('Įmonės telefono numeris'), 'company_phone')
-                    ->rules('required', 'max:35')
-                    ->sortable(),
+                PhoneNumber::make(__('Įmonės telefono numeris'), 'company_phone')
+                    ->rules('required')
+                    ->onlyCountries('LT'),
 
                 Text::make(__('Įmonės kodas'), 'company_code')
                     ->rules('required', 'max:15')
