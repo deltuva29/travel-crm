@@ -24,12 +24,27 @@ class TripCustomer extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function getPriceOfTrip()
+    public function getTripFormattedPrice()
     {
-        return $this->trip?->formatPrice();
+        return $this->trip->formatPrice();
     }
 
-    public function getPaidType(): string
+    public function isNeedCall(): bool
+    {
+        return $this->need_call;
+    }
+
+    public function getCustomerFullName(): string
+    {
+        return $this->customer->fullName ?? '';
+    }
+
+    public function getNoteLikeComment(): string
+    {
+        return $this->note ?? '';
+    }
+
+    public function getTripCustomerPaidType(): string
     {
         return $this->paid_type ?? 'N/A';
     }
