@@ -40,7 +40,9 @@
     "gregoriohc/laravel-nova-theme-responsive": "^0.8.1",
     "guzzlehttp/guzzle": "^7.2",
     "isseta/calculate-distance": "dev-nova-crud",
+    "isseta/custom-status-badge": "dev-nova-crud",
     "issetas/vacation-orange": "dev-nova-crud",
+    "laraning/nova-time-field": "^1.2",
     "laravel-frontend-presets/tall": "^5.0",
     "laravel/framework": "^9.19",
     "laravel/nova": "*",
@@ -57,8 +59,7 @@
     "spatie/laravel-permission": "^5.10",
     "timothyasp/nova-badge-field": "^1",
     "vyuldashev/nova-permission": "^3",
-    "zegissoft/licence-plate": "dev-nova-crud",
-    "isseta/custom-status-badge": "dev-nova-crud"
+    "zegissoft/licence-plate": "dev-nova-crud"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9.1",
