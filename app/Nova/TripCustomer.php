@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Trips\Customers\PaymentTicketAction;
 use Illuminate\Http\Request;
 use Isseta\CustomStatusBadge\CustomStatusBadge;
 use Laravel\Nova\Fields\Text;
@@ -11,11 +12,6 @@ class TripCustomer extends Resource
     public static string $model = \App\Models\TripCustomer::class;
 
     public static function authorizedToCreate(Request $request): bool
-    {
-        return false;
-    }
-
-    public function authorizedToUpdate(Request $request): bool
     {
         return false;
     }
@@ -89,7 +85,17 @@ class TripCustomer extends Resource
             CustomStatusBadge::make(__('Apmokėjimo statusas'), 'paid_type')
                 ->withMeta([
                     'paidType' => $this->getTripCustomerPaidType() ?? '',
-                ]),
+                ])->exceptOnForms(),
+        ];
+    }
+
+    public function actions(Request $request): array
+    {
+        return [
+            (new PaymentTicketAction())
+                ->confirmText(__('Ar tikrai norite sumokėti už šią kelionę? ir "Pirkti bilietą"'))
+                ->confirmButtonText(__('Mokėti'))
+                ->cancelButtonText(_('Atšaukti')),
         ];
     }
 }
