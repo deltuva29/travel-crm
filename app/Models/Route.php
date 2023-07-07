@@ -12,4 +12,11 @@ class Route extends Model
     protected $table = 'routes';
 
     protected $guarded = ['id'];
+
+    protected $appends = ['full_name'];
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->attributes['from'] . ' - ' . $this->attributes['to'];
+    }
 }

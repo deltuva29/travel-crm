@@ -23,7 +23,10 @@ class Trip extends Resource
 {
     public static string $model = \App\Models\Trip::class;
 
-    public static $title = 'from';
+    public function title(): string
+    {
+        return $this->getRouteFullName();
+    }
 
     public static function label(): string
     {
