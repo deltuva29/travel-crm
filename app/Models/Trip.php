@@ -63,6 +63,11 @@ class Trip extends Model implements HasMedia
         return is_null($this->completed_at);
     }
 
+    public function route(): BelongsTo
+    {
+        return $this->belongsTo(Route::class);
+    }
+
     public function bus(): BelongsTo
     {
         return $this->belongsTo(Bus::class);
@@ -98,6 +103,11 @@ class Trip extends Model implements HasMedia
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function getRouteFullName(): string
+    {
+        return $this->route->fullName ?? '';
     }
 
     public function formatTime($column): string
