@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\CustomerPaidType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class TripCustomer extends Model
 {
@@ -24,9 +26,19 @@ class TripCustomer extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function tickets(): BelongsToMany
+    {
+        return $this->belongsToMany(Trip::class, 'trip_customer_tickets', 'trip_id', 'customer_id');
+    }
+
     public function getTripFormattedPrice()
     {
         return $this->trip->formatPrice();
+    }
+
+    public function isAlreadyPayed(): bool
+    {
+        return $this->paid_type == CustomerPaidType::PAYMENT_SUCCESS;
     }
 
     public function isNeedCall(): bool
