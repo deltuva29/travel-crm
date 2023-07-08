@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TripCustomerTicket extends Model
 {
@@ -13,8 +14,32 @@ class TripCustomerTicket extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'paid_at' => 'datetime',
+    ];
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function trip(): BelongsTo
+    {
+        return $this->belongsTo(Trip::class);
+    }
+
+    public function formatPrice(): string
+    {
+        return number_format($this->price, 2, '.', '') . ' €';
+    }
+
     public static function getNextId(): int
     {
         return static::query()->max('id') + 1;
+    }
+
+    public function getTripRouteFullName(): string
+    {
+        return $this->trip->route->fullName ?? '';
     }
 }
