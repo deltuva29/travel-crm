@@ -86,6 +86,11 @@ class TripCustomer extends Resource
                 ->withMeta([
                     'paidType' => $this->getTripCustomerPaidType() ?? '',
                 ])->exceptOnForms(),
+
+            Text::make(__('Bilietas'), fn() => $this->getTripCustomerTicketCode($this->id))
+                ->readonly()
+                ->asHtml()
+                ->canSee(fn($request) => $this->isPayed()),
         ];
     }
 
