@@ -4,9 +4,11 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Panel;
 
 class TripCustomerTicket extends Resource
 {
@@ -72,6 +74,23 @@ class TripCustomerTicket extends Resource
                 ->asHtml(),
 
             DateTime::make(__('Apmokėjimo data'), 'paid_at')
+                ->hideFromIndex(),
+
+            new Panel(__('Galiojimo data'), $this->datesFields()),
+        ];
+    }
+
+    protected function datesFields(): array
+    {
+        return [
+            Date::make(__('Galioja išvykimo datai'), 'trip.arrived_at')
+                ->rules('required')
+                ->firstDayOfWeek(1)
+                ->hideFromIndex(),
+
+            Date::make(__('Galioja grįžimo data'), 'trip.departure_at')
+                ->rules('required')
+                ->firstDayOfWeek(1)
                 ->hideFromIndex(),
         ];
     }
