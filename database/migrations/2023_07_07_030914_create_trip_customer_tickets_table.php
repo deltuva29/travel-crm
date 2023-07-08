@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create('trip_customer_tickets', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('trip_customer_id')->nullable();
             $table->unsignedBigInteger('trip_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
@@ -22,6 +23,8 @@ return new class extends Migration {
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
 
+            $table->foreign('trip_customer_id')->references('id')->on('trip_customers')
+                ->onDelete('cascade');
             $table->foreign('trip_id')->references('id')->on('trips')
                 ->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customers')
