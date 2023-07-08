@@ -93,7 +93,7 @@ class TripCustomer extends Resource
     {
         return [
             (new PaymentTicketAction())
-                ->confirmText(__('Ar tikrai norite sumokėti už šią kelionę? ir "Gauti bilietą"'))
+                ->confirmText(__('Ar tikrai norite sumokėti už šią kelionę? ir "Pirkti bilietą"'))
                 ->confirmButtonText(__('Mokėti'))
                 ->cancelButtonText(_('Atšaukti')),
         ];
