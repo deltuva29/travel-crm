@@ -31,12 +31,22 @@ class TripCustomer extends Model
         return $this->belongsToMany(Trip::class, 'trip_customer_tickets', 'trip_id', 'customer_id');
     }
 
+    public function getTripCustomerTicketCode(int $tripCustomerId)
+    {
+        $ticket = TripCustomerTicket::query()
+            ->where('trip_customer_id', $tripCustomerId)
+            ->whereNotNull('paid_at')
+            ->first();
+
+        return $ticket->code ?? '';
+    }
+
     public function getTripFormattedPrice()
     {
         return $this->trip->formatPrice();
     }
 
-    public function isAlreadyPayed(): bool
+    public function isPayed(): bool
     {
         return $this->paid_type == CustomerPaidType::PAYMENT_SUCCESS;
     }

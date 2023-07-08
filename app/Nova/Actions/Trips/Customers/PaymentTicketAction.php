@@ -29,7 +29,7 @@ class PaymentTicketAction extends Action
     {
         try {
             foreach ($models as $model) {
-                if ($model->isAlreadyPayed()) {
+                if ($model->isPayed()) {
                     return Action::danger(__('Šį kelionė jau apmokėta.'));
                 } else {
                     $this->paidModel($model);
