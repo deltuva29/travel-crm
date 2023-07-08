@@ -11,6 +11,7 @@ use App\Nova\PaymentMethod;
 use App\Nova\Role;
 use App\Nova\Route;
 use App\Nova\Trip;
+use App\Nova\TripCustomerTicket;
 use App\Nova\User;
 use DigitalCreative\CollapsibleResourceManager\CollapsibleResourceManager;
 use DigitalCreative\CollapsibleResourceManager\Resources\Group;
@@ -111,6 +112,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'label' => __('Mokėjimai'),
                                 'expanded' => false,
                                 'resources' => [
+                                    TripCustomerTicket::class,
                                     PaymentMethod::class
                                 ]
                             ]),
