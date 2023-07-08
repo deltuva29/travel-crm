@@ -89,8 +89,7 @@ class TripCustomer extends Resource
 
             Text::make(__('Bilietas'), fn() => $this->getTripCustomerTicketCode($this->id))
                 ->readonly()
-                ->asHtml()
-                ->canSee(fn($request) => $this->isPayed()),
+                ->asHtml(),
         ];
     }
 

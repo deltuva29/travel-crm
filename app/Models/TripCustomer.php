@@ -38,7 +38,7 @@ class TripCustomer extends Model
             ->whereNotNull('paid_at')
             ->first();
 
-        return $ticket->code ?? '';
+        return $ticket->code ?? '-';
     }
 
     public function getTripFormattedPrice()
