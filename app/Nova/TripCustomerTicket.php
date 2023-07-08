@@ -31,13 +31,17 @@ class TripCustomerTicket extends Resource
 
     public static function label(): string
     {
-        return __('Kelionės bilietai');
+        return __('Pirkti bilietai');
     }
 
     public static function singularLabel(): string
     {
-        return __('Kelionės bilietas');
+        return __('Pirktas bilietas');
     }
+
+    public static array $searchRelations = [
+        'customer' => ['first_name', 'last_name'],
+    ];
 
     public static $search = [
         'id', 'code'
