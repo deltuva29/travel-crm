@@ -9,6 +9,21 @@ class TripCustomerTicket extends Resource
 {
     public static string $model = \App\Models\TripCustomerTicket::class;
 
+    public static function authorizedToCreate(Request $request): bool
+    {
+        return false;
+    }
+
+    public function authorizedToUpdate(Request $request): bool
+    {
+        return false;
+    }
+
+    public function authorizedToDelete(Request $request): bool
+    {
+        return false;
+    }
+
     public static $title = 'code';
 
     public static function label(): string
