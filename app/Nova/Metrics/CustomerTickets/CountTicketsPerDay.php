@@ -16,10 +16,18 @@ class CountTicketsPerDay extends Trend
     public function calculate(): TrendResult
     {
         $query = Ticket::query()->whereNotNull('paid_at');
+        $results = $this->averageByDays(request(), $query, 'price');
+        $resultCount = collect($results->trend)->sum('value');
 
-        return $this->averageByDays(request(), $query, 'price')
-            ->showSumValue()
-            ->format('0,0');
+        return $results->result($resultCount)
+            ->showLatestValue()
+            ->format('0,0.00')
+            ->prefix('€');
+    }
+
+    protected function showZeroResult($result): TrendResult
+    {
+        return $this->result($result);
     }
 
     public function ranges(): array
