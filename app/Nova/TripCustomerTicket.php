@@ -100,6 +100,7 @@ class TripCustomerTicket extends Resource
         return [
             new Metrics\CustomerTickets\CountTickets(),
             new Metrics\CustomerTickets\CountTicketEarnings(),
+            new Metrics\CustomerTickets\CountTicketsPerDay(),
         ];
     }
 }
