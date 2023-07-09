@@ -25,11 +25,6 @@ class CountTicketsPerDay extends Trend
             ->prefix('€');
     }
 
-    protected function showZeroResult($result): TrendResult
-    {
-        return $this->result($result);
-    }
-
     public function ranges(): array
     {
         return [
