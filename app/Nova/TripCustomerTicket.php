@@ -94,4 +94,11 @@ class TripCustomerTicket extends Resource
                 ->hideFromIndex(),
         ];
     }
+
+    public function cards(Request $request): array
+    {
+        return [
+            new Metrics\CustomerTickets\CountTicketEarnings(),
+        ];
+    }
 }
