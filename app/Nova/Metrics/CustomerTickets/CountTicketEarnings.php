@@ -10,7 +10,7 @@ class CountTicketEarnings extends Value
 {
     public function name(): string
     {
-        return __('Viso uždirbta iš pardavimų');
+        return __('Iš viso uždirbta iš pardavimų');
     }
 
     public function calculate(): ValueResult
