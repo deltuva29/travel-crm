@@ -6,11 +6,11 @@ use App\Models\TripCustomerTicket as Ticket;
 use Laravel\Nova\Metrics\Value;
 use Laravel\Nova\Metrics\ValueResult;
 
-class CountTicketEarnings extends Value
+class CountTickets extends Value
 {
     public function name(): string
     {
-        return __('Viso uždirbta iš pardavimų');
+        return __('Iš viso bilietų');
     }
 
     public function calculate(): ValueResult
@@ -20,8 +20,7 @@ class CountTicketEarnings extends Value
 
         $this->setDateRangeQuery($query, $range);
 
-        return $this->result($query->sum('price'))
-            ->prefix('€');
+        return $this->result($query->count());
     }
 
     private function setDateRangeQuery($query, $range): void
@@ -60,6 +59,6 @@ class CountTicketEarnings extends Value
 
     public function uriKey(): string
     {
-        return 'customer-tickets-count-ticket-earnings';
+        return 'customer-tickets-count-tickets';
     }
 }
