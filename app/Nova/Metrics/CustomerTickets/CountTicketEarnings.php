@@ -21,6 +21,7 @@ class CountTicketEarnings extends Value
         $this->setDateRangeQuery($query, $range);
 
         return $this->result($query->sum('price'))
+            ->format('0,0')
             ->prefix('€');
     }
 
