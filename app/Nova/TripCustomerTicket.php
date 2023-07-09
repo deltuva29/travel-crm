@@ -98,6 +98,7 @@ class TripCustomerTicket extends Resource
     public function cards(Request $request): array
     {
         return [
+            new Metrics\CustomerTickets\CountTickets(),
             new Metrics\CustomerTickets\CountTicketEarnings(),
         ];
     }
