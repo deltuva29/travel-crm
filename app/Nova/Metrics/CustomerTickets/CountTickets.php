@@ -2,7 +2,7 @@
 
 namespace App\Nova\Metrics\CustomerTickets;
 
-use App\Models\TripCustomerTicket;
+use App\Models\TripCustomerTicket as Ticket;
 use Laravel\Nova\Metrics\Value;
 use Laravel\Nova\Metrics\ValueResult;
 
@@ -16,7 +16,7 @@ class CountTickets extends Value
     public function calculate(): ValueResult
     {
         $range = request()->input('range');
-        $query = TripCustomerTicket::query()->whereNotNull('paid_at');
+        $query = Ticket::query()->whereNotNull('paid_at');
 
         $this->setDateRangeQuery($query, $range);
 
