@@ -67,6 +67,7 @@ class TripCustomerTicket extends Resource
                 ->asHtml(),
 
             Number::make(__('Bilieto kaina'), 'price')
+                ->sortable()
                 ->step(1.00)
                 ->help(__('Nurodoma kaina į abi puses.'))
                 ->resolveUsing(fn($value, $resource) => is_null($value) ? '0.00' : number_format($value, 2, '.', ''))
