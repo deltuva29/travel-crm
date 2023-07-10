@@ -29,12 +29,8 @@ class PaymentTicketCanceledAction extends Action
     {
         try {
             foreach ($models as $model) {
-                if ($model->isNoted() && $model->isPayed()) {
-                    return Action::danger(__('Šis mokėjimas jau atšauktas.'));
-                } else {
-                    $this->paidModel($fields, $model);
-                    return Action::message(__('Sėkmingai atšaukėte ' . $model->getCustomerFullName() . ' mokėjimą.'));
-                }
+                $this->paidModel($fields, $model);
+                return Action::message(__('Sėkmingai atšaukėte ' . $model->getCustomerFullName() . ' mokėjimą.'));
             }
         } catch (Exception $e) {
             return Action::danger(__('Klaida atšaukiant mokėjimą.'));
