@@ -3,7 +3,6 @@
 namespace App\Nova\Actions\Trips\Customers;
 
 use App\Enums\CustomerPaidType;
-use App\Models\TripCustomerTicket as Ticket;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -30,7 +29,7 @@ class PaymentTicketCanceledAction extends Action
     {
         try {
             foreach ($models as $model) {
-                if ($model->isNoted()) {
+                if ($model->isNoted() && $model->isPayed()) {
                     return Action::danger(__('Šis mokėjimas jau atšauktas.'));
                 } else {
                     $this->paidModel($fields, $model);
@@ -45,16 +44,11 @@ class PaymentTicketCanceledAction extends Action
 
     private function paidModel(ActionFields $fields, $model): void
     {
-        $ticket = $model->getTripCustomerTicketCode((int)$model->id);
         $model->update([
-            'note' => $fields->note,
+            'note' => $fields->note ?? null,
             'paid_type' => CustomerPaidType::PAYMENT_FAILED
         ]);
-        if (is_object($ticket)) {
-            Ticket::query()
-                ->where('trip_customer_id', $ticket->trip_customer_id)
-                ->delete();
-        }
+        $model->ticket()->delete();
     }
 
     public function fields(): array
