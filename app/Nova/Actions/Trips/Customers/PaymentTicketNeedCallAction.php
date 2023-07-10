@@ -15,7 +15,7 @@ class PaymentTicketNeedCallAction extends Action
 
     public function name(): string
     {
-        return __('Skambutis dalyviui');
+        return __('Skambutis');
     }
 
     public function handle(ActionFields $fields, Collection $models)
@@ -31,7 +31,7 @@ class PaymentTicketNeedCallAction extends Action
                 if ($model->isNeedCall()) {
                     return Action::message(__('Susisieksime su ' . $model->getCustomerFullName() . '.'));
                 } else {
-                    return Action::message(__('Skambutis ' . $model->getCustomerFullName() . ' atšauktas.'));
+                    return Action::danger(__('Skambutis ' . $model->getCustomerFullName() . ' atšauktas.'));
                 }
             }
         } catch (Exception $e) {
