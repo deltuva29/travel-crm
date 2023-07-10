@@ -2,7 +2,6 @@
 
 namespace App\Nova\Actions\Trips\Customers;
 
-use App\Enums\CustomerPaidType;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -44,16 +43,19 @@ class PaymentTicketCanceledAction extends Action
 
     private function paidModel(ActionFields $fields, $model): void
     {
-        $model->update([
-            'note' => $fields->note,
-            'paid_type' => CustomerPaidType::PAYMENT_FAILED
-        ]);
+//        $model->update([
+//            'note' => $fields->note,
+//            'paid_type' => CustomerPaidType::PAYMENT_FAILED
+//        ]);
+        $model->tickets()->update([
+            'trip_customer_id' => $model->trip_customer_id ?? null,
+        ], ['paid_at' => null]);
     }
 
     public function fields(): array
     {
         return [
-            Textarea::make(__('Komentaras'), 'note')
+            Textarea::make(__('Priežastis'), 'note')
                 ->rules('required')
                 ->rows(6),
         ];
