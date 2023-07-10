@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Actions\Trips\Customers\PaymentTicketAction;
 use App\Nova\Actions\Trips\Customers\PaymentTicketCanceledAction;
+use App\Nova\Actions\Trips\Customers\PaymentTicketNeedCallAction;
 use Illuminate\Http\Request;
 use Isseta\CustomStatusBadge\CustomStatusBadge;
 use Laravel\Nova\Fields\Text;
@@ -76,7 +77,8 @@ class TripCustomer extends Resource
             })
                 ->hideFromIndex()
                 ->readonly()
-                ->asHtml(),
+                ->asHtml()
+                ->canSee(fn() => $this->isNeedCall()),
 
             Text::make(__('Kaina'), function () {
                 return $this->getTripFormattedPrice() ?? '';
@@ -115,6 +117,10 @@ class TripCustomer extends Resource
             (new PaymentTicketAction())
                 ->confirmText(__('Ar tikrai norite sumokėti už šią kelionę? ir "Pirkti bilietą"'))
                 ->confirmButtonText(__('Mokėti'))
+                ->cancelButtonText(_('Atšaukti')),
+            (new PaymentTicketNeedCallAction())
+                ->confirmText(__('Ar tikrai norite pažymėtį reikia pasiskambinti? ir "Skambutis dalyviui"'))
+                ->confirmButtonText(__('Pažymėti skambučiu'))
                 ->cancelButtonText(_('Atšaukti')),
             (new PaymentTicketCanceledAction())
                 ->confirmText(__('Ar tikrai norite atšauktį "Mokėjimą"'))
