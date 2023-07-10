@@ -60,9 +60,8 @@ class TripCustomer extends Resource
             })
                 ->hideFromIndex()
                 ->readonly()
-                ->asHtml()->canSee(function () {
-                    return $this->isNoted();
-                }),
+                ->asHtml()
+                ->canSee(fn() => $this->isNoted()),
 
             Text::make(__('Skambutis'), function () {
                 return $this->isNeedCall()
