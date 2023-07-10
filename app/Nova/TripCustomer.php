@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\Trips\Customers\PaymentTicketAction;
+use App\Nova\Actions\Trips\Customers\PaymentTicketCanceledAction;
 use Illuminate\Http\Request;
 use Isseta\CustomStatusBadge\CustomStatusBadge;
 use Laravel\Nova\Fields\Text;
@@ -113,6 +114,10 @@ class TripCustomer extends Resource
             (new PaymentTicketAction())
                 ->confirmText(__('Ar tikrai norite sumokėti už šią kelionę? ir "Pirkti bilietą"'))
                 ->confirmButtonText(__('Mokėti'))
+                ->cancelButtonText(_('Atšaukti')),
+            (new PaymentTicketCanceledAction())
+                ->confirmText(__('Ar tikrai norite atšauktį "Mokėjimą"'))
+                ->confirmButtonText(__('Atšaukti mokėjimą'))
                 ->cancelButtonText(_('Atšaukti')),
         ];
     }
