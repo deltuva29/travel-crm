@@ -53,7 +53,7 @@ class TripCustomer extends Model
 
     public function isNoted(): bool
     {
-        return !is_null($this->note);
+        return $this->note != null;
     }
 
     public function isNeedCall(): bool
