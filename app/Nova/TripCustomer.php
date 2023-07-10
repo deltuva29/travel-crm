@@ -93,7 +93,7 @@ class TripCustomer extends Resource
             Text::make(__('Bilietas'), function () {
                 $ticket = $this->getTripCustomerTicketCode($this->id);
 
-                if ($this->isPayed() || is_object($ticket)) {
+                if ($this->isPayed() || (is_object($ticket) && isset($ticket->id))) {
                     $url = url("/nova/resources/trip-customer-tickets/{$ticket->id}");
                     return <<<HTML
                         <a target="_blank" class="flex items-center text-primary font-bold no-underline" href="{$url}">
