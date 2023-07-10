@@ -51,6 +51,11 @@ class TripCustomer extends Model
         return $this->paid_type == CustomerPaidType::PAYMENT_SUCCESS;
     }
 
+    public function isNoted(): bool
+    {
+        return !is_null($this->note);
+    }
+
     public function isNeedCall(): bool
     {
         return $this->need_call;
