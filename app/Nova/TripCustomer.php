@@ -55,12 +55,14 @@ class TripCustomer extends Resource
                 ->readonly()
                 ->asHtml(),
 
-            Text::make(__('Komentaras'), function () {
+            Text::make(__('Priežastis'), function () {
                 return $this->getNoteLikeComment() ?? '';
             })
                 ->hideFromIndex()
                 ->readonly()
-                ->asHtml(),
+                ->asHtml()->canSee(function () {
+                    return $this->isNoted();
+                }),
 
             Text::make(__('Skambutis'), function () {
                 return $this->isNeedCall()
