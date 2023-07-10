@@ -119,7 +119,7 @@ class TripCustomer extends Resource
                 ->confirmButtonText(__('Mokėti'))
                 ->cancelButtonText(_('Atšaukti')),
             (new PaymentTicketNeedCallAction())
-                ->confirmText(__('Ar tikrai norite pažymėtį reikia pasiskambinti? ir "Skambutis dalyviui"'))
+                ->confirmText(__('Ar tikrai norite pažymėtį reikia pasiskambinti? ir "Skambutis"'))
                 ->confirmButtonText(__('Pažymėti skambučiu'))
                 ->cancelButtonText(_('Atšaukti')),
             (new PaymentTicketCanceledAction())
