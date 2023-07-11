@@ -18,6 +18,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
 use NovaAttachMany\AttachMany;
+use OptimistDigital\NovaSimpleRepeatable\SimpleRepeatable;
 
 class Trip extends Resource
 {
@@ -91,7 +92,7 @@ class Trip extends Resource
                 ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.'))
                 ->hideFromIndex(),
 
-            new Panel(__('Data / Laikas'), $this->dateArrivedDepartureFields()),
+            new Panel(__('Kelionės Data / Laikas'), $this->dateArrivedDepartureFields()),
 
             Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
 
@@ -108,17 +109,24 @@ class Trip extends Resource
     protected function dateArrivedDepartureFields(): array
     {
         return [
-            Date::make(__('Išvykimo data'), 'arrived_at')
-                ->rules('required')
-                ->firstDayOfWeek(1),
+            SimpleRepeatable::make('Data ir laikas', 'arrival_dates', [
+                Date::make(__('Išvykimo data'), 'arrived_at')
+                    ->rules('required')
+                    ->firstDayOfWeek(1),
 
-            TimeField::make(__('Išvykimo laikas'), 'arrived_back_at'),
+                TimeField::make(__('Išvykimo laikas'), 'arrived_back_at')
+                    ->rules('required'),
 
-            Date::make(__('Grįžimo data'), 'departure_at')
-                ->rules('required')
-                ->firstDayOfWeek(1),
+                Date::make(__('Grįžimo data'), 'departure_at')
+                    ->rules('required')
+                    ->firstDayOfWeek(1),
 
-            TimeField::make(__('Grįžimo laikas'), 'departure_back_at'),
+                TimeField::make(__('Grįžimo laikas'), 'departure_back_at')
+                    ->rules('required'),
+            ])
+                ->addRowLabel(__('Pridėti'))
+                ->canAddRows(true)
+                ->canDeleteRows(true),
         ];
     }
 
