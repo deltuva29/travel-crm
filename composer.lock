@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd9a767ae5cca9da6ee4d69a8d8cb036",
+    "content-hash": "c7809409b126d9c134cd2ac95778fbf2",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -4351,6 +4351,58 @@
                 "source": "https://github.com/optimistdigital/nova-multiselect-filter/tree/2.0.0"
             },
             "time": "2020-12-02T13:50:52+00:00"
+        },
+        {
+            "name": "optimistdigital/nova-simple-repeatable",
+            "version": "1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/outl1ne/nova-simple-repeatable.git",
+                "reference": "61d2f43fe24e6f8cd044812bce905610b4d67814"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/outl1ne/nova-simple-repeatable/zipball/61d2f43fe24e6f8cd044812bce905610b4d67814",
+                "reference": "61d2f43fe24e6f8cd044812bce905610b4d67814",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^3.0",
+                "optimistdigital/nova-translations-loader": "^3.0.0",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "OptimistDigital\\NovaSimpleRepeatable\\SimpleRepeatableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OptimistDigital\\NovaSimpleRepeatable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova simple repeatable rows field.",
+            "keywords": [
+                "Flexible",
+                "field",
+                "keyvalue",
+                "laravel",
+                "nova",
+                "repeatable",
+                "rows"
+            ],
+            "support": {
+                "issues": "https://github.com/outl1ne/nova-simple-repeatable/issues",
+                "source": "https://github.com/outl1ne/nova-simple-repeatable/tree/1.4.3"
+            },
+            "time": "2022-06-09T12:52:41+00:00"
         },
         {
             "name": "optimistdigital/nova-translations-loader",
