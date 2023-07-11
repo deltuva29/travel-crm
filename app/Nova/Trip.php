@@ -110,7 +110,8 @@ class Trip extends Resource
         return [
             Date::make(__('Išvykimo data'), 'arrived_at')
                 ->rules('required')
-                ->firstDayOfWeek(1),
+                ->firstDayOfWeek(1)
+                ->multiple(),
 
             TimeField::make(__('Išvykimo laikas'), 'arrived_back_at'),
 
