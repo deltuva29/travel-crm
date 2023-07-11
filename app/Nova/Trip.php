@@ -110,18 +110,18 @@ class Trip extends Resource
     {
         return [
             SimpleRepeatable::make('Data ir laikas', 'arrival_dates', [
-                Date::make(__('Išvykimo data'), 'arrived_at')
+                Date::make(__('Išvykimo data'), 'arrival_dates->arrived_at')
                     ->rules('required')
                     ->firstDayOfWeek(1),
 
-                TimeField::make(__('Išvykimo laikas'), 'arrived_back_at')
+                TimeField::make(__('Išvykimo laikas'), 'arrival_dates->arrived_back_at')
                     ->rules('required'),
 
-                Date::make(__('Grįžimo data'), 'departure_at')
+                Date::make(__('Grįžimo data'), 'arrival_dates->departure_at')
                     ->rules('required')
                     ->firstDayOfWeek(1),
 
-                TimeField::make(__('Grįžimo laikas'), 'departure_back_at')
+                TimeField::make(__('Grįžimo laikas'), 'arrival_dates->departure_back_at')
                     ->rules('required'),
             ])
                 ->addRowLabel(__('Pridėti'))
