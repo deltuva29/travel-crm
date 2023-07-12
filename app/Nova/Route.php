@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 
@@ -24,6 +25,10 @@ class Route extends Resource
     public function fields(Request $request): array
     {
         return [
+            Images::make(__('Pagrindinė nuotrauka'), 'main_image'),
+
+            Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
+
             Text::make(__('Išvykimo vieta'), 'from')
                 ->sortable()
                 ->rules('required', 'max:25')
