@@ -85,12 +85,11 @@ class Trip extends Resource
                 ->help(__('Įmonės vairuotojas su kuriuo bus vykstama į kelionę.'))
                 ->hideFromIndex(),
 
-            BelongsTo::make(__('Pagalbinis darbuotojas'), 'employee', User::class)
+            BelongsTo::make(__('Atsakingas darbuotojas'), 'employee', User::class)
                 ->rules('required')
                 ->searchable()
                 ->creationRules('unique:trips,user_id')
-                ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.'))
-                ->hideFromIndex(),
+                ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.')),
 
             new Panel(__('Datos'), $this->dateArrivedDepartureFields()),
 
@@ -143,13 +142,6 @@ class Trip extends Resource
                 ->rules('required')
                 ->hideFromIndex(),
 
-            Number::make(__('Kaina'), 'price')
-                ->step(1.00)
-                ->help(__('Nurodoma kaina į abi puses.'))
-                ->resolveUsing(fn($value, $resource) => is_null($value) ? '0.00' : number_format($value, 2, '.', ''))
-                ->displayUsing(fn($value, $resource) => $resource->formatPrice())
-                ->asHtml(),
-
             Text::make(__('Žmonių skaičius'), function () {
                 return '<span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-primary mr-1">
                           <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z" clip-rule="evenodd" />
@@ -160,11 +152,18 @@ class Trip extends Resource
                 ->readonly()
                 ->asHtml(),
 
-            Text::make(__(''), fn() => $this->isAlreadyCompleted() ?
-                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="check-circle" role="presentation" class="fill-current text-success"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"></path></svg>'
-                : '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-warning">
+            Number::make(__('Kaina'), 'price')
+                ->step(1.00)
+                ->help(__('Nurodoma kaina į abi puses.'))
+                ->resolveUsing(fn($value, $resource) => is_null($value) ? '0.00' : number_format($value, 2, '.', ''))
+                ->displayUsing(fn($value, $resource) => $resource->formatPrice())
+                ->asHtml(),
+
+            Text::make(__('Kelionės būsena'), fn() => $this->isAlreadyCompleted() ?
+                '<span class="flex items-center text-md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="check-circle" role="presentation" class="fill-current text-success mr-1"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"></path></svg> ' . $this->getCompletedAtDateTime() . '</span>'
+                : '<span class="flex items-center text-warning text-md"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-warning mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>'
+                </svg> ' . __('Važiuojama į ' . $this->getSplitRouteName()) . '</span>'
             )->asHtml(),
         ];
     }
