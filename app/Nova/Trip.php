@@ -111,22 +111,22 @@ class Trip extends Resource
         return [
             SimpleRepeatable::make('Data ir laikas', 'arrival_dates', [
                 Date::make(__('Išvykimo data'), 'arrived_at')
-                    ->rules('required')
+                    ->rules('required', 'date_format:Y-m-d')
                     ->displayUsing(fn($date) => now()->parse($date)->format('Y-m-d'))
                     ->resolveUsing(fn($date) => $date),
 
                 TimeField::make(__('Išvykimo laikas'), 'arrived_back_at')
-                    ->rules('required')
+                    ->rules('required', 'date_format:H:i')
                     ->displayUsing(fn($time) => now()->parse($time)->format('H:i'))
                     ->resolveUsing(fn($time) => $time),
 
                 Date::make(__('Grįžimo data'), 'departure_at')
-                    ->rules('required')
+                    ->rules('required', 'date_format:Y-m-d')
                     ->displayUsing(fn($date) => now()->parse($date)->format('Y-m-d'))
                     ->resolveUsing(fn($date) => $date),
 
                 TimeField::make(__('Grįžimo laikas'), 'departure_back_at')
-                    ->rules('required')
+                    ->rules('required', 'date_format:H:i')
                     ->displayUsing(fn($time) => now()->parse($time)->format('H:i'))
                     ->resolveUsing(fn($time) => $time),
             ])
