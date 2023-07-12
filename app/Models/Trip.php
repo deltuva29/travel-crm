@@ -128,4 +128,14 @@ class Trip extends Model implements HasMedia
     {
         return $this->participants()->count() ?? 0;
     }
+
+    public function getCompletedAtDateTime(): string
+    {
+        return now()->parse($this->completed_at ?? null)->format('Y/m/d - H:i:s');
+    }
+
+    public function getSplitRouteName(): ?string
+    {
+        return explode('-', $this->getRouteFullName())[1] ?? null;
+    }
 }
