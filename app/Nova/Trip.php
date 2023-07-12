@@ -6,7 +6,6 @@ use App\Enums\CustomerType;
 use App\Nova\Actions\Trips\CompleteTripAction;
 use App\Nova\Actions\Trips\UpdateCompleteTripAction;
 use App\Rules\AvailableBus;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
@@ -51,10 +50,6 @@ class Trip extends Resource
             ->get();
 
         return [
-            Images::make(__('Pagrindinė nuotrauka'), 'main_image')->hideFromIndex(),
-
-            Images::make(__('Daugiau kitokių nuotraukų'), 'additional_images')->hideFromIndex(),
-
             Select::make(__('Maršrutas'), 'route_id')
                 ->rules('required')
                 ->searchable()
