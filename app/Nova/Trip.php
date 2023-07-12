@@ -147,10 +147,10 @@ class Trip extends Resource
                 ->readonly()
                 ->asHtml(),
 
-            Text::make(__('Prognozė / Uždarbis po apmokėjimo'), function () {
+            Text::make(__('Surinkta suma / Reikia surinkti sumą'), function () {
                 $paidCustomers = $this->getPaidCustomersCountAndSumPrice();
                 return <<<HTML
-                    {$paidCustomers}/{$this->getRevenueOfParticipants()} iš {$this->getParticipantsInTripCount()} žmonių
+                    {$paidCustomers['sum']} surinkta iš {$paidCustomers['count']} žmonių / {$this->getRevenueOfParticipants()}
                   HTML;
             })
                 ->readonly()
@@ -166,7 +166,7 @@ class Trip extends Resource
 
             Text::make(__('Kelionės būsena'), fn() => $this->isAlreadyCompleted() ?
                 '<span class="flex items-center text-md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="check-circle" role="presentation" class="fill-current text-success mr-1"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"></path></svg> ' . $this->getCompletedAtDateTime() . '</span>'
-                : '<span class="flex items-center text-warning text-md"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-warning mr-1">
+                : '<span class="flex items-center text-md"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg> ' . __('Važiuojama į ' . $this->getSplitRouteName()) . '</span>'
             )->asHtml(),
