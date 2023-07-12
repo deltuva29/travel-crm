@@ -92,7 +92,7 @@ class Trip extends Resource
                 ->help(__('Pagalbinis darbuotojas su kuriuo bus vykstama į kelionę.'))
                 ->hideFromIndex(),
 
-            new Panel(__('Kelionės Data / Laikas'), $this->dateArrivedDepartureFields()),
+            new Panel(__('Datos'), $this->dateArrivedDepartureFields()),
 
             Textarea::make(__('Papildoma informacija'), 'note')->rows(6),
 
@@ -110,19 +110,25 @@ class Trip extends Resource
     {
         return [
             SimpleRepeatable::make('Data ir laikas', 'arrival_dates', [
-                Date::make(__('Išvykimo data'), 'arrival_dates->arrived_at')
+                Date::make(__('Išvykimo data'), 'arrived_at')
                     ->rules('required')
-                    ->firstDayOfWeek(1),
+                    ->displayUsing(fn($date) => now()->parse($date)->format('Y-m-d'))
+                    ->resolveUsing(fn($date) => $date),
 
-                TimeField::make(__('Išvykimo laikas'), 'arrival_dates->arrived_back_at')
-                    ->rules('required'),
-
-                Date::make(__('Grįžimo data'), 'arrival_dates->departure_at')
+                TimeField::make(__('Išvykimo laikas'), 'arrived_back_at')
                     ->rules('required')
-                    ->firstDayOfWeek(1),
+                    ->displayUsing(fn($time) => now()->parse($time)->format('H:i'))
+                    ->resolveUsing(fn($time) => $time),
 
-                TimeField::make(__('Grįžimo laikas'), 'arrival_dates->departure_back_at')
-                    ->rules('required'),
+                Date::make(__('Grįžimo data'), 'departure_at')
+                    ->rules('required')
+                    ->displayUsing(fn($date) => now()->parse($date)->format('Y-m-d'))
+                    ->resolveUsing(fn($date) => $date),
+
+                TimeField::make(__('Grįžimo laikas'), 'departure_back_at')
+                    ->rules('required')
+                    ->displayUsing(fn($time) => now()->parse($time)->format('H:i'))
+                    ->resolveUsing(fn($time) => $time),
             ])
                 ->addRowLabel(__('Pridėti'))
                 ->canAddRows(true)
