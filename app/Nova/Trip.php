@@ -147,6 +147,16 @@ class Trip extends Resource
                 ->readonly()
                 ->asHtml(),
 
+            Text::make(__('Prognozė / Uždarbis po apmokėjimo'), function () {
+                $paidCustomers = $this->getPaidCustomersCountAndSumPrice();
+                return <<<HTML
+                    {$paidCustomers}/{$this->getRevenueOfParticipants()} iš {$this->getParticipantsInTripCount()} žmonių
+                  HTML;
+            })
+                ->readonly()
+                ->hideFromIndex()
+                ->asHtml(),
+
             Number::make(__('Kaina'), 'price')
                 ->step(1.00)
                 ->help(__('Nurodoma kaina į abi puses.'))
