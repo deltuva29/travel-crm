@@ -24,14 +24,12 @@ class Trip extends Model implements HasMedia
     protected $dates = [
         'arrived_at',
         'departure_at',
+        'arrived_back_at',
+        'departure_back_at',
         'completed_at',
     ];
 
     protected $casts = [
-        'arrived_at' => 'date',
-        'arrived_back_at' => 'string',
-        'departure_at' => 'date',
-        'departure_back_at' => 'string',
         'completed_at' => 'timestamp',
         'arrival_dates' => 'array',
     ];
@@ -130,14 +128,4 @@ class Trip extends Model implements HasMedia
     {
         return $this->participants()->count() ?? 0;
     }
-
-//    public function getArrivalDatesAttribute(?string $value): array
-//    {
-//        return array_map(fn($date) => Carbon::parse($date), json_decode($value ?? '', true) ?? []);
-//    }
-
-//    public function setArrivalDatesAttribute(?array $value): void
-//    {
-//        $this->attributes['arrival_dates'] = json_encode(array_map(fn($date) => ($date instanceof Carbon) ? $date->format('Y-m-d') : $date, $value ?? []));
-//    }
 }
