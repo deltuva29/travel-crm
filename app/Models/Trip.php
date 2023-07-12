@@ -138,4 +138,16 @@ class Trip extends Model implements HasMedia
     {
         return explode('-', $this->getRouteFullName())[1] ?? null;
     }
+
+    public function getPaidCustomersCountAndSumPrice()
+    {
+        return $this->customers;
+    }
+
+    public function getRevenueOfParticipants(): string
+    {
+        $revenue = $this->getParticipantsInTripCount() * ($this->price ?? 0);
+
+        return number_format($revenue, 2, '.', '') . ' €';
+    }
 }
