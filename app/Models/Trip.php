@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CustomerPaidType;
 use App\Enums\RoleType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -124,6 +125,26 @@ class Trip extends Model implements HasMedia
         return number_format($this->price, 2, '.', '') . ' €';
     }
 
+    public function getPaidCustomersCountAndSumPrice(): array
+    {
+        $customers = $this->customers()
+            ->where('paid_type', CustomerPaidType::PAYMENT_SUCCESS)
+            ->with(['trip'])
+            ->get();
+
+        $countOfPaidCustomers = $customers->count() ?? 0;
+        $sumOfPrice = $customers->sum(fn($customer) => $customer->trip->price) ?? 0;
+
+        return ['count' => $countOfPaidCustomers, 'sum' => number_format($sumOfPrice, 2, '.', '') . ' €'];
+    }
+
+    public function getRevenueOfParticipants(): string
+    {
+        $revenue = $this->getParticipantsInTripCount() * ($this->price ?? 0);
+
+        return number_format($revenue, 2, '.', '') . ' €';
+    }
+
     public function getParticipantsInTripCount(): int
     {
         return $this->participants()->count() ?? 0;
@@ -137,17 +158,5 @@ class Trip extends Model implements HasMedia
     public function getSplitRouteName(): ?string
     {
         return explode('-', $this->getRouteFullName())[1] ?? null;
-    }
-
-    public function getPaidCustomersCountAndSumPrice()
-    {
-        return $this->customers;
-    }
-
-    public function getRevenueOfParticipants(): string
-    {
-        $revenue = $this->getParticipantsInTripCount() * ($this->price ?? 0);
-
-        return number_format($revenue, 2, '.', '') . ' €';
     }
 }
