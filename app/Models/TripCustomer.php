@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\CustomerPaidType;
+use App\Models\TripCustomerTicket as Ticket;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,7 +40,7 @@ class TripCustomer extends Model
 
     public function getTripCustomerTicketCode(int $tripCustomerId)
     {
-        $ticket = TripCustomerTicket::query()
+        $ticket = Ticket::query()
             ->where('trip_customer_id', $tripCustomerId)
             ->whereNotNull('paid_at')
             ->first();
