@@ -47,6 +47,7 @@ class PaymentTicketAction extends Action
         $generateTickedService = new GenerateTickedService();
 
         $model->tickets()->attach($model->trip_id, [
+            'uuid' => (string)str()->uuid(),
             'trip_customer_id' => $model->id,
             'trip_id' => $model->trip_id,
             'customer_id' => $model->customer_id,
