@@ -12,7 +12,7 @@ class TripCustomerTicket extends Model
 
     protected $table = 'trip_customer_tickets';
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'uuid'];
 
     protected $casts = [
         'paid_at' => 'datetime',
