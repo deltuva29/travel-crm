@@ -28,6 +28,11 @@ class TripCustomerTicket extends Model
         return $this->belongsTo(Trip::class);
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function formatPrice(): string
     {
         return number_format($this->price, 2, '.', '') . ' €';

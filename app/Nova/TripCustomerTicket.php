@@ -72,6 +72,9 @@ class TripCustomerTicket extends Resource
                 ->displayUsing(fn($value, $resource) => $resource->formatPrice())
                 ->asHtml(),
 
+            BelongsTo::make(__('Apmokėjimą(pinigus) paimė'), 'user', User::class)
+                ->searchable(),
+
             DateTime::make(__('Apmokėjimo data'), 'paid_at')
                 ->hideFromIndex(),
         ];
