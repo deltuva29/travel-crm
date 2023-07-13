@@ -23,10 +23,10 @@ class Trip extends Model implements HasMedia
     protected $guarded = ['id'];
 
     protected $dates = [
-        'arrived_at',
-        'departure_at',
-        'arrived_back_at',
-        'departure_back_at',
+        'arrival_dates->arrived_at',
+        'arrival_dates->departure_at',
+        'arrival_dates->arrived_back_at',
+        'arrival_dates->departure_back_at',
         'completed_at',
     ];
 
