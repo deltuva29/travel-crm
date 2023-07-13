@@ -9,14 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Image\Exceptions\InvalidManipulation;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
-class Trip extends Model implements HasMedia
+class Trip extends Model implements Sortable
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, SortableTrait;
 
     protected $table = 'trips';
 
@@ -34,24 +32,6 @@ class Trip extends Model implements HasMedia
         'completed_at' => 'timestamp',
         'arrival_dates' => 'array',
     ];
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('main_image')->singleFile();
-        $this->addMediaCollection('additional_images');
-    }
-
-    /**
-     * @throws InvalidManipulation
-     */
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')
-            ->width(300)
-            ->height(120)
-            ->sharpen(10)
-            ->performOnCollections('main_image');
-    }
 
     public function isAlreadyCompleted(): bool
     {

@@ -51,6 +51,7 @@
     "laravel/sanctum": "^3.0",
     "laravel/tinker": "^2.7",
     "livewire/livewire": "^2.12",
+    "michielkempen/nova-order-field": "^2.1",
     "naif/toggle": "^1.3",
     "nrml-co/nova-big-filter": "^1.0",
     "oleksiypetlyuk/nova-range-filter": "^0.0.2",
