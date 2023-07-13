@@ -10,12 +10,12 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
-use Naif\Toggle\Toggle;
 use NrmlCo\NovaBigFilter\NovaBigFilter;
 use Zegissoft\LicencePlate\LicencePlate;
 
@@ -132,20 +132,14 @@ class Bus extends Resource
     {
         return [
             Heading::make('V - Važiuojantis / R - Remontuojamas / C - Daužtas, pateko į eismo įvykį'),
-            Toggle::make(__('V'), 'active')
-                ->showOnIndex()
-                ->offColor('#d9cdcb')
-                ->onColor('61b30a'),
+            Boolean::make(__('V'), 'active')
+                ->showOnIndex(),
 
-            Toggle::make(__('R'), 'repair')
-                ->showOnIndex()
-                ->offColor('#d9cdcb')
-                ->onColor('61b30a'),
+            Boolean::make(__('R'), 'repair')
+                ->showOnIndex(),
 
-            Toggle::make(__('C'), 'crash')
-                ->showOnIndex()
-                ->offColor('#d9cdcb')
-                ->onColor('61b30a'),
+            Boolean::make(__('C'), 'crash')
+                ->showOnIndex(),
 
             Text::make(__(__('Laisvas')), fn() => $this->isAlreadyAvailable() ?
                 '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="check-circle" role="presentation" class="fill-current text-success"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"></path></svg>'
