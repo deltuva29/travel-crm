@@ -20,6 +20,11 @@ class Trip extends Model implements Sortable
 
     protected $guarded = ['id'];
 
+    public array $sortable = [
+        'id_column_name' => 'order',
+        'sort_when_creating' => true,
+    ];
+
     protected $dates = [
         'arrival_dates->arrived_at',
         'arrival_dates->departure_at',
