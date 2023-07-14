@@ -7,6 +7,8 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Panel;
+use Sixlive\TextCopy\TextCopy;
 
 class TripCustomerTicket extends Resource
 {
@@ -77,6 +79,18 @@ class TripCustomerTicket extends Resource
 
             DateTime::make(__('Apmokėjimo data'), 'paid_at')
                 ->hideFromIndex(),
+
+            new Panel(__('Unikalus hešhas'), $this->hashField()),
+        ];
+    }
+
+    protected function hashField(): array
+    {
+        return [
+            TextCopy::make(__('UUID'), 'uuid')
+                ->rules('required', 'max:255')
+                ->sortable()
+                ->readonly(),
         ];
     }
 
