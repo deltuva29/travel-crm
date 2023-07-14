@@ -46,7 +46,7 @@ class TripCustomerTicket extends Resource
     ];
 
     public static $search = [
-        'id', 'code'
+        'id', 'uuid', 'code'
     ];
 
     public function fields(Request $request): array
@@ -90,7 +90,8 @@ class TripCustomerTicket extends Resource
             TextCopy::make(__('UUID'), 'uuid')
                 ->rules('required', 'max:255')
                 ->sortable()
-                ->readonly(),
+                ->readonly()
+                ->hideFromIndex(),
         ];
     }
 
