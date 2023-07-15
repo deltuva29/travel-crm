@@ -98,8 +98,7 @@ class Trip extends Resource
             new Panel(__('Atsiskaitymas'), $this->priceFields()),
 
             AttachMany::make(__('Įtraukti dalyviai'), 'participants', Customer::class)
-                ->showCounts()
-                ->showPreview(),
+                ->showCounts(),
 
             HasMany::make(__('Įtraukti dalyviai'), 'customers', TripCustomer::class),
         ];
