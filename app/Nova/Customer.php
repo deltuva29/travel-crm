@@ -7,7 +7,6 @@ use App\Enums\CustomerCompanyPrefixType;
 use App\Enums\CustomerType;
 use Bissolli\NovaPhoneField\PhoneNumber;
 use DigitalCreative\MegaFilter\HasMegaFilterTrait;
-use DigitalCreative\MegaFilter\MegaFilter;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Illuminate\Http\Request;
@@ -200,30 +199,18 @@ class Customer extends Resource
 
     public function cards(Request $request): array
     {
-        $filtersMenu = [
-            new Filters\Customers\CustomerTypeFilter(),
-            new Filters\Customers\CustomerStatusFilter(),
-        ];
-
         return [
             new Metrics\Customers\CountNewCustomers(),
             new Metrics\Customers\CountActiveCustomers(),
             new Metrics\Customers\CountNotActiveCustomers(),
+        ];
+    }
 
-            MegaFilter::make([
-                'filters' => $filtersMenu,
-                'settings' => [
-                    'headerLabel' => __('Meniu'),
-                    'filtersLabel' => __('Filtrai'),
-                    'actionsLabel' => __('Veiksmai'),
-                    'resetLabel' => __('Veiksmai'),
-                    'columnsSectionTitle' => __('Papildomos kolonos'),
-                    'filtersSectionTitle' => __('Filtrai'),
-                    'actionsSectionTitle' => __('Veiksmai'),
-                    'columnsResetLinkTitle' => __('Nustatyti standartines kolonas'),
-                    'filtersResetLinkTitle' => __('Nustatyti standartines filtrų reikšmes'),
-                ],
-            ])
+    public function filters(Request $request): array
+    {
+        return [
+            new Filters\Customers\CustomerTypeFilter(),
+            new Filters\Customers\CustomerStatusFilter(),
         ];
     }
 }
