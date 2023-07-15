@@ -2,7 +2,6 @@
 
 namespace App\Nova;
 
-use App\Enums\CustomerType;
 use App\Nova\Actions\Trips\CompleteTripAction;
 use App\Nova\Actions\Trips\UpdateCompleteTripAction;
 use App\Rules\AvailableBus;
@@ -49,11 +48,6 @@ class Trip extends Resource
 
     public function fields(Request $request): array
     {
-        $customersWithParticipants = \App\Models\Customer::query()
-            ->where('type', CustomerType::PARTICIPANT)
-            ->whereDoesntHave('participants')
-            ->get();
-
         return [
             Select::make(__('Maršrutas'), 'route_id')
                 ->rules('required')
