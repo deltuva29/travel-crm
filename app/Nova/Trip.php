@@ -180,6 +180,13 @@ class Trip extends Resource
         ];
     }
 
+    public function filters(Request $request): array
+    {
+        return [
+            new Filters\Trips\ArrivedAtDateFilter(),
+        ];
+    }
+
     public function actions(Request $request): array
     {
         return [
