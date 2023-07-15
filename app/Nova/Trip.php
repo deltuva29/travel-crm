@@ -184,6 +184,7 @@ class Trip extends Resource
     {
         return [
             new Filters\Trips\ArrivedAtDateFilter(),
+            new Filters\Trips\DepartureAtDateFilter(),
         ];
     }
 
