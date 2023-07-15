@@ -147,9 +147,21 @@ class Trip extends Resource
 
             Text::make(__('Surinkta suma / Reikia surinkti sumą'), function () {
                 $paidCustomers = $this->getPaidCustomersCountAndSumPrice();
+                $revenue = $this->getRevenueOfParticipants();
+                $percentageCollected = 0;
+
+                if ((float)$revenue > 0) {
+                    $percentageCollected = ((float)$paidCustomers['sum'] / (float)$revenue) * 100;
+                }
+
                 return <<<HTML
-                    {$paidCustomers['sum']} surinkta iš {$paidCustomers['count']} žmonių / {$this->getRevenueOfParticipants()}
-                  HTML;
+                    <div class="relative pt-1">
+                    <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                        <div style="width:{$percentageCollected}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                    </div>
+                    {$paidCustomers['sum']} surinkta iš {$paidCustomers['count']} žmonių / $revenue
+                    </div>
+                HTML;
             })
                 ->readonly()
                 ->hideFromIndex()
