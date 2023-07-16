@@ -1,60 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
-        <div class="absolute top-0 right-0 mt-4 mr-4">
-            @if (Route::has('login'))
-                <div class="space-x-4">
-                    @auth
-                        <a
-                            href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
-                        >
-                            Log out h
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-        </div>
-
-        <div class="flex items-center justify-center">
-            <div class="flex flex-col justify-around">
-                <div class="space-y-6">
-                    <a href="{{ route('home') }}">
-                        <x-logo class="w-auto h-16 mx-auto text-indigo-600"/>
-                    </a>
-
-                    <h1 class="text-5xl font-extrabold tracking-wider text-center text-gray-600">
-                        {{ config('app.name') }}
-                    </h1>
-
-                    <ul class="list-reset">
-                        <li class="inline px-4">
-                            <a href="https://tailwindcss.com" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Tailwind CSS</a>
-                        </li>
-                        <li class="inline px-4">
-                            <a href="https://github.com/alpinejs/alpine" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Alpine.js</a>
-                        </li>
-                        <li class="inline px-4">
-                            <a href="https://laravel.com" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Laravel</a>
-                        </li>
-                        <li class="inline px-4">
-                            <a href="https://laravel-livewire.com" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Livewire</a>
-                        </li>
-                    </ul>
+    <div class="lg:flex bg-white">
+        <div class="lg:w-1/2 xl:max-w-screen-sm bg-white">
+            <div class="py-12 bg-yellow-400 lg:bg-white flex justify-center lg:justify-start lg:px-12">
+                <div class="cursor-pointer flex items-center">
+                    <div class="text-2xl text-white lg:text-gray-900 tracking-wide ml-2 font-semibold">
+                        {{ config('app.name', 'Laravel') }}
+                    </div>
                 </div>
             </div>
+            <div class="mt-10 px-12 bg-white sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
+                <h2 class="text-center text-4xl text-gray-700 font-display font-extrabold lg:text-left xl:text-5xl
+                    xl:text-bold">{{ __('Prisijungti') }}</h2>
+                <div class="mt-12">
+                    <form>
+                        <div>
+                            <div class="text-sm font-bold text-gray-700 tracking-wide">{{ __('El.paštas') }}</div>
+                            <label>
+                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-400" type="" placeholder="">
+                            </label>
+                        </div>
+                        <div class="mt-8">
+                            <div class="flex justify-between items-center">
+                                <div class="text-sm font-bold text-gray-700 tracking-wide">
+                                    {{ __('Slaptažodis') }}
+                                </div>
+                                <div>
+                                    <a class="text-xs font-display font-semibold text-yellow-400 hover:text-yellow-500
+                                        cursor-pointer">
+                                        {{ __('Pamiršote duomenys?') }}
+                                    </a>
+                                </div>
+                            </div>
+                            <label>
+                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-400" type="" placeholder="">
+                            </label>
+                        </div>
+                        <div class="mt-10">
+                            <button class="bg-yellow-400 text-white p-4 w-full rounded-lg tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-yellow-500
+                                shadow-lg">
+                                {{ __('Jungtis') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="hidden lg:flex items-center justify-center bg-yellow-400 flex-1 h-screen relative" style="background-image: url('{{ asset('images/home-hero-bg.jpg') }}'); background-repeat: no-repeat; background-position: center; background-size: cover;">
+            <div class="absolute bg-yellow-400 h-full w-full opacity-10"></div>
+            <div class="max-w-xs transform duration-200 hover:scale-110 cursor-pointer"></div>
         </div>
     </div>
 @endsection
