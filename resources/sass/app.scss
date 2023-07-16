@@ -14,7 +14,7 @@
  *
  * See: https://github.com/laravel-frontend-presets/tall/issues/7
  */
- input:invalid, textarea:invalid, select:invalid {
+input:invalid, textarea:invalid, select:invalid {
     box-shadow: none;
 }
 
@@ -52,4 +52,81 @@
 
 [x-cloak] {
     display: none;
+}
+
+.preloader-background {
+    align-items: center;
+    background-color: #FACC15;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+}
+
+body[data-mode="dark"] .preloader-background {
+    background-color: #263238;
+}
+
+body.ajax .preloader-background,
+body.ajaxurl .preloader-background {
+    z-index: 999;
+}
+
+body.ishome.ajax .preloader-background,
+body.ishome.ajaxurl .preloader-background {
+    z-index: 99999;
+}
+
+#preloader {
+    animation: spin 1.5s linear infinite;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    border-top-color: #85c1e9;
+    display: block;
+    height: 100px;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+    position: relative;
+    top: 50%;
+    width: 100px;
+    z-index: 1001;
+}
+
+#preloader:before {
+    animation: spin 2.5s linear infinite;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    border-top-color: #3498db;
+    bottom: 5px;
+    content: "";
+    left: 5px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+#preloader:after {
+    animation: spin 2s linear infinite;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    border-top-color: #85c1e9;
+    bottom: 15px;
+    content: "";
+    left: 15px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(1turn);
+    }
 }
