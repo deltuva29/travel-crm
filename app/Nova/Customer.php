@@ -193,7 +193,7 @@ class Customer extends Resource
             ])->dependsOn('type', CustomerType::COMPANY),
 
             Boolean::make(__('Statusas'), 'status')
-                ->help(__('Kliento statusas bus "Aktyvuotas" uždėjus varnelę.')),
+                ->help(__('Kliento statusas bus "Aktyvuotas" uždėjus varnelę ir galima bus prisijungt prie kliento posistemės.')),
         ];
     }
 
