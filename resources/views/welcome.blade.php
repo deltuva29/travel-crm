@@ -48,9 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="hidden lg:flex items-center justify-center bg-yellow-400 flex-1 h-screen relative" style="background-image: url('{{ asset('images/home-hero-bg.jpg') }}'); background-repeat: no-repeat; background-position: center; background-size: cover;">
-            <div class="absolute bg-yellow-400 h-full w-full opacity-10"></div>
-            <div class="max-w-xs transform duration-200 hover:scale-110 cursor-pointer"></div>
-        </div>
-    </div>
+    @include('sliders.slider')
 @endsection
+
+
