@@ -16,7 +16,7 @@ class Slider extends Resource
 
     public static function label(): string
     {
-        return __('Slaideriai');
+        return __('Slaideris');
     }
 
     public static function singularLabel(): string
