@@ -52,7 +52,6 @@
 @push('scripts')
     <script>
         window.onload = function () {
-
             const items = document.querySelectorAll('[data-carousel-slide-to]');
             const totalItems = items.length;
             let currentIndex = 0;
@@ -72,7 +71,7 @@
                         carouselItem.classList.add("hidden");
                         carouselItem.dataset.carouselItem = "";
 
-                        carouselItem.classList.remove('animate__animated', 'animate__zoomIn');
+                        carouselItem.classList.remove('animate__animated', 'animate__zoomIn', 'animate__fadeIn');
                     });
 
                     let clickedItem = document.querySelectorAll('[data-carousel-item]')[i];
@@ -82,8 +81,8 @@
                     currentIndex = i;
                 });
 
-                title.classList.add('animate__animated', 'animate__zoomIn');
-                subtitle.classList.add('animate__animated', 'animate__zoomIn');
+                title.classList.add('animate__animated', 'animate__fadeIn');
+                subtitle.classList.add('animate__animated', 'animate__fadeIn');
             });
 
             setInterval(() => {
