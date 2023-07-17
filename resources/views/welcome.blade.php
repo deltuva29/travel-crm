@@ -14,12 +14,15 @@
                 <h2 class="text-center text-4xl text-gray-700 font-display font-extrabold lg:text-left xl:text-5xl
                     xl:text-bold">{{ __('Prisijungti') }}</h2>
                 <div class="mt-12">
-                    <form>
+                    <form wire:submit.prevent="authenticate">
                         <div>
                             <div class="text-sm font-bold text-gray-700 tracking-wide">{{ __('El.paštas') }}</div>
                             <label>
-                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-400" type="" placeholder="">
+                                <input wire:model.lazy="email" id="email" name="email" type="" required autofocus class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-400 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" placeholder="">
                             </label>
+                            @error('email')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mt-8">
                             <div class="flex justify-between items-center">
@@ -34,11 +37,14 @@
                                 </div>
                             </div>
                             <label>
-                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-400" type="" placeholder="">
+                                <input wire:model.lazy="password" id="password" type="" required class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-400 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" placeholder="">
                             </label>
+                            @error('password')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mt-10">
-                            <button class="bg-yellow-400 text-white p-4 w-full rounded-lg tracking-wide
+                            <button type="submit" class="bg-yellow-400 text-white p-4 w-full rounded-lg tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-yellow-500
                                 shadow-lg">
                                 {{ __('Jungtis') }}
