@@ -2,43 +2,22 @@
     <div id="indicators-carousel" class="relative w-full h-screen" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="relative h-full overflow-hidden rounded-none">
-            <!-- Item 1 -->
-            <div class="hidden duration-700 ease-in-out h-full" data-carousel-item="active">
-                <img src="{{ asset('images/home-hero-bg-2.jpg') }}" class="absolute block w-full h-full object-cover translate-x-0 translate-y-0 top-0 left-0" alt="...">
-                <div class="absolute bg-yellow-400 h-full w-full opacity-10"></div>
-                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                    <div>
-                        <h2 class="text-[3em] text-yellow-400 text-center font-extrabold" id="title">
-                            {{ __('Poilsinių kelionių - CRM') }}
-                        </h2>
-                        <p class="text-[2em] text-white text-center font-extralight" id="subtitle">
-                            {{ __('Kelionių valdymo sistema') }}
-                        </p>
+            @foreach($carousel as $carouselSlide)
+                <div class="hidden duration-700 ease-in-out h-full" data-carousel-item="active">
+                    <img src="{{ asset($carouselSlide->getFirstMediaUrl('background_image')) }}" class="absolute block w-full h-full object-cover translate-x-0 translate-y-0 top-0 left-0" alt="...">
+                    <div class="absolute bg-yellow-400 h-full w-full opacity-10"></div>
+                    <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                        <div>
+                            <h2 class="text-[3em] text-yellow-400 text-center font-extrabold" id="title">
+                                {{ $carouselSlide->title }}
+                            </h2>
+                            <p class="text-[2em] text-white text-center font-extralight" id="subtitle">
+                                {{ $carouselSlide->description }}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-                <img src="{{ asset('images/home-hero-bg.jpg') }}" class="absolute block w-full h-full object-cover translate-x-0 translate-y-0 top-0 left-0" alt="...">
-                <div class="absolute bg-yellow-400 h-full w-full opacity-10"></div>
-                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                    <div>
-                        <h2 class="text-[3em] text-yellow-400 text-center font-extrabold" id="title">
-                            {{ __('Autobusų nuoma') }}
-                        </h2>
-                        <p class="text-[2em] text-white text-center font-extralight" id="subtitle">
-                            {{ __('Čia galite pigiai išsinuomotį autobusą savo kelionėms') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-                <img src="{{ asset('images/home-hero-bg.jpg') }}" class="absolute block w-full h-full object-cover translate-x-0 translate-y-0 top-0 left-0" alt="...">
-                <div class="absolute bg-yellow-400 h-full w-full opacity-10"></div>
-            </div>
+            @endforeach
         </div>
         <!-- Slider indicators -->
         <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
