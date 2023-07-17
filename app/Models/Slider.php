@@ -19,4 +19,9 @@ class Slider extends Model implements HasMedia
     {
         $this->addMediaCollection('background_image')->singleFile();
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
 }

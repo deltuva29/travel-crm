@@ -4,7 +4,10 @@
             <!-- Home Slider -->
             <div class="relative h-full overflow-hidden rounded-none">
                 @foreach($carousels as $carouselSlide)
-                    <div class="{{ $loop->first ? '' : 'hidden' }} duration-700 ease-in-out h-full" data-carousel-item="{{ $loop->first ? 'active' : 'inactive' }}" wire:ignore>
+                    <div class="{{ $loop->first ? '' : 'hidden' }} duration-700 ease-in-out h-full"
+                         @if (count($carousels) > 1)
+                             data-carousel-item="{{ $loop->first ? 'active' : 'inactive' }}"
+                         @endif wire:ignore>
                         @if ($carouselSlide->hasMedia('background_image'))
                             <img src="{{ asset($carouselSlide->getFirstMediaUrl('background_image')) }}" class="absolute block w-full h-full object-cover translate-x-0 translate-y-0 top-0 left-0" alt="...">
                         @endif
@@ -81,7 +84,9 @@
             });
 
             setInterval(() => {
-                items[currentIndex].click();
+                if (items[currentIndex]) {
+                    items[currentIndex].click();
+                }
                 currentIndex = (currentIndex + 1) % totalItems;
             }, 10000);
         };
