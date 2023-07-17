@@ -10,6 +10,7 @@ use App\Nova\Customer;
 use App\Nova\PaymentMethod;
 use App\Nova\Role;
 use App\Nova\Route;
+use App\Nova\Slider;
 use App\Nova\Trip;
 use App\Nova\TripCustomerTicket;
 use App\Nova\User;
@@ -148,7 +149,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                             Group::make([
                                 'label' => __('Kita'),
                                 'expanded' => false,
-                                'resources' => []
+                                'resources' => [
+                                    Slider::class,
+                                ]
                             ])->canSee(function (Request $request) {
                                 return !$request->user()->hasAnyPermission(['Hide Sliders']);
                             }),
@@ -162,6 +165,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                             ])->canSee(function (Request $request) {
                                 return !$request->user()->hasPermissionTo(\Spatie\Permission\Models\Permission::query()->find(3));
                             }),
+
                         ]
                     ]),
                 ]

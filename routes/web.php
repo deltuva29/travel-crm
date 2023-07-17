@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('guest')->group(function () {
-    Route::view('/', 'welcome')->name('home');
-});
+Route::view('/', 'welcome')->name('home');
 
 Route::get('password/reset', Email::class)
     ->name('password.request');
