@@ -12,7 +12,7 @@
             </div>
             @livewire('auth.home-login')
         </div>
-    @include('sliders.slider')
+    @livewire('sliders.slider')
 @endsection
 
 

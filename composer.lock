@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ad61fe0920316c5e8d69cb13e09f343",
+    "content-hash": "b868ac50188963bba582d871193eb38f",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -3588,6 +3588,59 @@
                 }
             ],
             "time": "2022-12-08T12:29:14+00:00"
+        },
+        {
+            "name": "manogi/nova-tiptap",
+            "version": "v2.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/manogi/nova-tiptap.git",
+                "reference": "dbd0a9d9ac68f9858522f5a03666d40ba0b2b048"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/manogi/nova-tiptap/zipball/dbd0a9d9ac68f9858522f5a03666d40ba0b2b048",
+                "reference": "dbd0a9d9ac68f9858522f5a03666d40ba0b2b048",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1|^8.0|^7.3"
+            },
+            "require-dev": {
+                "laravel/nova": "^3.0",
+                "orchestra/testbench": "^7.3.0",
+                "phpunit/phpunit": "^9.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Manogi\\Tiptap\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Manogi\\Tiptap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tiptap editor field.",
+            "keywords": [
+                "editor",
+                "laravel",
+                "nova",
+                "tiptap",
+                "vue"
+            ],
+            "support": {
+                "issues": "https://github.com/manogi/nova-tiptap/issues",
+                "source": "https://github.com/manogi/nova-tiptap/tree/v2.8.3"
+            },
+            "time": "2022-07-04T08:20:35+00:00"
         },
         {
             "name": "michielkempen/nova-order-field",
