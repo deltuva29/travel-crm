@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Auth;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Login extends Component
+class HomeLogin extends Component
 {
     /** @var string */
     public $email = '';
@@ -34,8 +37,8 @@ class Login extends Component
         return redirect()->intended(route('home'));
     }
 
-    public function render()
+    public function render(): Factory|View|Application
     {
-        return view('livewire.auth.login')->extends('layouts.auth');
+        return view('livewire.auth.home-login');
     }
 }
