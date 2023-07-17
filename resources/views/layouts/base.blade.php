@@ -10,6 +10,8 @@
         <title>{{ config('app.name') }}</title>
     @endif
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
 
@@ -86,5 +88,7 @@
         $('.preloader-background').delay(1000).fadeOut('slow');
     });
 </script>
+
+@stack('scripts')
 </body>
 </html>
