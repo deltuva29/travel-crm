@@ -10,49 +10,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-10 px-12 bg-white sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
-                <h2 class="text-center text-4xl text-gray-700 font-display font-extrabold lg:text-left xl:text-5xl
-                    xl:text-bold">{{ __('Prisijungti') }}</h2>
-                <div class="mt-12">
-                    <form wire:submit.prevent="authenticate">
-                        <div>
-                            <div class="text-sm font-bold text-gray-700 tracking-wide">{{ __('El.paštas') }}</div>
-                            <label>
-                                <input wire:model.lazy="email" id="email" name="email" type="" required autofocus class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-400 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" placeholder="">
-                            </label>
-                            @error('email')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mt-8">
-                            <div class="flex justify-between items-center">
-                                <div class="text-sm font-bold text-gray-700 tracking-wide">
-                                    {{ __('Slaptažodis') }}
-                                </div>
-                                <div>
-                                    <a class="text-xs font-display font-semibold text-yellow-400 hover:text-yellow-500
-                                        cursor-pointer">
-                                        {{ __('Pamiršote duomenys?') }}
-                                    </a>
-                                </div>
-                            </div>
-                            <label>
-                                <input wire:model.lazy="password" id="password" type="" required class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-400 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" placeholder="">
-                            </label>
-                            @error('password')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mt-10">
-                            <button type="submit" class="bg-yellow-400 text-white p-4 w-full rounded-lg tracking-wide
-                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-yellow-500
-                                shadow-lg">
-                                {{ __('Jungtis') }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            @livewire('auth.home-login')
         </div>
     @include('sliders.slider')
 @endsection
