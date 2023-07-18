@@ -68,19 +68,17 @@
                     document.querySelectorAll('[data-carousel-item]').forEach((carouselItem) => {
                         carouselItem.classList.add("hidden");
                         carouselItem.dataset.carouselItem = "";
-
-                        carouselItem.classList.remove('animate__animated', 'animate__zoomIn', 'animate__fadeIn');
                     });
 
                     let clickedItem = document.querySelectorAll('[data-carousel-item]')[i];
                     clickedItem.classList.remove("hidden");
                     clickedItem.dataset.carouselItem = "active";
 
+                    title.classList.add('animate__animated', 'animate__fadeIn');
+                    subtitle.classList.add('animate__animated', 'animate__fadeIn');
+
                     currentIndex = i;
                 });
-
-                title.classList.add('animate__animated', 'animate__fadeIn');
-                subtitle.classList.add('animate__animated', 'animate__fadeIn');
             });
 
             setInterval(() => {
