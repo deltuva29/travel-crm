@@ -28,7 +28,7 @@ Route::get('password/reset', Email::class)
 Route::get('password/reset/{token}', Reset::class)
     ->name('password.reset');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:customer')->group(function () {
     Route::get('email/verify', Verify::class)
         ->middleware('throttle:6,1')
         ->name('verification.notice');
@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
         ->name('password.confirm');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:customer')->group(function () {
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
         ->middleware('signed')
         ->name('verification.verify');

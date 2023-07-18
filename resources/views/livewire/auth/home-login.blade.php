@@ -7,12 +7,12 @@
                     <div class="text-sm font-bold text-gray-700 tracking-wide">{{ __('El.paštas') }}</div>
                     <label>
                         <div class="relative z-0 w-full mb-2 group">
-                            <input wire:model.lazy="email" id="email" name="email" class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 dark:border-gray-300 dark:focus:border-yellow-400 focus:outline-none focus:ring-0 focus:border-yellow-400 peer @error('email') border-red-300 text-red-900 placeholder-red-300 focus:ring-red @enderror" placeholder=" "/>
+                            <input wire:model.lazy="email" id="email" name="email" class="block py-2.5 px-0 w-full text-sm text-gray-600 bg-transparent border-0 border-b-2 dark:border-gray-300 dark:focus:border-yellow-400 focus:outline-none focus:ring-0 focus:border-yellow-400 peer @error('email') border-red-300 text-red-900 placeholder-red-300 focus:ring-red @enderror" placeholder=" "/>
                         </div>
                     </label>
-                    {{--                    @error('email')--}}
-                    {{--                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>--}}
-                    {{--                    @enderror--}}
+                    @error('email')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mt-8">
                     <div class="flex justify-between items-center">
@@ -28,15 +28,15 @@
                     </div>
                     <label>
                         <div class="relative z-0 w-full mb-2 group">
-                            <input wire:model.lazy="password" id="password" name="password" type="password" class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 dark:border-gray-300 dark:focus:border-yellow-400 focus:outline-none focus:ring-0 focus:border-yellow-400 peer @error('password') border-red-300 text-red-900 placeholder-red-300 focus:ring-red @enderror" placeholder=" "/>
+                            <input wire:model.lazy="password" id="password" name="password" type="password" class="block py-2.5 px-0 w-full text-sm text-gray-600 bg-transparent border-0 border-b-2 dark:border-gray-300 dark:focus:border-yellow-400 focus:outline-none focus:ring-0 focus:border-yellow-400 peer @error('password') border-red-300 text-red-900 placeholder-red-300 focus:ring-red @enderror" placeholder=" "/>
                         </div>
                     </label>
-                    {{--                    @error('password')--}}
-                    {{--                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>--}}
-                    {{--                    @enderror--}}
+                    @error('password')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mt-10">
-                    <button type="submit" class="bg-yellow-400 text-white p-4 w-full rounded-lg tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-yellow-500 shadow-lg">
+                    <button type="submit" class="bg-yellow-400 text-white p-4 w-full rounded-lg tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-yellow-500 shadow-lg transition ease-in-out duration-300">
                         <span wire:loading.remove wire:click.prevent="authenticate" class="text-sm">
                             {{ __('Jungtis') }}
                         </span>
