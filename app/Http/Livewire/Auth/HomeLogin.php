@@ -41,7 +41,7 @@ class HomeLogin extends Component
             return;
         }
 
-        return redirect()->intended(route('home'));
+        return redirect()->intended(route('customer.dashboard'));
     }
 
     public function render(): Factory|View|Application
