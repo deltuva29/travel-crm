@@ -28,9 +28,16 @@ class HomeLogin extends Component
     {
         $this->validate();
 
-        if (!Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+        if (!Auth::guard('customer')->attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             $this->addError('email', trans('auth.failed'));
+            return;
+        }
 
+        $customer = Auth::guard('customer')->user();
+        if (!$customer || !$customer->isActiveStatus()) {
+            Auth::guard('customer')->logout();
+
+            $this->addError('email', $customer ? trans('auth.activate') : trans('auth.failed'));
             return;
         }
 
