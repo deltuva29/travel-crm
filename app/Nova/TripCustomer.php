@@ -95,7 +95,7 @@ class TripCustomer extends Resource
                 $ticket = $this->getTripCustomerTicketCode($this->id);
 
                 if ($this->isPayed() || (is_object($ticket) && isset($ticket->id))) {
-                    $url = url("/nova/resources/trip-customer-tickets/{$ticket->id}");
+                    $url = url(config('nova.path') . "/resources/trip-customer-tickets/{$ticket->id}");
                     return <<<HTML
                         <a target="_blank" class="flex items-center text-primary font-bold no-underline" href="{$url}">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-1">
