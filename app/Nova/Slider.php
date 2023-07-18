@@ -31,7 +31,7 @@ class Slider extends Resource
     public function fields(Request $request): array
     {
         return [
-            Text::make(__('Title'), 'title')
+            Text::make(__('Pavadinimas'), 'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
