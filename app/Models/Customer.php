@@ -5,13 +5,13 @@ namespace App\Models;
 use App\Enums\CustomerCompanyPrefixType;
 use App\Enums\CustomerType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Customer extends Model implements HasMedia
+class Customer extends Authenticatable implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
@@ -89,6 +89,11 @@ class Customer extends Model implements HasMedia
             CustomerType::COMPANY => $iv,
             default => '',
         };
+    }
+
+    public function isActiveStatus(): bool
+    {
+        return $this->status;
     }
 
     public function scopeActive($query)
