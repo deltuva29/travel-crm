@@ -7,7 +7,7 @@
                 <div class="cursor-pointer flex items-center">
                     <div class="flex items-center text-2xl text-white lg:text-gray-700 tracking-wide ml-2 font-semibold">
                         {{ config('app.name', 'Laravel') }}
-                        @if (auth('customer')->check())
+                        @auth('customer')
                             <a
                                 href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -21,7 +21,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                        @endif
+                        @endauth
                     </div>
                 </div>
             </div>
