@@ -46,29 +46,31 @@
             >
                 <li>
                     <a
-                        class="px-4 py-2 mx-4 block text-sm bg-gray-300 hover:bg-gray-200 text-gray-700 rounded-md transition-all"
+                        class="px-4 py-1 mx-2 block text-sm bg-gray-300 hover:bg-gray-200 text-gray-700 rounded-md transition-all"
                         href="#"
                     >{{ __('Mano paskyra') }}</a
                     >
                 </li>
             </ul>
-
-            <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-flex items-center px-4 py-1 text-sm font-medium text-center text-gray-900 bg-gray-300 hover:bg-gray-200 rounded-md focus:shadow-none focus:outline-none transition-all" type="button">
+            
+            <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-flex items-center px-4 py-0 text-sm font-medium text-center text-gray-900 bg-white hover:bg-gray-200 rounded-md focus:shadow-none focus:outline-none transition-all" type="button">
                 <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
                     <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
                 </svg>
             </button>
 
-            <div id="dropdownDotsHorizontal" class="z-10 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow-md w-44">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
+            <div id="dropdownDotsHorizontal" class="w-56 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg !top-2.5" style="box-shadow: 0 3px 6px 0 rgba(0,0,0,.2);">
+                <ul class="py-2 text-sm text-center text-gray-700" aria-labelledby="dropdownMenuIconHorizontalButton">
                     <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                        <a href="#" class="block px-4 mx-2 py-2 text-xs bg-gray-300 rounded-md">
+                            {{ __('Paskyros nustatymai') }}
+                        </a>
                     </li>
                 </ul>
-                <div class="py-2">
+                <div class="text-center">
                     @auth('customer')
                         <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700">
                             {{ __('Atsijungti') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
