@@ -52,25 +52,32 @@
                     >
                 </li>
             </ul>
-            
-            <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-flex items-center px-4 py-0 text-sm font-medium text-center text-gray-900 bg-white hover:bg-gray-200 rounded-md focus:shadow-none focus:outline-none transition-all" type="button">
-                <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                    <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                </svg>
-            </button>
 
-            <div id="dropdownDotsHorizontal" class="w-56 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg !top-2.5" style="box-shadow: 0 3px 6px 0 rgba(0,0,0,.2);">
-                <ul class="py-2 text-sm text-center text-gray-700" aria-labelledby="dropdownMenuIconHorizontalButton">
-                    <li>
-                        <a href="#" class="block px-4 mx-2 py-2 text-xs bg-gray-300 rounded-md">
-                            {{ __('Paskyros nustatymai') }}
-                        </a>
-                    </li>
-                </ul>
-                <div class="text-center">
+            <div x-data="{ dropdownOpen: false }" class="relative">
+                <button @click="dropdownOpen = !dropdownOpen" class="relative z-10 block rounded-md bg-white p-2 focus:outline-none">
+                    <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                        <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                    </svg>
+                </button>
+
+                <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+
+                <div
+                    x-show="dropdownOpen"
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 transform scale-95"
+                    x-transition:enter-end="opacity-100 transform scale-100"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100 transform scale-100"
+                    x-transition:leave-end="opacity-0 transform scale-95"
+                    class="absolute right-0 mt-2 pt-2 w-44 bg-white rounded-md text-center shadow-xl z-20" style="box-shadow: 0 3px 6px 0 rgba(0,0,0,.2);"
+                >
+                    <a href="#" class="block px-4 py-2 mx-1 text-xs rounded-md text-gray-700 bg-gray-300 hover:bg-gray-200 transition-all">
+                        {{ __('Paskyros nustatymai') }}
+                    </a>
                     @auth('customer')
                         <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700">
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700 hover:text-gray-500 transition-all">
                             {{ __('Atsijungti') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
