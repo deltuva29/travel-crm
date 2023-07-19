@@ -8,6 +8,8 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\Customers\CustomerDashboard;
+use App\Http\Livewire\Customers\Profile\CustomerProfilePage;
+use App\Http\Livewire\Customers\Profile\CustomerProfileSettingsPage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +33,8 @@ Route::get('password/reset/{token}', Reset::class)
 
 Route::middleware('auth:customer')->group(function () {
     Route::get('/dashboard', CustomerDashboard::class)->name('customer.dashboard');
+    Route::get('/profile', CustomerProfilePage::class)->name('customer.profile');
+    Route::get('/profile/settings', CustomerProfileSettingsPage::class)->name('customer.profile.settings');
 });
 
 Route::middleware('auth:customer')->group(function () {
