@@ -50,8 +50,14 @@ input:invalid, textarea:invalid, select:invalid {
  * .skew-45 { ... }
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 [x-cloak] {
     display: none;
+}
+
+.z-depth-1 {
+    box-shadow: rgba(0, 0, 0, 0.2) 0 3px 6px 0;
 }
 
 .preloader-background {
@@ -67,6 +73,10 @@ input:invalid, textarea:invalid, select:invalid {
     z-index: 9999;
 }
 
+body {
+    font-family: 'Varela Round', sans-serif;
+}
+
 body[data-mode="dark"] .preloader-background {
     background-color: #263238;
 }
@@ -79,6 +89,63 @@ body.ajaxurl .preloader-background {
 body.ishome.ajax .preloader-background,
 body.ishome.ajaxurl .preloader-background {
     z-index: 99999;
+}
+
+.sidebar-tab-item {
+    @apply bg-gray-300 rounded-md transition-all;
+    margin-left: -.5rem;
+    display: flex;
+    font-size: 0.9rem;
+    align-items: center;
+    justify-items: center;
+    border-radius: .375rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    padding-left: .5rem;
+    --tw-text-opacity: 1;
+    color: rgb(55 65 81 / var(--tw-text-opacity))
+}
+
+.sidebar-tab-item:hover {
+    @apply bg-gray-200;
+}
+
+.sidebar-tab-item:focus {
+    --tw-text-opacity: 1;
+    color: rgb(24 182 155 / var(--tw-text-opacity))
+}
+
+:is(.dark .sidebar-tab-item) {
+    font-weight: 600;
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity))
+}
+
+:is(.dark .sidebar-tab-item:hover) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity))
+}
+
+.sidebar-tab-item.active {
+    @apply bg-amber-200;
+}
+
+:is(.dark .sidebar-tab-item.active) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity))
+}
+
+.sidebar-tab-item.\!active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+    font-weight: 600;
+    --tw-text-opacity: 1;
+    color: rgb(24 182 155 / var(--tw-text-opacity))
+}
+
+:is(.dark .sidebar-tab-item.\!active) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity))
 }
 
 #preloader {
