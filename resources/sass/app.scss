@@ -75,6 +75,7 @@ input:invalid, textarea:invalid, select:invalid {
 
 body {
     font-family: 'Varela Round', sans-serif;
+    @apply antialiased;
 }
 
 body[data-mode="dark"] .preloader-background {
