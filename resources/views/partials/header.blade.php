@@ -63,7 +63,7 @@
                     </svg>
                 </button>
 
-                <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+                <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" x-cloak></div>
 
                 <div
                     x-show="dropdownOpen"
@@ -73,7 +73,7 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 transform scale-100"
                     x-transition:leave-end="opacity-0 transform scale-95"
-                    class="absolute right-0 mt-2 pt-2 w-44 bg-white rounded-md text-center shadow-xl z-20" style="box-shadow: 0 3px 6px 0 rgba(0,0,0,.2);"
+                    class="absolute right-0 mt-2 pt-2 w-44 bg-white rounded-md text-center shadow-xl z-20" style="box-shadow: 0 3px 6px 0 rgba(0,0,0,.2);" x-cloak
                 >
                     <a href="{{ route('customer.profile.settings') }}" class="flex items-center px-3 py-2 mx-2 text-xs rounded-md text-[#24455C] bg-gray-300 hover:bg-gray-200 transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3 mr-1">
