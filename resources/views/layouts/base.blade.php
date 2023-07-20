@@ -88,7 +88,9 @@
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        $('.preloader-background').delay(1000).fadeOut('slow');
+        $('.preloader-background').delay(1000).fadeOut('fast', function () {
+            $('.customer-background').show().css("display", "flex");
+        });
     });
 </script>
 
