@@ -15,7 +15,7 @@
                      class="w-full lg:w-5/6 !mt-3">
                     <div class="rounded-md px-6 py-4 text-sm bg-white z-depth-1">
                         <div class="flex w-full justify-between">
-                            <h2 class="text-xl md:text-2xl tracking-wide font-normal truncate">
+                            <h2 class="text-2xl md:text-3xl tracking-wide font-normal truncate">
                                 {{ __('Paskyros nustatymai') }}
                             </h2>
                             <div>

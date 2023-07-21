@@ -1,6 +1,6 @@
 <div>
     <div class="flex gap-4 gap-y-2 text-sm flex-col lg:flex-row py-4">
-        <div class="lg:flex-grow lg:flex lg:flex-col"
+        <div class="lg:flex-grow lg:flex lg:flex-col lg:pl-2"
              @if ($updatePassword)
                  wire:poll.3s="redirectAfterFiveSeconds"
             @endif>
@@ -13,13 +13,13 @@
                     }" class="flex flex-wrap gap-4 gap-y-2 text-sm"
                      wire:poll.keep-alive>
 
-                    <div class="w-full mb-4 pl-0 lg:pl-4">
+                    <div class="w-full mb-4 pl-0 lg:pl-0">
                         <input wire:model.defer="current_password" :type="passwordIsShow ? 'password' : 'text'" name="current_password" id="current_password" class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400" value=""
                                placeholder="{{ __('Dabartinis slaptažodis') }}"/>
                     </div>
 
                     <div class="w-full flex flex-wrap">
-                        <div class="w-full md:w-full lg:w-1/2 mb-6 px-0 lg:px-4">
+                        <div class="w-full md:w-full lg:w-1/2 mb-6 px-0 lg:!pr-10">
                             <input wire:model.defer="password" :type="passwordIsShow ? 'password' : 'text'" name="password" id="password" class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
                                    placeholder="{{ __('Naujas slaptažodis') }}"
                             />

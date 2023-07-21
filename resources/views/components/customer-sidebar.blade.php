@@ -6,7 +6,7 @@
          }
     }" class="w-full h-fit lg:w-1/4 !mt-3 space-y-2 px-6 py-4 rounded-md z-depth-1 lg:block hidden">
     <div class="flex w-full justify-between">
-        <h2 class="text-xl md:text-2xl tracking-widest font-normal truncate">{{ __('Meniu') }}</h2>
+        <h2 class="text-2xl md:text-3xl tracking-widest font-normal truncate">{{ __('Meniu') }}</h2>
         <div>
             <button
                 @click="toggleSidebar"
