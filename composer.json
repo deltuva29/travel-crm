@@ -31,6 +31,7 @@
   ],
   "require": {
     "php": "^8.0.2",
+    "ascsoftw/livewire-toast": "^1.0",
     "benjacho/belongs-to-many-field": "^2.0",
     "bissolli/nova-phone-field": "^0.0.4",
     "czemu/nova-calendar-tool": "^1.3",
