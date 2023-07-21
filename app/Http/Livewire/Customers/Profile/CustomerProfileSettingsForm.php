@@ -12,7 +12,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use Log;
 
 class CustomerProfileSettingsForm extends Component
 {
@@ -23,12 +22,35 @@ class CustomerProfileSettingsForm extends Component
     public $password_confirmation;
     public $isLoading = false;
     public $updatePassword = false;
+    public $isDisabled = true;
 
     protected $listeners = [
         'loaded' => 'doLoading'
     ];
 
-    protected array $rules = [];
+    public function updatedCurrentPassword(): void
+    {
+        $this->checkForFieldEmptiness();
+    }
+
+    public function updatedPassword(): void
+    {
+        $this->checkForFieldEmptiness();
+    }
+
+    public function updatedPasswordConfirmation(): void
+    {
+        $this->checkForFieldEmptiness();
+    }
+
+    private function checkForFieldEmptiness(): void
+    {
+        if (empty($this->current_password) || empty($this->password) || empty($this->password_confirmation)) {
+            $this->isDisabled = true;
+        } else {
+            $this->isDisabled = false;
+        }
+    }
 
     public function rules(): array
     {
@@ -55,7 +77,7 @@ class CustomerProfileSettingsForm extends Component
             $this->resetFields();
 
         } catch (Exception $e) {
-            Log::error($e->getMessage());
+            //Log::error($e->getMessage());
         }
     }
 
