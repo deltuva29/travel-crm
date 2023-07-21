@@ -64,6 +64,7 @@ class CustomerProfileSettingsForm extends Component
 
         } catch (Exception $e) {
             //Log::error($e->getMessage());
+            $this->resetFields();
         }
     }
 
@@ -81,6 +82,8 @@ class CustomerProfileSettingsForm extends Component
             'password',
             'password_confirmation'
         ]);
+
+        $this->isDisabled = true;
     }
 
     public function render(): Factory|View|Application
