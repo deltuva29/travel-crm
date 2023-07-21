@@ -20,13 +20,8 @@ class CustomerProfileSettingsForm extends Component
     public $current_password;
     public $password;
     public $password_confirmation;
-    public $isLoading = false;
     public $updatePassword = false;
     public $isDisabled = true;
-
-    protected $listeners = [
-        'loaded' => 'doLoading'
-    ];
 
     public function updatedCurrentPassword(): void
     {
@@ -81,15 +76,6 @@ class CustomerProfileSettingsForm extends Component
         }
     }
 
-    public function resetFields(): void
-    {
-        $this->reset([
-            'current_password',
-            'password',
-            'password_confirmation'
-        ]);
-    }
-
     public function redirectAfterFiveSeconds(): Redirector|Application|RedirectResponse
     {
         auth('customer')->logout();
@@ -97,11 +83,13 @@ class CustomerProfileSettingsForm extends Component
         return redirect()->route('home');
     }
 
-    public function doLoading(): void
+    public function resetFields(): void
     {
-        $this->isLoading = true;
-        $this->dispatchBrowserEvent('start-loading');
-        $this->emit('loaded');
+        $this->reset([
+            'current_password',
+            'password',
+            'password_confirmation'
+        ]);
     }
 
     public function render(): Factory|View|Application
