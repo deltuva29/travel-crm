@@ -23,19 +23,9 @@ class CustomerProfileSettingsForm extends Component
     public $updatePassword = false;
     public $isDisabled = true;
 
-    public function updatedCurrentPassword(): void
+    public function updated($fields): void
     {
-        $this->checkForFieldEmptiness();
-    }
-
-    public function updatedPassword(): void
-    {
-        $this->checkForFieldEmptiness();
-    }
-
-    public function updatedPasswordConfirmation(): void
-    {
-        $this->checkForFieldEmptiness();
+        $this->validateOnly($fields, $this->checkForFieldEmptiness());
     }
 
     private function checkForFieldEmptiness(): void
@@ -69,6 +59,7 @@ class CustomerProfileSettingsForm extends Component
             ]);
             $this->updatePassword = true;
             $this->showSuccessToast(__('Išsaugota'));
+
             $this->resetFields();
 
         } catch (Exception $e) {
