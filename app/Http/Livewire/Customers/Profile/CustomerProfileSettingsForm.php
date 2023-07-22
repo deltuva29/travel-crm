@@ -19,11 +19,11 @@ class CustomerProfileSettingsForm extends Component
     use WithToast,
         WithCustomer;
 
-    public $current_password;
-    public $password;
-    public $password_confirmation;
-    public $updatePassword = false;
-    public $isDisabled = true;
+    public string $current_password;
+    public string $password;
+    public string $password_confirmation;
+    public bool $updatePassword = false;
+    public bool $isDisabled = true;
 
     public function updated($fields): void
     {
