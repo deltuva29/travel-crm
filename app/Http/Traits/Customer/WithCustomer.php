@@ -6,10 +6,10 @@ use App\Models\Customer;
 
 trait WithCustomer
 {
-    public Customer $user;
+    public Customer $customer;
 
     public function mount(): void
     {
-        $this->user = auth('customer')->user();
+        $this->customer = auth('customer')->user();
     }
 }

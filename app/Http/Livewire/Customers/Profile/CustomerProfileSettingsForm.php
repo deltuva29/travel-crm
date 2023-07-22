@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Customers\Profile;
 
 use App\Http\Requests\CustomerPasswordUpdateRequest;
+use App\Http\Traits\Customer\WithCustomer;
 use App\Http\Traits\Toast\WithToast;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -15,7 +16,8 @@ use Livewire\Component;
 
 class CustomerProfileSettingsForm extends Component
 {
-    use WithToast;
+    use WithToast,
+        WithCustomer;
 
     public $current_password;
     public $password;
@@ -45,16 +47,14 @@ class CustomerProfileSettingsForm extends Component
 
     public function updateSettings(): void
     {
-        $user = auth('customer')->user();
-
         try {
             $this->validate();
 
-            if (!Hash::check($this->current_password, $user->password ?? '')) {
+            if (!Hash::check($this->current_password, $this->customer->password ?? '')) {
                 $this->showErrorToast(__('Blogas slaptažodis'));
                 return;
             }
-            $user->update([
+            $this->customer->update([
                 'password' => Hash::make($this->password),
             ]);
             $this->updatePassword = true;
