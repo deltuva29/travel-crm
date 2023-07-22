@@ -6,7 +6,7 @@ use App\Models\Customer;
 
 trait WithCustomer
 {
-    public Customer $customer;
+    public ?Customer $customer = null;
 
     public function mount(): void
     {

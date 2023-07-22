@@ -49,7 +49,7 @@
                         <div x-show="profileSettingsIsVisible" x-cloak>
                             <div class="flex flex-col lg:flex-row justify-start">
                                 <div class="flex justify-center items-center mb-6">
-                                    <div class="relative w-[125px] h-[140px] bg-[#d9dee8] bg-no-repeat bg-cover rounded-xl overflow-hidden bg-center" style="background-image: url('https://lh3.googleusercontent.com/a/AAcHTtd7GIlH4iKlD9SJy-z3lWmGpsVwKcjLn-Z5MPcviNIFkgM=s96-c');">
+                                    <div class="relative w-[125px] h-[140px] bg-[#d9dee8] bg-no-repeat bg-cover rounded-xl overflow-hidden bg-center" style="background-image: url({{ asset('images/customer/default-avatar.png') }});">
                                         <div class="absolute bottom-0 left-0 right-0">
                                             <button class="relative w-full py-[7px] px-[25px] text-white bg-amber-400 hover:bg-opacity-75 transition-all">{{ __('Įkelti') }}</button>
                                             <a class="w-13 h-13 bg-center bg-no-repeat absolute top-1/2 transform -translate-y-1/2 right-0.5 transition duration-200 p-2.5" href="#">
