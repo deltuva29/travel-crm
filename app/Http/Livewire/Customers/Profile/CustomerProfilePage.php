@@ -9,6 +9,13 @@ use Livewire\Component;
 
 class CustomerProfilePage extends Component
 {
+    public $user;
+
+    public function mount(): void
+    {
+        $this->user = auth('customer')->user();
+    }
+
     public function render(): Factory|View|Application
     {
         return view('livewire.customers.profile.customer-profile-page');

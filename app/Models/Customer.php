@@ -91,6 +91,11 @@ class Customer extends Authenticatable implements HasMedia
         };
     }
 
+    public function getEmailAddress(): string
+    {
+        return $this->email;
+    }
+
     public function isActiveStatus(): bool
     {
         return $this->status;
