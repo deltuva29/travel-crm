@@ -46,14 +46,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div x-show="profileSettingsIsVisible"
-                             x-transition:enter="transition ease-out duration-200"
-                             x-transition:enter-start="opacity-0 scale-95"
-                             x-transition:enter-end="opacity-100 scale-100"
-                             x-transition:leave="transition ease-in duration-75"
-                             x-transition:leave-start="opacity-100 scale-100"
-                             x-transition:leave-end="opacity-0 scale-95"
-                             x-cloak>
+                        <div x-show="profileSettingsIsVisible" x-cloak>
                             <div class="flex flex-col lg:flex-row justify-start">
                                 <div class="flex justify-center items-center mb-6">
                                     <div class="relative w-[125px] h-[140px] bg-[#d9dee8] bg-no-repeat bg-cover rounded-xl overflow-hidden bg-center" style="background-image: url('https://lh3.googleusercontent.com/a/AAcHTtd7GIlH4iKlD9SJy-z3lWmGpsVwKcjLn-Z5MPcviNIFkgM=s96-c');">
