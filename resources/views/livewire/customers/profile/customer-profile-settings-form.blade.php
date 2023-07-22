@@ -37,7 +37,7 @@
                     <div class="w-full text-center">
                         <div class="inline-flex items-center">
                             <button type="submit" class="text-white py-1.5 px-8 mr-2 rounded transition-all
-                            {{ $isDisabled ? 'text-white bg-gray-400/70 hover:bg-gray-300/100' : 'bg-amber-400 hover:bg-amber-400/75' }}"
+                            {{ $isDisabled ? 'text-white bg-gray-400/70 hover:bg-gray-300/100' : 'bg-amber-400 hover:bg-amber-500' }}"
                                 {{ $isDisabled ? 'disabled' : ''}}>
                             <span wire:loading.remove wire:target="updateSettings" class="text-sm">
                                     {{ __('Išsaugoti') }}
