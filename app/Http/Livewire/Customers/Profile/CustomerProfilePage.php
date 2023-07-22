@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Customers\Profile;
 
+use App\Http\Traits\Customer\WithCustomer;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -9,12 +10,7 @@ use Livewire\Component;
 
 class CustomerProfilePage extends Component
 {
-    public $user;
-
-    public function mount(): void
-    {
-        $this->user = auth('customer')->user();
-    }
+    use WithCustomer;
 
     public function render(): Factory|View|Application
     {
