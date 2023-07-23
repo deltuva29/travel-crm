@@ -25,7 +25,7 @@ class Customer extends Authenticatable implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('avatar')
+        $this->addMediaCollection('customer_avatar')
             ->singleFile();
     }
 
@@ -37,7 +37,8 @@ class Customer extends Authenticatable implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(200)
             ->height(200)
-            ->performOnCollections('avatar');
+            ->sharpen(10)
+            ->performOnCollections('customer_avatar');
     }
 
     public function getFullNameAttribute(): string
@@ -123,5 +124,12 @@ class Customer extends Authenticatable implements HasMedia
     public function getPriceOfTripCustomer()
     {
         return $this->tripCustomer?->trip?->formatPrice();
+    }
+
+    public function getAvatar(): string
+    {
+        return $this->hasMedia('customer_avatar') ?
+            $this->getFirstMediaUrl('customer_avatar', 'thumb') :
+            asset('images/customer/default-avatar.png');
     }
 }
