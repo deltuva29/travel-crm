@@ -19,11 +19,11 @@ class CustomerProfileContactsForm extends Component
 
     public $form;
 
-    public function updated($propertyForm): void
+    public function updated($fields): void
     {
         $this->checkForFieldEmptiness();
 
-        $this->validateOnly($propertyForm,
+        $this->validateOnly($fields,
             (new CustomerContactsUpdateRequest())->rules(),
             (new CustomerContactsUpdateRequest())->messages());
     }
