@@ -8,6 +8,7 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\Customers\CustomerDashboard;
+use App\Http\Livewire\Customers\Profile\CustomerProfileContactsPage;
 use App\Http\Livewire\Customers\Profile\CustomerProfilePage;
 use App\Http\Livewire\Customers\Profile\CustomerProfileSettingsPage;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::middleware('auth:customer')->group(function () {
     Route::get('/dashboard', CustomerDashboard::class)->name('customer.dashboard');
     Route::get('/profile', CustomerProfilePage::class)->name('customer.profile');
     Route::get('/profile/settings', CustomerProfileSettingsPage::class)->name('customer.profile.settings');
+    Route::get('/profile/edit-contacts', CustomerProfileContactsPage::class)->name('customer.profile.edit-contacts');
 });
 
 Route::middleware('auth:customer')->group(function () {
