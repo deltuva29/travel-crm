@@ -17,7 +17,8 @@ class CustomerProfilePage extends Component
 {
     use WithToast,
         WithCustomer,
-        WithFileUploads, WithContentLoader;
+        WithFileUploads,
+        WithContentLoader;
 
     public $avatar;
 
