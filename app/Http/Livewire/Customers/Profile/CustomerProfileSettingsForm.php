@@ -27,11 +27,11 @@ class CustomerProfileSettingsForm extends Component
 
     public function updated($fields): void
     {
-        $this->checkForFieldEmptiness();
+        $this->checkForPasswordFieldsEmptiness();
         $this->validateOnly($fields);
     }
 
-    private function checkForFieldEmptiness(): bool
+    private function checkForPasswordFieldsEmptiness(): bool
     {
         if (empty($this->current_password) || empty($this->password) || empty($this->password_confirmation)) {
             $this->isDisabled = true;
