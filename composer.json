@@ -59,6 +59,7 @@
     "oleksiypetlyuk/nova-range-filter": "^0.0.2",
     "optimistdigital/nova-multiselect-filter": "^2.0",
     "optimistdigital/nova-simple-repeatable": "^1.2",
+    "protonemedia/laravel-form-components": "^3.7",
     "sixlive/nova-text-copy-field": "^1.5",
     "spatie/enum": "^3.13",
     "spatie/laravel-medialibrary": "^10.0.0",

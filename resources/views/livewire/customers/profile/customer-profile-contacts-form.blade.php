@@ -2,28 +2,31 @@
 <div>
     <div class="flex gap-4 gap-y-2 text-sm flex-col lg:flex-row py-4">
         <div class="lg:flex-grow lg:flex lg:flex-col lg:pl-2">
-            <form wire:submit.prevent="editContacts">
+            <x-tailwind-form wire:submit.prevent="editContacts">
+                @bind($customer)
                 <div class="flex flex-wrap gap-4 gap-y-2 text-md"
                      wire:poll.keep-alive>
 
                     @if ($customer->getType() == CustomerType::PARTICIPANT)
                         <div class="w-full flex flex-wrap">
-                            <div class="w-full flex flex-col md:w-full lg:w-1/2 mb-6 px-0 lg:!pr-10">
-                                <label for="participant_first_name"></label>
-                                <input wire:model="form.participant.first_name" type="text" name="participant_first_name" id="participant_first_name" class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                       placeholder="{{ __('Tavo vardas') }}"
-                                />
+                            <div class="w-full flex flex-col md:w-full lg:w-1/2 px-0 lg:!pr-10">
+                                <x-tailwind-form-input
+                                    class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                    wire:model="form.participant.first_name"
+                                    name="first_name"
+                                    placeholder="{{ __('Tavo vardas') }}"/>
                                 @error('form.participant.first_name')
                                 <span class="text-red-400 text-xs">{{ $message }}</span>
                                 @enderror
                             </div>
 
-                            <div class="w-full md:w-full lg:w-1/2 mb-6">
-                                <div class="h-10 bg-gray-50 flex flex-col border border-gray-200 rounded-md box-border">
-                                    <label for="participant_last_name"></label>
-                                    <input wire:model="form.participant.last_name" type="text" name="participant_last_name" id="participant_last_name" class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                           placeholder="{{ __('Tavo pavardė') }}"
-                                    />
+                            <div class="w-full md:w-full lg:w-1/2">
+                                <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
+                                    <x-tailwind-form-input
+                                        class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                        wire:model="form.participant.last_name"
+                                        name="last_name"
+                                        placeholder="{{ __('Tavo pavardė') }}"/>
                                     @error('form.participant.last_name')
                                     <span class="text-red-400 text-xs">{{ $message }}</span>
                                     @enderror
@@ -32,22 +35,23 @@
                         </div>
 
                         <div class="w-full flex flex-wrap">
-                            <div class="w-full md:w-full lg:w-1/2 mb-6 px-0 lg:!pr-10">
-                                <label for="participant_email_address"></label>
-                                <input wire:model="form.participant.email_address" type="text" name="participant_email_address" id="participant_email_address" class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                       placeholder="{{ __('Tavo el.paštas') }}" disabled
-                                />
+                            <div class="w-full md:w-full lg:w-1/2 px-0 lg:!pr-10">
+                                <x-tailwind-form-input
+                                    class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                    name="email"
+                                    placeholder="{{ __('Tavo el.paštas') }}" disabled/>
                                 @error('form.participant.email_address')
                                 <span class="text-red-400 text-xs">{{ $message }}</span>
                                 @enderror
                             </div>
 
-                            <div class="w-full md:w-full lg:w-1/2 mb-6">
-                                <div class="h-10 bg-gray-50 flex flex-col border border-gray-200 rounded-md box-border">
-                                    <label for="participant_phone_number"></label>
-                                    <input wire:model="form.participant.phone_number" type="text" name="participant_phone_number" id="participant_phone_number" class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                           placeholder="{{ __('Tavo tel. Numeris') }}"
-                                    />
+                            <div class="w-full md:w-full lg:w-1/2">
+                                <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
+                                    <x-tailwind-form-input
+                                        class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                        wire:model="form.participant.phone_number"
+                                        name="phone_number"
+                                        placeholder="{{ __('Tavo tel. Numeris') }}"/>
                                     @error('form.participant.phone_number')
                                     <span class="text-red-400 text-xs">{{ $message }}</span>
                                     @enderror
@@ -58,9 +62,12 @@
 
                     <div class="w-full text-center">
                         <div class="flex justify-center items-center">
-                            <button type="submit" class="text-white py-1.5 px-4 mr-2 rounded transition-all
-                            {{ $isDisabled ? 'text-white bg-gray-400/70 hover:bg-gray-300/100' : 'bg-amber-400 hover:bg-amber-500' }}"
-                                {{ $isDisabled ? 'disabled' : ''}}>
+                            <x-tailwind-form-submit
+                                :class="implode(' ', [
+                                    'text-white py-1.5 px-4 mr-2 rounded transition-all',
+                                    $isDisabled ? '!text-white !bg-gray-400/70 !hover:bg-gray-300/100' : '!bg-amber-400 hover:!bg-amber-500',
+                                ])"
+                                :disabled="$isDisabled">
                                 <span wire:loading.remove wire:target="editContacts" class="text-lg uppercase">
                                     {{ __('Išsaugoti') }}
                                 </span>
@@ -71,11 +78,12 @@
                                     </svg>
                                     <span class="text-lg uppercase">{{ __('Išsaugoma...') }}</span>
                                 </span>
-                            </button>
+                            </x-tailwind-form-submit>
                         </div>
                     </div>
                 </div>
-            </form>
+                @endbind
+            </x-tailwind-form>
         </div>
     </div>
 </div>
