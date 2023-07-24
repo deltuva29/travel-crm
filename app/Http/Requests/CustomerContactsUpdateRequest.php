@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\LithuaniaPhoneNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CustomerContactsUpdateRequest extends FormRequest
@@ -16,7 +17,7 @@ class CustomerContactsUpdateRequest extends FormRequest
         return [
             'form.participant.first_name' => 'required',
             'form.participant.last_name' => 'required',
-            'form.participant.phone_number' => 'required',
+            'form.participant.phone_number' => ['required', new LithuaniaPhoneNumber()],
         ];
     }
 
