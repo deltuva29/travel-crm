@@ -15,9 +15,10 @@
                                     wire:model="form.participant.first_name"
                                     name="first_name"
                                     placeholder="{{ __('Tavo vardas') }}"/>
-                                @error('form.participant.first_name')
-                                <span class="text-red-400 text-xs">{{ $message }}</span>
-                                @enderror
+
+                                <x-tailwind-form-errors
+                                    class="text-red-400 text-xs not-italic"
+                                    name="form.participant.first_name"/>
                             </div>
 
                             <div class="w-full md:w-full lg:w-1/2">
@@ -27,9 +28,10 @@
                                         wire:model="form.participant.last_name"
                                         name="last_name"
                                         placeholder="{{ __('Tavo pavardė') }}"/>
-                                    @error('form.participant.last_name')
-                                    <span class="text-red-400 text-xs">{{ $message }}</span>
-                                    @enderror
+
+                                    <x-tailwind-form-errors
+                                        class="text-red-400 text-xs not-italic"
+                                        name="form.participant.last_name"/>
                                 </div>
                             </div>
                         </div>
@@ -40,9 +42,10 @@
                                     class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
                                     name="email"
                                     placeholder="{{ __('Tavo el.paštas') }}" disabled/>
-                                @error('form.participant.email_address')
-                                <span class="text-red-400 text-xs">{{ $message }}</span>
-                                @enderror
+
+                                <x-tailwind-form-errors
+                                    class="text-red-400 text-xs not-italic"
+                                    name="form.participant.email"/>
                             </div>
 
                             <div class="w-full md:w-full lg:w-1/2">
@@ -52,9 +55,10 @@
                                         wire:model="form.participant.phone_number"
                                         name="phone_number"
                                         placeholder="{{ __('Tavo tel. Numeris') }}"/>
-                                    @error('form.participant.phone_number')
-                                    <span class="text-red-400 text-xs">{{ $message }}</span>
-                                    @enderror
+
+                                    <x-tailwind-form-errors
+                                        class="text-red-400 text-xs not-italic"
+                                        name="form.participant.phone_number"/>
                                 </div>
                             </div>
                         </div>
