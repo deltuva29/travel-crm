@@ -57,9 +57,10 @@ class CustomerProfileSettingsForm extends Component
                 $this->showErrorToast(__('Blogas slaptažodis'));
                 return;
             }
-            $this->customer->update([
-                'password' => Hash::make($this->password),
-            ]);
+            tap($this->customer)
+                ->update([
+                    'password' => Hash::make($this->password),
+                ]);
             $this->updatePassword = true;
             $this->showSuccessToast(__('Išsaugota'));
 
