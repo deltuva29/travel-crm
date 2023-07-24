@@ -132,4 +132,9 @@ class Customer extends Authenticatable implements HasMedia
             $this->getFirstMediaUrl('customer_avatar', 'thumb') :
             asset('images/customer/default-avatar.png');
     }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
 }
