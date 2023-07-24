@@ -6,7 +6,7 @@
                 <div class="flex flex-wrap gap-4 gap-y-2 text-md"
                      wire:poll.keep-alive>
 
-                    @if ($customer->type == CustomerType::PARTICIPANT)
+                    @if ($customer->getType() == CustomerType::PARTICIPANT)
                         <div class="w-full flex flex-wrap">
                             <div class="w-full flex flex-col md:w-full lg:w-1/2 mb-6 px-0 lg:!pr-10">
                                 <label for="participant_first_name"></label>
