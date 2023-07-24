@@ -32,9 +32,9 @@ class CustomerProfilePage extends Component
 
     public function updatedAvatar(): void
     {
-        try {
-            $this->validate();
+        $this->validate();
 
+        try {
             if ($this->avatar) {
                 $fileName = strtolower(str_replace(['#', '/', '\\', ' '], '-', $this->avatar->getFilename()));
                 $this->customer->clearMediaCollection('customer_avatar');
