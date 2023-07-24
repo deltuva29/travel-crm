@@ -25,11 +25,11 @@ class CustomerProfileContactsForm extends Component
         $this->customer = auth('customer')->user();
 
         if ($this->customer !== null) {
-            $this->customerWithParticipantData();
+            $this->initCustomerWithParticipantData();
         }
     }
 
-    protected function customerWithParticipantData(): void
+    protected function initCustomerWithParticipantData(): void
     {
         $this->form['participant']['first_name'] = $this->customer->first_name ?? null;
         $this->form['participant']['last_name'] = $this->customer->last_name ?? null;
