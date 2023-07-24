@@ -50,9 +50,9 @@ class CustomerProfileSettingsForm extends Component
 
     public function updateSettings(): void
     {
-        try {
-            $this->validate();
+        $this->validate();
 
+        try {
             if (!Hash::check($this->current_password, $this->customer->password ?? '')) {
                 $this->showErrorToast(__('Blogas slaptažodis'));
                 return;
