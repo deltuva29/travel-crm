@@ -1,28 +1,29 @@
 <?php
 
-namespace App\Http\Livewire\Auth;
+namespace App\Http\Livewire\Auth\Home;
 
+use App\Http\Requests\CustomerLoginRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class HomeLogin extends Component
+class Login extends Component
 {
-    /** @var string */
     public $email = '';
-
-    /** @var string */
     public $password = '';
-
-    /** @var bool */
     public $remember = false;
 
-    protected $rules = [
-        'email' => ['required', 'email'],
-        'password' => ['required'],
-    ];
+    public function rules(): array
+    {
+        return (new CustomerLoginRequest())->rules();
+    }
+
+    public function messages(): array
+    {
+        return (new CustomerLoginRequest())->messages();
+    }
 
     public function authenticate()
     {
@@ -46,6 +47,6 @@ class HomeLogin extends Component
 
     public function render(): Factory|View|Application
     {
-        return view('livewire.auth.home-login');
+        return view('livewire.auth.home.login');
     }
 }
