@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Customers\Profile;
 
+use App\Actions\Settings\UpdateCustomerPassword;
 use App\Http\Requests\CustomerPasswordUpdateRequest;
 use App\Http\Traits\Customer\WithCustomer;
 use App\Http\Traits\Toast\WithToast;
@@ -11,7 +12,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class CustomerProfileSettingsForm extends Component
@@ -33,13 +33,10 @@ class CustomerProfileSettingsForm extends Component
 
     private function checkForPasswordFieldsEmptiness(): bool
     {
-        if (empty($this->current_password) || empty($this->password) || empty($this->password_confirmation)) {
-            $this->isDisabled = true;
-            return false;
-        } else {
-            $this->isDisabled = false;
-            return true;
-        }
+        $isEmpty = empty($this->current_password) || empty($this->password) || empty($this->password_confirmation);
+        $this->isDisabled = $isEmpty;
+
+        return !$isEmpty;
     }
 
     public function rules(): array
@@ -48,27 +45,22 @@ class CustomerProfileSettingsForm extends Component
             ->rules();
     }
 
-    public function updateSettings(): void
+    public function updateSettings(UpdateCustomerPassword $action): void
     {
         $this->validate();
 
         try {
-            if (!Hash::check($this->current_password, $this->customer->password ?? '')) {
-                $this->showErrorToast(__('Blogas slaptažodis'));
-                return;
+            $updated = $action->execute($this->current_password, $this->customer, $this->password);
+            if ($updated) {
+                $this->updatePassword = true;
+                $this->showSuccessToast(trans('settings.success'));
+            } else {
+                $this->showErrorToast(trans('settings.failed'));
             }
-            tap($this->customer)
-                ->update([
-                    'password' => Hash::make($this->password),
-                ]);
-            $this->updatePassword = true;
-            $this->showSuccessToast(__('Išsaugota'));
-
             $this->resetFields();
 
         } catch (Exception $e) {
-            //Log::error($e->getMessage());
-            $this->resetFields();
+            session()->flash('error', $e->getMessage());
         }
     }
 
