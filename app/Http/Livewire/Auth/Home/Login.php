@@ -11,9 +11,9 @@ use Livewire\Component;
 
 class Login extends Component
 {
-    public $email = '';
-    public $password = '';
-    public $remember = false;
+    public ?string $email = null;
+    public ?string $password = null;
+    public bool $remember = false;
 
     public function rules(): array
     {
