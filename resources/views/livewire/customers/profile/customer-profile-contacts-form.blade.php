@@ -63,6 +63,7 @@
                                     </div>
                                 </div>
                             </div>
+                        @default
                     @endswitch
 
                     <div class="w-full text-center">
