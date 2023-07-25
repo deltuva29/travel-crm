@@ -148,6 +148,10 @@ body.ishome.ajaxurl .preloader-background {
     background-color: rgb(31 41 55 / var(--tw-bg-opacity))
 }
 
+.tailwind-form-input-without-margin-top > div {
+    margin-top: 0 !important;
+}
+
 #preloader {
     animation: spin 1.5s linear infinite;
     border: 2px solid transparent;

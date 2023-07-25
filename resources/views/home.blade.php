@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            @livewire('auth.home-login')
+            @livewire('auth.home.login')
         </div>
     @livewire('sliders.slider')
 @endsection
