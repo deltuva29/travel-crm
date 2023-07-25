@@ -7,62 +7,63 @@
                 <div class="flex flex-wrap gap-4 gap-y-2 text-md"
                      wire:poll.keep-alive>
 
-                    @if ($customer->getType() == CustomerType::PARTICIPANT)
-                        <div class="w-full flex flex-wrap">
-                            <div class="w-full flex flex-col md:w-full lg:w-1/2 px-0 lg:!pr-10">
-                                <x-tailwind-form-input
-                                    class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                    wire:model="form.participant.first_name"
-                                    name="first_name"
-                                    placeholder="{{ __('Tavo vardas') }}"/>
-
-                                <x-tailwind-form-errors
-                                    class="text-red-400 text-xs not-italic"
-                                    name="form.participant.first_name"/>
-                            </div>
-
-                            <div class="w-full md:w-full lg:w-1/2">
-                                <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
+                    @switch($customer->getType())
+                        @case(CustomerType::PARTICIPANT)
+                            <div class="w-full flex flex-wrap">
+                                <div class="w-full flex flex-col md:w-full lg:w-1/2 px-0 lg:!pr-10">
                                     <x-tailwind-form-input
                                         class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                        wire:model="form.participant.last_name"
-                                        name="last_name"
-                                        placeholder="{{ __('Tavo pavardė') }}"/>
+                                        wire:model="form.participant.first_name"
+                                        name="first_name"
+                                        placeholder="{{ __('customer.first_name') }}"/>
 
                                     <x-tailwind-form-errors
                                         class="text-red-400 text-xs not-italic"
-                                        name="form.participant.last_name"/>
+                                        name="form.participant.first_name"/>
+                                </div>
+
+                                <div class="w-full md:w-full lg:w-1/2">
+                                    <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
+                                        <x-tailwind-form-input
+                                            class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                            wire:model="form.participant.last_name"
+                                            name="last_name"
+                                            placeholder="{{ __('customer.last_name') }}"/>
+
+                                        <x-tailwind-form-errors
+                                            class="text-red-400 text-xs not-italic"
+                                            name="form.participant.last_name"/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="w-full flex flex-wrap">
-                            <div class="w-full md:w-full lg:w-1/2 px-0 lg:!pr-10">
-                                <x-tailwind-form-input
-                                    class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                    name="email"
-                                    placeholder="{{ __('Tavo el.paštas') }}" disabled/>
-
-                                <x-tailwind-form-errors
-                                    class="text-red-400 text-xs not-italic"
-                                    name="form.participant.email"/>
-                            </div>
-
-                            <div class="w-full md:w-full lg:w-1/2">
-                                <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
+                            <div class="w-full flex flex-wrap">
+                                <div class="w-full md:w-full lg:w-1/2 px-0 lg:!pr-10">
                                     <x-tailwind-form-input
                                         class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                        wire:model="form.participant.phone_number"
-                                        name="phone_number"
-                                        placeholder="{{ __('Tavo tel. Numeris') }}"/>
+                                        name="email"
+                                        placeholder="{{ __('customer.email') }}" disabled/>
 
                                     <x-tailwind-form-errors
                                         class="text-red-400 text-xs not-italic"
-                                        name="form.participant.phone_number"/>
+                                        name="form.participant.email"/>
+                                </div>
+
+                                <div class="w-full md:w-full lg:w-1/2">
+                                    <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
+                                        <x-tailwind-form-input
+                                            class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                            wire:model="form.participant.phone_number"
+                                            name="phone_number"
+                                            placeholder="{{ __('customer.phone_number') }}"/>
+
+                                        <x-tailwind-form-errors
+                                            class="text-red-400 text-xs not-italic"
+                                            name="form.participant.phone_number"/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
+                    @endswitch
 
                     <div class="w-full text-center">
                         <div class="flex justify-center items-center">
