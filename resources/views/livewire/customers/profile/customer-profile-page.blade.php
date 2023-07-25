@@ -59,7 +59,7 @@
                                                     wire:model.lazy="avatar"
                                                     type="file" class="hidden"/>
                                             </label>
-                                            @if ($customer->hasMedia('customer_avatar'))
+                                            @if ($customer->hasMedia('avatar'))
                                                 <button wire:click.prevent="removeAvatar" class="w-13 h-13 bg-center bg-no-repeat absolute top-1/2 transform -translate-y-1/2 right-0.5 transition duration-200 p-2.5">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-white">
                                                         <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
