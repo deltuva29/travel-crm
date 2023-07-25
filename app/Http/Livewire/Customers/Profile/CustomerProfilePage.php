@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Customers\Profile;
 
+use App\Actions\Settings\UpdateCustomerAvatar;
 use App\Http\Requests\CustomerAvatarUpdateRequest;
 use App\Http\Traits\ContentLoader\WithContentLoader;
 use App\Http\Traits\Customer\WithCustomer;
@@ -36,23 +37,19 @@ class CustomerProfilePage extends Component
 
         try {
             if ($this->avatar) {
-                $fileName = strtolower(str_replace(['#', '/', '\\', ' '], '-', $this->avatar->getFilename()));
-                $this->customer->clearMediaCollection('avatar');
-                $sanitizeFileName = fn($fileName) => strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
+                $action = app()->make(UpdateCustomerAvatar::class);
+                $updated = $action->execute($this->customer, $this->avatar);
 
-                $this->customer->addMediaFromStream($this->avatar->get())
-                    ->sanitizingFileName($sanitizeFileName)
-                    ->usingFileName($fileName)
-                    ->toMediaCollection('avatar', 'customer_avatars');
-
-                $this->loaded = true;
-
+                if ($updated) {
+                    $this->loaded = true;
+                    $this->resetFields();
+                    $this->showSuccessToast(trans('customer.success'));
+                }
                 $this->resetFields();
-                $this->showSuccessToast(__('Atnaujinta'));
             }
 
         } catch (Exception $e) {
-            //Log::error($e->getMessage());
+            session()->flash('error', $e->getMessage());
         }
     }
 
