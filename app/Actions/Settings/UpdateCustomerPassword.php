@@ -7,9 +7,6 @@ use Hash;
 
 class UpdateCustomerPassword
 {
-    /**
-     * @throws Exception
-     */
     public function execute($currentPassword, $customer, $newPassword): bool
     {
         try {

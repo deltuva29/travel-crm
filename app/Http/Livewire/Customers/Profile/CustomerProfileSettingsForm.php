@@ -51,6 +51,7 @@ class CustomerProfileSettingsForm extends Component
 
         try {
             $updated = $action->execute($this->current_password, $this->customer, $this->password);
+
             if ($updated) {
                 $this->updatePassword = true;
                 $this->showSuccessToast(trans('settings.success'));
