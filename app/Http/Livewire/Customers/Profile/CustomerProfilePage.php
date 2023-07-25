@@ -37,13 +37,13 @@ class CustomerProfilePage extends Component
         try {
             if ($this->avatar) {
                 $fileName = strtolower(str_replace(['#', '/', '\\', ' '], '-', $this->avatar->getFilename()));
-                $this->customer->clearMediaCollection('customer_avatar');
+                $this->customer->clearMediaCollection('avatar');
                 $sanitizeFileName = fn($fileName) => strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
 
                 $this->customer->addMediaFromStream($this->avatar->get())
                     ->sanitizingFileName($sanitizeFileName)
                     ->usingFileName($fileName)
-                    ->toMediaCollection('customer_avatar', 'customer_avatars');
+                    ->toMediaCollection('avatar', 'customer_avatars');
 
                 $this->loaded = true;
 
@@ -59,7 +59,7 @@ class CustomerProfilePage extends Component
     public function removeAvatar(): void
     {
         try {
-            $this->customer->clearMediaCollection('customer_avatar');
+            $this->customer->clearMediaCollection('avatar');
             $this->showSuccessToast(__('Atnaujinta'));
 
             $this->loaded = true;
