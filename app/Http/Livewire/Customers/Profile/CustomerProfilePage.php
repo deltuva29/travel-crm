@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Customers\Profile;
 
+use App\Actions\Settings\RemoveCustomerAvatar;
 use App\Actions\Settings\UpdateCustomerAvatar;
 use App\Http\Requests\CustomerAvatarUpdateRequest;
 use App\Http\Traits\ContentLoader\WithContentLoader;
@@ -53,17 +54,19 @@ class CustomerProfilePage extends Component
         }
     }
 
-    public function removeAvatar(): void
+    public function removeAvatar(RemoveCustomerAvatar $action): void
     {
         try {
-            $this->customer->clearMediaCollection('avatar');
-            $this->showSuccessToast(__('Atnaujinta'));
+            $removed = $action->execute($this->customer);
 
-            $this->loaded = true;
-            $this->emit('avatarRemoved');
+            if ($removed) {
+                $this->showSuccessToast(trans('customer.success'));
 
+                $this->loaded = true;
+                $this->emit('avatarRemoved');
+            }
         } catch (Exception $e) {
-            // Log::error($e->getMessage());
+            session()->flash('error', $e->getMessage());
         }
     }
 
