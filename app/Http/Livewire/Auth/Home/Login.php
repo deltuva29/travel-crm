@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Auth\Home;
 
+use App\Actions\Authentication\AuthenticateCustomer;
 use App\Http\Requests\CustomerLoginRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Livewire\Component;
 
 class Login extends Component
@@ -25,21 +27,15 @@ class Login extends Component
         return (new CustomerLoginRequest())->messages();
     }
 
-    public function authenticate()
+    public function authenticate(AuthenticateCustomer $authenticateCustomer): Redirector|Application|RedirectResponse
     {
         $this->validate();
+        $response = $authenticateCustomer->handle($this->email, $this->password, $this->remember);
 
-        if (!Auth::guard('customer')->attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            $this->addError('email', trans('auth.failed'));
-            return;
-        }
+        if (isset($response['error'])) {
+            $this->addError($response['error'], $response['message']);
 
-        $customer = Auth::guard('customer')->user();
-        if (!$customer || !$customer->isActiveStatus()) {
-            Auth::guard('customer')->logout();
-
-            $this->addError('email', $customer ? trans('auth.activate') : trans('auth.failed'));
-            return;
+            return redirect()->back()->withInput();
         }
 
         return redirect()->intended(route('customer.dashboard'));
