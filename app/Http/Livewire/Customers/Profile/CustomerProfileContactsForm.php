@@ -33,13 +33,13 @@ class CustomerProfileContactsForm extends Component
 
     protected function initCustomerData($customerService): void
     {
+        $participantData = $customerService->initCustomerData('participant', $this->customer);
+        $renterData = $customerService->initCustomerData('renter', $this->customer);
+
         $this->form = array_merge(
-            (is_array($this->form) ? $this->form : []),
-            (is_array($customerService->initCustomerData('participant', $this->customer)) ? $customerService->initCustomerData('participant', $this->customer) : [])
-        );
-        $this->form = array_merge(
-            (is_array($this->form) ? $this->form : []),
-            (is_array($customerService->initCustomerData('renter', $this->customer)) ? $customerService->initCustomerData('renter', $this->customer) : [])
+            is_array($this->form) ? $this->form : [],
+            is_array($participantData) ? $participantData : [],
+            is_array($renterData) ? $renterData : []
         );
     }
 
