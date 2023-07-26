@@ -15,16 +15,16 @@ class CustomerContactsUpdateRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'form.participant.first_name' => 'required',
-            'form.participant.last_name' => 'required',
+            'form.participant.first_name' => ['required'],
+            'form.participant.last_name' => ['required'],
             'form.participant.phone_number' => ['required', new LithuaniaPhoneNumber()],
         ];
         if (auth('customer')->user()->isRenter()) {
             $rules = [
-                'form.renter.first_name' => 'required',
-                'form.renter.last_name' => 'required',
+                'form.renter.first_name' => ['required'],
+                'form.renter.last_name' => ['required'],
                 'form.renter.phone_number' => ['required', new LithuaniaPhoneNumber()],
-                'form.renter.address' => 'required',
+                'form.renter.address' => ['required'],
             ];
         }
 
@@ -34,16 +34,16 @@ class CustomerContactsUpdateRequest extends FormRequest
     public function messages(): array
     {
         $messages = [
-            'form.participant.first_name.required' => __('Privalomas laukas'),
-            'form.participant.last_name.required' => __('Privalomas laukas'),
-            'form.participant.phone_number.required' => __('Privalomas laukas'),
+            'form.participant.first_name.required' => trans('customer.required'),
+            'form.participant.last_name.required' => trans('customer.required'),
+            'form.participant.phone_number.required' => trans('customer.required'),
         ];
         if (auth('customer')->user()->isRenter()) {
             $messages = [
-                'form.renter.first_name.required' => __('Privalomas laukas'),
-                'form.renter.last_name.required' => __('Privalomas laukas'),
-                'form.renter.phone_number.required' => __('Privalomas laukas'),
-                'form.renter.address.required' => __('Privalomas laukas'),
+                'form.renter.first_name.required' => trans('customer.required'),
+                'form.renter.last_name.required' => trans('customer.required'),
+                'form.renter.phone_number.required' => trans('customer.required'),
+                'form.renter.address.required' => trans('customer.required'),
             ];
         }
 
