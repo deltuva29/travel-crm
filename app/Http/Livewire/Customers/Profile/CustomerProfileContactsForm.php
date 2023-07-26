@@ -35,11 +35,13 @@ class CustomerProfileContactsForm extends Component
     {
         $participantData = $customerService->initCustomerData('participant', $this->customer);
         $renterData = $customerService->initCustomerData('renter', $this->customer);
+        $companyData = $customerService->initCustomerData('company', $this->customer);
 
         $this->form = array_merge(
             is_array($this->form) ? $this->form : [],
             is_array($participantData) ? $participantData : [],
-            is_array($renterData) ? $renterData : []
+            is_array($renterData) ? $renterData : [],
+            is_array($companyData) ? $companyData : []
         );
     }
 
