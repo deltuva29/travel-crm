@@ -62,8 +62,8 @@ class CustomerProfileSettingsForm extends Component
             }
             $this->resetFields();
 
-        } catch (Exception $e) {
-            session()->flash('error', $e->getMessage());
+        } catch (Exception $ex) {
+            session()->flash('error', $ex->getMessage());
         }
     }
 

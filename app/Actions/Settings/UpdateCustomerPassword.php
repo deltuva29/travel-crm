@@ -19,8 +19,8 @@ class UpdateCustomerPassword
             ]);
 
             return true;
-        } catch (Exception $e) {
-            session()->flash('error', $e->getMessage());
+        } catch (Exception $ex) {
+            session()->flash('error', $ex->getMessage());
 
             return false;
         }
