@@ -2,19 +2,20 @@
 
 namespace App\Actions\Settings;
 
+use App\DTO\UpdateCustomerPasswordDTO;
 use Exception;
 use Hash;
 
 class UpdateCustomerPassword
 {
-    public function execute($currentPassword, $customer, $newPassword): bool
+    public function execute(UpdateCustomerPasswordDTO $dto): bool
     {
         try {
-            if (!Hash::check($currentPassword, $customer->password ?? '')) {
+            if (!Hash::check($dto->getCurrentPassword(), $dto->getCustomer()->password ?? '')) {
                 return false;
             }
-            $customer->update([
-                'password' => Hash::make($newPassword),
+            $dto->getCustomer()->update([
+                'password' => Hash::make($dto->getNewPassword()),
             ]);
 
             return true;
