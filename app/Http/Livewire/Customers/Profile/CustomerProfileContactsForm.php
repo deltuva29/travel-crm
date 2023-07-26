@@ -65,7 +65,7 @@ class CustomerProfileContactsForm extends Component
         $this->validate();
 
         try {
-            $updated = $action->execute(dd($this->form), $this->customer);
+            $updated = $action->execute($this->form, $this->customer);
 
             if ($updated) {
                 $this->showSuccessToast(trans('customer.success'));
