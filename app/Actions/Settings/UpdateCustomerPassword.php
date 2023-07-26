@@ -15,7 +15,7 @@ class UpdateCustomerPassword
                 return false;
             }
             $dto->getCustomer()->update([
-                'password' => Hash::make($dto->getNewPassword()),
+                'password' => bcrypt($dto->getNewPassword()),
             ]);
 
             return true;
