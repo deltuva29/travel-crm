@@ -9,19 +9,38 @@ class CustomerService
 {
     public function initCustomerData($type, $customer): array
     {
-        $returnData = [
-            $type => [
-                'first_name' => $customer->first_name ?? null,
-                'last_name' => $customer->last_name ?? null,
-                'email' => $customer->email ?? null,
-                'phone_number' => $customer->phone ?? null,
-            ]
+        $customerData = [
+            'first_name' => $customer->first_name ?? null,
+            'last_name' => $customer->last_name ?? null,
+            'email' => $customer->email ?? null,
+            'phone_number' => $customer->phone ?? null,
         ];
 
-        if ($type === CustomerType::RENTER) {
-            $returnData[$type]['address'] = $customer->address ?? null;
+        switch ($type) {
+            case CustomerType::RENTER:
+                $customerData['address'] = $this->getRenterData($customer);
+                break;
+
+            case CustomerType::COMPANY:
+                $customerData = array_merge($customerData, $this->getCompanyData($customer));
+                break;
         }
 
-        return $returnData;
+        return [$type => $customerData];
+    }
+
+    private function getRenterData($customer): ?string
+    {
+        return $customer->address;
+    }
+
+    private function getCompanyData($customer): array
+    {
+        return [
+            'company_name' => $customer->company_name ?? null,
+            'company_prefix' => $customer->company_prefix ?? null,
+            'company_first_name' => $customer->first_name ?? null,
+            'company_last_name' => $customer->last_name ?? null,
+        ];
     }
 }

@@ -30,27 +30,36 @@ class CustomerContactsUpdateRequest extends FormRequest
             'form.participant.phone_number' => ['required', new LithuaniaPhoneNumber()],
         ];
 
-        if ($this->customer->isRenter()) {
-            $rules = array_merge($rules, [
-                'form.renter.first_name' => ['required'],
-                'form.renter.last_name' => ['required'],
-                'form.renter.phone_number' => ['required', new LithuaniaPhoneNumber()],
-                'form.renter.address' => ['required'],
-            ]);
-        }
+        switch ($this->customer->getType()) {
+            case $this->customer->isRenter():
+                $renterRules = [
+                    'form.renter.first_name' => ['required'],
+                    'form.renter.last_name' => ['required'],
+                    'form.renter.phone_number' => ['required', new LithuaniaPhoneNumber()],
+                    'form.renter.address' => ['required'],
+                ];
+                $rules = array_merge($rules, $renterRules);
+                break;
 
-        if ($this->customer->isCompany()) {
-            $rules = array_merge($rules, [
-                'form.company.company_name' => ['required'],
-                'form.company.company_prefix' => ['required'],
-                'form.company.company_address' => ['required'],
-                'form.company.company_phone' => ['required', new LithuaniaPhoneNumber()],
-                'form.company.company_email' => ['required', 'email'],
-                'form.company.company_bank_name' => ['required'],
-                'form.company.company_bank_iban' => ['required'],
-                'form.company.company_bank_bic_swift_code' => ['required'],
-                'form.company.company_code' => ['required'],
-            ]);
+            case $this->customer->isCompany():
+                $companyRules = [
+                    'form.company.company_name' => ['required'],
+                    'form.company.company_prefix' => ['required'],
+                    'form.company.company_first_name' => ['required'],
+                    'form.company.company_last_name' => ['required'],
+                    'form.company.company_address' => ['required'],
+                    'form.company.company_phone' => ['required', new LithuaniaPhoneNumber()],
+                    'form.company.company_email' => ['required', 'email'],
+                    'form.company.company_bank_name' => ['required'],
+                    'form.company.company_bank_iban' => ['required'],
+                    'form.company.company_bank_bic_swift_code' => ['required'],
+                    'form.company.company_code' => ['required'],
+                ];
+                $rules = array_merge($rules, $companyRules);
+                break;
+
+            default:
+                break;
         }
 
         return $rules;
@@ -64,28 +73,37 @@ class CustomerContactsUpdateRequest extends FormRequest
             'form.participant.phone_number.required' => trans('customer.required'),
         ];
 
-        if ($this->customer->isRenter()) {
-            $messages = array_merge($messages, [
-                'form.renter.first_name.required' => trans('customer.required'),
-                'form.renter.last_name.required' => trans('customer.required'),
-                'form.renter.phone_number.required' => trans('customer.required'),
-                'form.renter.address.required' => trans('customer.required'),
-            ]);
-        }
+        switch ($this->customer->getType()) {
+            case $this->customer->isRenter():
+                $renterMessages = [
+                    'form.renter.first_name.required' => trans('customer.required'),
+                    'form.renter.last_name.required' => trans('customer.required'),
+                    'form.renter.phone_number.required' => trans('customer.required'),
+                    'form.renter.address.required' => trans('customer.required'),
+                ];
+                $messages = array_merge($messages, $renterMessages);
+                break;
 
-        if ($this->customer->isCompany()) {
-            $messages = array_merge($messages, [
-                'form.company.company_name.required' => trans('customer.required'),
-                'form.company.company_prefix.required' => trans('customer.required'),
-                'form.company.company_address.required' => trans('customer.required'),
-                'form.company.company_phone.required' => trans('customer.required'),
-                'form.company.company_email.required' => trans('customer.required'),
-                'form.company.company_email.email' => trans('customer.email'),
-                'form.company.company_bank_name.required' => trans('customer.required'),
-                'form.company.company_bank_iban.required' => trans('customer.required'),
-                'form.company.company_bank_bic_swift_code.required' => trans('customer.required'),
-                'form.company.company_code.required' => trans('customer.required'),
-            ]);
+            case $this->customer->isCompany():
+                $companyMessages = [
+                    'form.company.company_name.required' => trans('customer.required'),
+                    'form.company.company_prefix.required' => trans('customer.required'),
+                    'form.company.company_first_name.required' => trans('customer.required'),
+                    'form.company.company_last_name.required' => trans('customer.required'),
+                    'form.company.company_address.required' => trans('customer.required'),
+                    'form.company.company_phone.required' => trans('customer.required'),
+                    'form.company.company_email.required' => trans('customer.required'),
+                    'form.company.company_email.email' => trans('customer.email'),
+                    'form.company.company_bank_name.required' => trans('customer.required'),
+                    'form.company.company_bank_iban.required' => trans('customer.required'),
+                    'form.company.company_bank_bic_swift_code.required' => trans('customer.required'),
+                    'form.company.company_code.required' => trans('customer.required'),
+                ];
+                $messages = array_merge($messages, $companyMessages);
+                break;
+
+            default:
+                break;
         }
 
         return $messages;

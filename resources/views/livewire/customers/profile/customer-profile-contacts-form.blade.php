@@ -134,6 +134,63 @@
                                 </div>
                             </div>
                             @break
+                        @case(CustomerType::COMPANY)
+                            <div class="w-full flex flex-wrap">
+                                <div class="w-full flex flex-col md:w-full lg:w-1/2 px-0 lg:!pr-10">
+                                    <x-tailwind-form-input
+                                        class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                        wire:model="form.company.company_name"
+                                        name="company_name"
+                                        placeholder="{{ __('Įmonės pavadinimas') }}"/>
+
+                                    <x-tailwind-form-errors
+                                        class="text-red-400 text-xs not-italic"
+                                        name="form.company.company_name"/>
+                                </div>
+
+                                <div class="w-full md:w-full lg:w-1/2">
+                                    <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
+                                        <x-tailwind-form-input
+                                            class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                            wire:model="form.company.company_prefix"
+                                            name="company_prefix"
+                                            placeholder="{{ __('...') }}"/>
+
+                                        <x-tailwind-form-errors
+                                            class="text-red-400 text-xs not-italic"
+                                            name="form.company.company_prefix"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex flex-wrap">
+                                <div class="w-full flex flex-col md:w-full lg:w-1/2 px-0 lg:!pr-10">
+                                    <x-tailwind-form-input
+                                        class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                        wire:model="form.company.company_first_name"
+                                        name="first_name"
+                                        placeholder="{{ __('Įmonės vadovo vardas') }}"/>
+
+                                    <x-tailwind-form-errors
+                                        class="text-red-400 text-xs not-italic"
+                                        name="form.company.company_first_name"/>
+                                </div>
+
+                                <div class="w-full md:w-full lg:w-1/2">
+                                    <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
+                                        <x-tailwind-form-input
+                                            class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                            wire:model="form.company.company_last_name"
+                                            name="last_name"
+                                            placeholder="{{ __('Įmonės vadovo pavardė') }}"/>
+
+                                        <x-tailwind-form-errors
+                                            class="text-red-400 text-xs not-italic"
+                                            name="form.company.company_last_name"/>
+                                    </div>
+                                </div>
+                            </div>
+                            @break
                         @default
                     @endswitch
 
