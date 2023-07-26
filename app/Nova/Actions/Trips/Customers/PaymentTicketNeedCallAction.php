@@ -18,7 +18,7 @@ class PaymentTicketNeedCallAction extends Action
         return __('Skambutis');
     }
 
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         return $this->processModels($fields, $models);
     }

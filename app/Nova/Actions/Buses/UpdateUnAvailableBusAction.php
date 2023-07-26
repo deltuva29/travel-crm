@@ -17,7 +17,7 @@ class UpdateUnAvailableBusAction extends Action
         return __('Užimtas');
     }
 
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         return $this->makeBusUnAvailable($models);
     }

@@ -17,7 +17,7 @@ class CompleteTripAction extends Action
         return __('Užbaigti kelionę');
     }
 
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         return $this->completeModels($models);
     }
