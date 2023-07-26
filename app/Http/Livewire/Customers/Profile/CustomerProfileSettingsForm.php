@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Customers\Profile;
 
 use App\Actions\Settings\UpdateCustomerPassword;
+use App\DTO\UpdateCustomerPasswordDTO;
 use App\Http\Requests\CustomerPasswordUpdateRequest;
 use App\Http\Traits\Customer\WithCustomer;
 use App\Http\Traits\Toast\WithToast;
@@ -50,7 +51,8 @@ class CustomerProfileSettingsForm extends Component
         $this->validate();
 
         try {
-            $updated = $action->execute($this->current_password, $this->customer, $this->password);
+            $dto = UpdateCustomerPasswordDTO::fromRequest($this->current_password, $this->customer, $this->password);
+            $updated = $action->execute($dto);
 
             if ($updated) {
                 $this->updatePassword = true;
