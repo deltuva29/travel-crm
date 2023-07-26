@@ -9,8 +9,15 @@ use Livewire\Component;
 
 class CustomerProfileSettingsPage extends Component
 {
+    private function getHeadingTitle(): string
+    {
+        return __('Paskyros nustatymai');
+    }
+
     public function render(): Factory|View|Application
     {
-        return view('livewire.customers.profile.customer-profile-settings-page');
+        return view('livewire.customers.profile.customer-profile-settings-page', [
+            'headingTitle' => $this->getHeadingTitle()
+        ]);
     }
 }
