@@ -20,7 +20,7 @@ class PaymentTicketCanceledAction extends Action
         return __('Atšaukti mokėjimą');
     }
 
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         return $this->processModels($fields, $models);
     }

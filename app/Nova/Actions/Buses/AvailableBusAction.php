@@ -17,7 +17,7 @@ class AvailableBusAction extends Action
         return __('Laisvas');
     }
 
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         return $this->makeBusAvailable($models);
     }

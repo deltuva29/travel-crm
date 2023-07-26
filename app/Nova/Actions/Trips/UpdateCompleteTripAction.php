@@ -17,7 +17,7 @@ class UpdateCompleteTripAction extends Action
         return __('Atnaujinti kelionės statusą');
     }
 
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         return $this->uncompletedModels($models);
     }

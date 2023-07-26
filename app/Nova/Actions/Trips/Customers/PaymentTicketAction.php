@@ -20,7 +20,7 @@ class PaymentTicketAction extends Action
         return __('Apmokėjimas');
     }
 
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         return $this->processModels($models);
     }
@@ -51,7 +51,7 @@ class PaymentTicketAction extends Action
             'trip_customer_id' => $model->id,
             'trip_id' => $model->trip_id,
             'customer_id' => $model->customer_id,
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'code' => $generateTickedService->generateTicketCode(),
             'price' => (int)$model->trip->price,
             'paid_at' => now(),
