@@ -16,7 +16,7 @@
                     <div class="rounded-md px-6 py-4 text-sm bg-white z-depth-1">
                         <div class="flex w-full justify-between">
                             <h2 class="text-2xl md:text-3xl tracking-wide font-normal truncate">
-                                {{ __('Kontaktinė informacija') }}
+                                {{ $headingTitle }}
                             </h2>
                             <div>
                                 <button
