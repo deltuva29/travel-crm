@@ -15,7 +15,7 @@
                                         class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
                                         wire:model="form.participant.first_name"
                                         name="first_name"
-                                        placeholder="{{ __('customer.first_name') }}"/>
+                                        placeholder="{{ __('Tavo vardas') }}"/>
 
                                     <x-tailwind-form-errors
                                         class="text-red-400 text-xs not-italic"
@@ -28,7 +28,7 @@
                                             class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
                                             wire:model="form.participant.last_name"
                                             name="last_name"
-                                            placeholder="{{ __('customer.last_name') }}"/>
+                                            placeholder="{{ __('Tavo pavardė') }}"/>
 
                                         <x-tailwind-form-errors
                                             class="text-red-400 text-xs not-italic"
@@ -42,7 +42,7 @@
                                     <x-tailwind-form-input
                                         class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
                                         name="email"
-                                        placeholder="{{ __('customer.email') }}" disabled/>
+                                        placeholder="{{ __('Tavo el.paštas') }}" disabled/>
 
                                     <x-tailwind-form-errors
                                         class="text-red-400 text-xs not-italic"
@@ -55,7 +55,7 @@
                                             class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
                                             wire:model="form.participant.phone_number"
                                             name="phone_number"
-                                            placeholder="{{ __('customer.phone_number') }}"/>
+                                            placeholder="{{ __('Tavo tel. Numeris') }}"/>
 
                                         <x-tailwind-form-errors
                                             class="text-red-400 text-xs not-italic"
@@ -69,26 +69,26 @@
                                 <div class="w-full flex flex-col md:w-full lg:w-1/2 px-0 lg:!pr-10">
                                     <x-tailwind-form-input
                                         class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                        wire:model="form.participant.first_name"
+                                        wire:model="form.renter.first_name"
                                         name="first_name"
-                                        placeholder="{{ __('customer.first_name') }}"/>
+                                        placeholder="{{ __('Tavo vardas') }}"/>
 
                                     <x-tailwind-form-errors
                                         class="text-red-400 text-xs not-italic"
-                                        name="form.participant.first_name"/>
+                                        name="form.renter.first_name"/>
                                 </div>
 
                                 <div class="w-full md:w-full lg:w-1/2">
                                     <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
                                         <x-tailwind-form-input
                                             class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                            wire:model="form.participant.last_name"
+                                            wire:model="form.renter.last_name"
                                             name="last_name"
-                                            placeholder="{{ __('customer.last_name') }}"/>
+                                            placeholder="{{ __('Tavo pavardė') }}"/>
 
                                         <x-tailwind-form-errors
                                             class="text-red-400 text-xs not-italic"
-                                            name="form.participant.last_name"/>
+                                            name="form.renter.last_name"/>
                                     </div>
                                 </div>
                             </div>
@@ -98,25 +98,39 @@
                                     <x-tailwind-form-input
                                         class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
                                         name="email"
-                                        placeholder="{{ __('customer.email') }}" disabled/>
+                                        placeholder="{{ __('Tavo el.paštas') }}" disabled/>
 
                                     <x-tailwind-form-errors
                                         class="text-red-400 text-xs not-italic"
-                                        name="form.participant.email"/>
+                                        name="form.renter.email"/>
                                 </div>
 
                                 <div class="w-full md:w-full lg:w-1/2">
                                     <div class="h-10 border-none flex flex-col border border-gray-200 rounded-md">
                                         <x-tailwind-form-input
                                             class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
-                                            wire:model="form.participant.phone_number"
+                                            wire:model="form.renter.phone_number"
                                             name="phone_number"
-                                            placeholder="{{ __('customer.phone_number') }}"/>
+                                            placeholder="{{ __('Tavo tel. Numeris') }}"/>
 
                                         <x-tailwind-form-errors
                                             class="text-red-400 text-xs not-italic"
-                                            name="form.participant.phone_number"/>
+                                            name="form.renter.phone_number"/>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex flex-wrap">
+                                <div class="w-full">
+                                    <x-tailwind-form-input
+                                        class="h-10 border-none rounded-md px-4 w-full bg-gray-200 focus:outline-none focus:ring-0 placeholder-gray-400"
+                                        wire:model="form.renter.address"
+                                        name="address"
+                                        placeholder="{{ __('Tavo adresas') }}"/>
+
+                                    <x-tailwind-form-errors
+                                        class="text-red-400 text-xs not-italic"
+                                        name="form.renter.address"/>
                                 </div>
                             </div>
                             @break

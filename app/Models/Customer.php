@@ -58,6 +58,16 @@ class Customer extends Authenticatable implements HasMedia
         return $this->belongsToMany(Customer::class, 'trip_customers', 'customer_id', 'trip_id');
     }
 
+    public function isParticipant(): bool
+    {
+        return $this->type === CustomerType::PARTICIPANT;
+    }
+
+    public function isRenter(): bool
+    {
+        return $this->type === CustomerType::RENTER;
+    }
+
     public function isCompany(): bool
     {
         return $this->type === CustomerType::COMPANY;

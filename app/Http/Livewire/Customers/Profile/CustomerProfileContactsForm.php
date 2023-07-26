@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\Customers\Profile;
 
+use App\Actions\Settings\UpdateCustomerContacts;
 use App\Http\Requests\CustomerContactsUpdateRequest;
 use App\Http\Traits\Customer\WithCustomer;
 use App\Http\Traits\Form\WithDisableButton;
 use App\Http\Traits\Toast\WithToast;
+use App\Services\CustomerService;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -20,21 +22,25 @@ class CustomerProfileContactsForm extends Component
 
     public $form;
 
-    public function mount(): void
+    public function mount(CustomerService $customerService): void
     {
         $this->customer = auth('customer')->user();
 
         if ($this->customer !== null) {
-            $this->initCustomerWithParticipantData();
+            $this->initCustomerData($customerService);
         }
     }
 
-    protected function initCustomerWithParticipantData(): void
+    protected function initCustomerData($customerService): void
     {
-        $this->form['participant']['first_name'] = $this->customer->first_name ?? null;
-        $this->form['participant']['last_name'] = $this->customer->last_name ?? null;
-        $this->form['participant']['email'] = $this->customer->email ?? null;
-        $this->form['participant']['phone_number'] = $this->customer->phone ?? null;
+        $this->form = array_merge(
+            (is_array($this->form) ? $this->form : []),
+            (is_array($customerService->initCustomerData('participant', $this->customer)) ? $customerService->initCustomerData('participant', $this->customer) : [])
+        );
+        $this->form = array_merge(
+            (is_array($this->form) ? $this->form : []),
+            (is_array($customerService->initCustomerData('renter', $this->customer)) ? $customerService->initCustomerData('renter', $this->customer) : [])
+        );
     }
 
     public function updated($fields): void
@@ -54,29 +60,20 @@ class CustomerProfileContactsForm extends Component
         return (new CustomerContactsUpdateRequest())->messages();
     }
 
-    public function editContacts(): void
+    public function editContacts(UpdateCustomerContacts $action): void
     {
         $this->validate();
 
         try {
-            $this->updateCustomerParticipant();
+            $updated = $action->execute(dd($this->form), $this->customer);
 
-            $this->showSuccessToast(__('Atnaujinta'));
+            if ($updated) {
+                $this->showSuccessToast(trans('customer.success'));
+            }
 
         } catch (Exception $ex) {
             session()->flash('error', $ex->getMessage());
         }
-    }
-
-    private function updateCustomerParticipant(): void
-    {
-        $participant = $this->form['participant'];
-
-        $this->customer->update([
-            'first_name' => $participant['first_name'] ?? null,
-            'last_name' => $participant['last_name'] ?? null,
-            'phone' => $participant['phone_number'] ?? null
-        ]);
     }
 
     public function render(): Factory|View|Application
