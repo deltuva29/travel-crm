@@ -49,8 +49,8 @@ class CustomerProfilePage extends Component
                 $this->resetFields();
             }
 
-        } catch (Exception $e) {
-            session()->flash('error', $e->getMessage());
+        } catch (Exception $ex) {
+            session()->flash('error', $ex->getMessage());
         }
     }
 
@@ -65,8 +65,8 @@ class CustomerProfilePage extends Component
                 $this->loaded = true;
                 $this->emit('avatarRemoved');
             }
-        } catch (Exception $e) {
-            session()->flash('error', $e->getMessage());
+        } catch (Exception $ex) {
+            session()->flash('error', $ex->getMessage());
         }
     }
 

@@ -63,8 +63,8 @@ class CustomerProfileContactsForm extends Component
 
             $this->showSuccessToast(__('Atnaujinta'));
 
-        } catch (Exception $e) {
-            //Log::error($e->getMessage());
+        } catch (Exception $ex) {
+            session()->flash('error', $ex->getMessage());
         }
     }
 
