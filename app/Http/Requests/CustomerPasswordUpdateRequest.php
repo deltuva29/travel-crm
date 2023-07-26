@@ -14,8 +14,8 @@ class CustomerPasswordUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'current_password' => 'required',
-            'password' => 'required|min:8|confirmed|different:current_password'
+            'current_password' => ['required'],
+            'password' => ['required', 'min:8', 'confirmed', 'different:current_password']
         ];
     }
 }
