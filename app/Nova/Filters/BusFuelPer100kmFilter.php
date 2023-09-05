@@ -20,12 +20,12 @@ class BusFuelPer100kmFilter extends NovaRangeFilter
 
     protected function getMinFuelPer(): int
     {
-        return Bus::min('fuel_per_100_km') ?? 0;
+        return Bus::query()->min('fuel_per_100_km') ?? 0;
     }
 
     protected function getMaxFuelPer(): int
     {
-        return Bus::max('fuel_per_100_km') ?? 0;
+        return Bus::query()->max('fuel_per_100_km') ?? 0;
     }
 
     public function apply(Request $request, $query, $value)
@@ -34,5 +34,7 @@ class BusFuelPer100kmFilter extends NovaRangeFilter
             return $query->when($value, fn($query) => $query->whereBetween('fuel_per_100_km', $value))
                 ->orWhereNull('fuel_per_100_km');
         }
+
+        return $query;
     }
 }

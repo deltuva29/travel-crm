@@ -20,12 +20,12 @@ class BusFuelInLitresFilter extends NovaRangeFilter
 
     protected function getMinFuelInLitres(): int
     {
-        return Bus::min('fuel_in_litres') ?? 0;
+        return Bus::query()->min('fuel_in_litres') ?? 0;
     }
 
     protected function getMaxFuelInLitres(): int
     {
-        return Bus::max('fuel_in_litres') ?? 0;
+        return Bus::query()->max('fuel_in_litres') ?? 0;
     }
 
     public function apply(Request $request, $query, $value)
@@ -34,5 +34,7 @@ class BusFuelInLitresFilter extends NovaRangeFilter
             return $query->when($value, fn($query) => $query->whereBetween('fuel_in_litres', $value))
                 ->orWhereNull('fuel_in_litres');
         }
+
+        return $query;
     }
 }
