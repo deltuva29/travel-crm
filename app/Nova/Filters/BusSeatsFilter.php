@@ -21,12 +21,12 @@ class BusSeatsFilter extends NovaRangeFilter
 
     protected function getMinSeats(): int
     {
-        return Bus::min('seats') ?? 0;
+        return Bus::query()->min('seats') ?? 0;
     }
 
     protected function getMaxSeats(): int
     {
-        return Bus::max('seats') ?? 0;
+        return Bus::query()->max('seats') ?? 0;
     }
 
     public function apply(Request $request, $query, $value): Builder
