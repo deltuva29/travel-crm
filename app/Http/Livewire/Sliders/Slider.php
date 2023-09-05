@@ -16,7 +16,7 @@ class Slider extends Component
     public function getCarouselProperty(): Collection|array
     {
         $this->slider = Carousel::query()
-            ->active()
+            ->where('active', 1)
             ->orderBy('created_at')
             ->get();
 
