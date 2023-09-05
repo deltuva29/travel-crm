@@ -10,7 +10,7 @@
                         @auth('customer')
                             <a
                                 href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                onclick="preventDefault(); document.getElementById('logout-form').submit();"
                                 class="font-medium text-yellow-400 hover:text-yellow-500 focus:outline-none focus:underline transition ease-in-out duration-150"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
