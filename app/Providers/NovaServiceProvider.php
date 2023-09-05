@@ -59,7 +59,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function gate()
     {
-        Gate::define('viewNova', function ($user) {
+        Gate::define('viewNova', function () {
             return true;
         });
     }
@@ -93,7 +93,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools(): array
     {
-
         return [
             new CollapsibleResourceManager([
                 'remember_menu_state' => true,
@@ -106,16 +105,16 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'expanded' => false,
                                 'resources' => [
                                     Route::class,
-                                    Trip::class
-                                ]
+                                    Trip::class,
+                                ],
                             ]),
                             Group::make([
                                 'label' => __('Mokėjimai'),
                                 'expanded' => false,
                                 'resources' => [
                                     TripCustomerTicket::class,
-                                    PaymentMethod::class
-                                ]
+                                    PaymentMethod::class,
+                                ],
                             ]),
                             Group::make([
                                 'label' => __('Transportas'),
@@ -123,20 +122,20 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'resources' => [
                                     Bus::class,
                                     BusFeature::class,
-                                    BusType::class
-                                ]
+                                    BusType::class,
+                                ],
                             ]),
                             Group::make([
                                 'label' => __('Nuoma'),
                                 'expanded' => false,
                                 'resources' => [
-                                    BusRent::class
-                                ]
+                                    BusRent::class,
+                                ],
                             ]),
                             Group::make([
                                 'label' => __('Kelionės'),
                                 'expanded' => false,
-                                'resources' => []
+                                'resources' => [],
                             ]),
                             Group::make([
                                 'label' => __('Paskyros'),
@@ -144,14 +143,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'resources' => [
                                     Customer::class,
                                     User::class,
-                                ]
+                                ],
                             ]),
                             Group::make([
                                 'label' => __('Kita'),
                                 'expanded' => false,
                                 'resources' => [
                                     Slider::class,
-                                ]
+                                ],
                             ])->canSee(function (Request $request) {
                                 return !$request->user()->hasAnyPermission(['Hide Sliders']);
                             }),
@@ -161,14 +160,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'resources' => [
                                     Role::class,
                                     Permission::class,
-                                ]
+                                ],
                             ])->canSee(function (Request $request) {
                                 return !$request->user()->hasPermissionTo(\Spatie\Permission\Models\Permission::query()->find(3));
                             }),
 
-                        ]
+                        ],
                     ]),
-                ]
+                ],
             ]),
 //            (new SettingsTool)->canSee(function (Request $request) {
 //                return !$request->user()->hasPermissionTo(\Spatie\Permission\Models\Permission::query()->find(2));
