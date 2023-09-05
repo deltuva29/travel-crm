@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Slider extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use InteractsWithMedia;
 
     protected $table = 'sliders';
 
@@ -18,10 +17,5 @@ class Slider extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('background_image')->singleFile();
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->where('active', true);
     }
 }
