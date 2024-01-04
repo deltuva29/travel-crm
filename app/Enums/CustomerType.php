@@ -8,6 +8,7 @@ class CustomerType extends Enum
 {
     public const RENTER = 'renter';
     public const PARTICIPANT = 'participant';
+
 //    public const COMPANY = 'company';
 
     public static function values(): array
