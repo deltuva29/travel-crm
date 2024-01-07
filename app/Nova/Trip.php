@@ -15,13 +15,12 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
-use MichielKempen\NovaOrderField\Orderable;
 use NovaAttachMany\AttachMany;
 use OptimistDigital\NovaSimpleRepeatable\SimpleRepeatable;
 
 class Trip extends Resource
 {
-    use Orderable;
+//    use Orderable;
 
     public static string $model = \App\Models\Trip::class;
 
@@ -52,14 +51,15 @@ class Trip extends Resource
             Select::make(__('Maršrutas'), 'route_id')
                 ->rules('required')
                 ->searchable()
-                ->options(\App\Models\Route::query()
-                    ->orderBy('created_at', 'DESC')
-                    ->get()
-                    ->map(fn($route) => [
-                        'value' => ($route->id ?? ''),
-                        'label' => ($route->from ?? '') . ' - ' . ($route->to ?? '')
-                    ])
-                    ->pluck('label', 'value')
+                ->options(
+                    \App\Models\Route::query()
+                        ->orderBy('created_at', 'DESC')
+                        ->get()
+                        ->map(fn($route) => [
+                            'value' => ($route->id ?? ''),
+                            'label' => ($route->from ?? '').' - '.($route->to ?? ''),
+                        ])
+                        ->pluck('label', 'value')
                 )
                 ->creationRules('unique:trips,route_id')
                 ->displayUsingLabels(),
@@ -139,7 +139,7 @@ class Trip extends Resource
                 return '<span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-primary mr-1">
                           <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z" clip-rule="evenodd" />
                        <path d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z" />
-                  </svg> ' . $this->getParticipantsInTripCount() . '</span>
+                  </svg> '.$this->getParticipantsInTripCount().'</span>
                ';
             })
                 ->readonly()
@@ -165,10 +165,10 @@ class Trip extends Resource
 //            OrderField::make(__('Rikiavimas')),
 
             Text::make(__('Kelionės būsena'), fn() => $this->isAlreadyCompleted() ?
-                '<span class="flex items-center text-md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="check-circle" role="presentation" class="fill-current text-success mr-1"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"></path></svg> ' . $this->getCompletedAtDateTime() . '</span>'
+                '<span class="flex items-center text-md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="check-circle" role="presentation" class="fill-current text-success mr-1"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"></path></svg> '.$this->getCompletedAtDateTime().'</span>'
                 : '<span class="flex items-center text-md"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg> ' . __('Važiuojama į ' . $this->getSplitRouteName()) . '</span>'
+                </svg> '.__('Važiuojama į '.$this->getSplitRouteName()).'</span>'
             )->asHtml(),
         ];
     }
